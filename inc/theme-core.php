@@ -7,7 +7,7 @@
  */
 
 if (kratos_option('g_cdn', false)) {
-    $asset_path = 'https://cdn.jsdelivr.net/gh/Virace/kratos@' . THEME_VERSION;
+    $asset_path = 'https://cdn.jsdelivr.net/gh/Virace/kratos-pe@' . THEME_VERSION;
 } else {
     $asset_path = get_template_directory_uri();
 }

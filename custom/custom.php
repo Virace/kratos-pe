@@ -103,7 +103,7 @@ add_filter('the_content', function ($content) {
 
 
 // 根据 $TOC 数组输出文章目录 HTML 代码
-function wpjam_get_toc()
+function get_toc()
 {
     global $toc_items;
 
@@ -154,9 +154,9 @@ function get_background()
 {
     if (!kratos_option('top_img')) {
         $id = rand(2, 9);
-        return ASSET_PATH . '/assets/img/background-' . $id . '.png';
+        return ASSET_PATH . '/assets/img/background-' . $id . '-tuya.jpg';
     } else {
-        return kratos_option('top_img', ASSET_PATH . '/assets/img/background.png');
+        return kratos_option('top_img', ASSET_PATH . '/assets/img/background.jpg');
     }
 
 }

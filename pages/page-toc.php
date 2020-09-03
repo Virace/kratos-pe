@@ -14,7 +14,7 @@ if (get_post_meta($post->ID, 'post_toc', true)) {
         <div class="title">文章目录</div>
         <div class="textwidget">
             <nav id="toc" class="navbar">
-                <?php echo wpjam_get_toc() ?>
+                <?php echo get_toc() ?>
             </nav>
         </div>
     </aside>

@@ -75,23 +75,15 @@ function kratos_options()
     $options[] = array(
         'name' => __('CSS 动画库', 'kratos'),
         'desc' => __('开启 animate.css 效果', 'kratos'),
-        'std' => '0',
+        'std' => '1',
         'id' => 'g_animate',
-        'type' => 'checkbox',
-    );
-
-    $options[] = array(
-        'name' => __('Font Awesome', 'kratos'),
-        'desc' => __('开启 Font Awesome 字体', 'kratos'),
-        'std' => '0',
-        'id' => 'g_fontawesome',
         'type' => 'checkbox',
     );
 
     $options[] = array(
         'name' => __('静态资源加速', 'kratos'),
         'desc' => __('开启静态资源加速（CSS、JS、Font）', 'kratos'),
-        'std' => '1',
+        'std' => '0',
         'id' => 'g_cdn',
         'type' => 'checkbox',
     );
@@ -145,7 +137,7 @@ function kratos_options()
     $options[] = array(
         'name' => __('Gutenberg 编辑器', 'kratos'),
         'desc' => __('开启 Gutenberg 编辑器', 'kratos'),
-        'std' => '0',
+        'std' => '1',
         'id' => 'g_gutenberg',
         'type' => 'checkbox',
     );
@@ -311,6 +303,7 @@ function kratos_options()
         'name' => __('文章打赏', 'kratos'),
         'desc' => __('开启文章页面打赏功能', 'kratos'),
         'id' => 'g_donate',
+        'std' => '1',
         'type' => 'checkbox',
     );
 
@@ -356,7 +349,7 @@ function kratos_options()
     $options[] = array(
         'name' => __('个人昵称', 'kratos'),
         'id' => 'a_nickname',
-        'std' => 'Kratos',
+        'std' => 'Virace',
         'type' => 'text',
     );
 
@@ -376,7 +369,7 @@ function kratos_options()
 
     $options[] = array(
         'name' => __('个人简介', 'kratos'),
-        'std' => __('保持饥渴的专注，追求最佳的品质', 'kratos'),
+        'std' => __('有趣的人, 做有趣的事.', 'kratos'),
         'id' => 'a_about',
         'type' => 'textarea',
     );
@@ -472,14 +465,14 @@ function kratos_options()
     $options[] = array(
         'name' => __('副标题', 'kratos'),
         'id' => 'top_title',
-        'std' => 'Kratos',
+        'std' => '艾克斯',
         'class' => 'hidden',
         'type' => 'text',
     );
 
     $options[] = array(
         'name' => __('标题描述', 'kratos'),
-        'std' => __('一款专注于用户阅读体验的响应式博客主题', 'kratos'),
+        'std' => __('X对你意味着什么?', 'kratos'),
         'id' => 'top_describe',
         'class' => 'hidden',
         'type' => 'text',

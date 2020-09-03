@@ -188,6 +188,8 @@ button:focus {
 .k-nav {
     /*position: absolute;*/
     background-color: rgba(40, 42, 44, 0.6);
+    transition: background 0.3s linear;
+
 }
 
 .k-nav .navbar-brand {
@@ -197,6 +199,7 @@ button:focus {
 
 .k-nav .navbar-brand img {
     width: 100px;
+    transition: background 0.3s linear;
 }
 
 .k-nav .navbar-toggler {
@@ -270,6 +273,7 @@ button:focus {
     margin-right: 3px;
 }
 
+
 .navbar-light-scrolled {
     background: white !important;
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
@@ -283,7 +287,16 @@ button:focus {
 .k-nav.navbar-light-scrolled .line {
     background-color: black !important;
 }
-
+.k-nav.navbar-light-scrolled .navbar-brand{
+    overflow:hidden;
+    display: inline-block;
+    position: relative;
+}
+.k-nav.navbar-light-scrolled .navbar-brand img{
+    filter: drop-shadow(110px 0 rgba(40, 42, 44, 0.6));
+    position: relative;
+    left: -110px;
+}
 .k-nav.navbar-light-scrolled .navbar-nav > li.nav-item > a {
     color: black !important;
 }
