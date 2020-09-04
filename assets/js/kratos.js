@@ -10,18 +10,18 @@
         function scrolled_navbar() {
             const scroll = window.scrollY;
             const $navbar = $(".k-nav.navbar")
-            const $dark = $(".k-nav.navbar-dark")
-            const $darkScroll = $(".k-nav.navbar-dark-scrolled")
+            // const $dark = $(".k-nav.navbar-dark")
+            // const $darkScroll = $(".k-nav.navbar-dark-scrolled")
             if (scroll > 0) {
-                $dark.addClass("navbar-light");
-                $dark.addClass("navbar-dark-scrolled");
-                $darkScroll.removeClass("navbar-dark");
-                $navbar.addClass("navbar-light-scrolled");
+                // $dark.addClass("navbar-light");
+                // $dark.addClass("navbar-dark-scrolled");
+                // $darkScroll.removeClass("navbar-dark");
+                $navbar.addClass("navbar-scrolled");
             } else {
-                $darkScroll.removeClass("navbar-light");
-                $darkScroll.addClass("navbar-dark");
-                $dark.removeClass("navbar-dark-scrolled");
-                $navbar.removeClass("navbar-light-scrolled");
+                // $darkScroll.removeClass("navbar-light");
+                // $darkScroll.addClass("navbar-dark");
+                // $dark.removeClass("navbar-dark-scrolled");
+                $navbar.removeClass("navbar-scrolled");
             }
         }
 

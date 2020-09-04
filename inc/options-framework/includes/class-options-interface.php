@@ -189,7 +189,7 @@ class Options_Framework_Interface
                         }
 
                     }
-                    $output .= '<input name="' . esc_attr($option_name . '[' . $value['id'] . ']') . '" id="' . esc_attr($value['id']) . '" class="of-color"  type="text" value="' . esc_attr($val) . '"' . $default_color . ' />';
+                    $output .= '<input name="' . esc_attr($option_name . '[' . $value['id'] . ']') . '" id="' . esc_attr($value['id']) . '" class="of-color color-picker" data-alpha="true" type="text" value="' . esc_attr($val) . '"' . $default_color . ' />';
 
                     break;
 

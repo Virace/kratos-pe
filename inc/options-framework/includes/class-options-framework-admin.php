@@ -134,9 +134,36 @@ class Options_Framework_Admin {
 		wp_enqueue_script(
 			'options-custom',
 			get_stylesheet_directory_uri() . '/inc/options-framework/js/options-custom.js',
-			array( 'jquery','wp-color-picker' ),
+			array( 'jquery'),
 			Options_Framework::VERSION
 		);
+		// 增加RGBA的支持
+        wp_enqueue_style( 'wp-color-picker' );
+        wp_enqueue_script( 'wp-color-picker-alpha', get_stylesheet_directory_uri() . '/inc/options-framework/js/wp-color-picker-alpha.min.js', array( 'wp-color-picker' ), '2.1.4');
+        // from https://github.com/BoldGrid/post-and-page-builder/commit/ac5c9d9fdc4d1f0d57ebfd3e6cee5d176dd505a7
+        /*
+		 * Localize wp-color-picker.
+		 *
+		 * This is only needed in WordPress >= 5.5 because wpColorPickerL10n has been removed.
+		 * @see https://github.com/WordPress/WordPress/commit/7e7b70cd1ae5772229abb769d0823411112c748b
+		 *
+		 * This is only needed until the wp-color-picker-alpha repo has been updated.
+		 * @see https://github.com/kallookoo/wp-color-picker-alpha/issues/35
+		 */
+        global $wp_version;
+        if ( version_compare( $wp_version, '5.4.99', '>=' ) ) {
+            wp_localize_script(
+                'wp-color-picker',
+                'wpColorPickerL10n',
+                array(
+                    'clear'            => __( 'Clear' ),
+                    'clearAriaLabel'   => __( 'Clear color' ),
+                    'defaultString'    => __( 'Default' ),
+                    'defaultAriaLabel' => __( 'Select default color' ),
+                    'pick'             => __( 'Select Color' ),
+                    'defaultLabel'     => __( 'Color value' ),
+                ) );
+        }
 
 		// Inline scripts from options-interface.php
 		add_action( 'admin_head', array( $this, 'of_admin_head' ) );

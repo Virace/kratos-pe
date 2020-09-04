@@ -437,6 +437,20 @@ function kratos_options()
         'type' => 'heading',
     );
 
+    $options[] = array(
+        'name' => __('导航栏颜色1', 'kratos'),
+        'id' => 'top_color_1',
+        'std' => 'rgba(40, 42, 44, 0.6)',
+        'type' => 'color',
+    );
+
+    $options[] = array(
+        'name' => __('导航栏颜色2', 'kratos'),
+        'id' => 'top_color_2',
+        'std' => '#fff',
+        'type' => 'color',
+    );
+
 	$options[] = array(
         'name' => __( '顶部样式', 'kratos' ),
         'desc' => __('请选择顶部样式（颜色导航或图片导航）', 'kratos'),

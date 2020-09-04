@@ -47,6 +47,12 @@ function theme_autoload()
         wp_enqueue_style('kratos', ASSET_PATH . '/assets/css/kratos.css', array(), THEME_VERSION);
         wp_enqueue_style('aos', ASSET_PATH . '/assets/css/aos.min.css', array(), '3.0.0-6');
         wp_enqueue_style('custom', get_template_directory_uri() . '/custom/custom.css', array(), THEME_VERSION);
+        $bg_color = kratos_option('g_background', '#f5f5f5');
+        $top_color_1 = kratos_option('top_color_1', 'rgba(40, 42, 44, 0.6)');
+        $top_color_2 = kratos_option('top_color_2', '#fff');
+
+        $root = "body{--bg-color:{$bg_color}; --navbar-color-1:{$top_color_1}; --navbar-color-2:{$top_color_2};";
+        wp_add_inline_style('kratos', $root);
 
         // js
         wp_deregister_script('jquery');

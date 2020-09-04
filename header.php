@@ -26,9 +26,7 @@
 <?php flush(); ?>
 <body>
 <header class="k-header">
-    <nav class="k-nav navbar navbar-expand-lg fixed-top auto-hiding-navbar navbar-light" <?php if (kratos_option('top_select', 'banner') !== 'banner') {
-        echo 'style="background:' . kratos_option('top_color', '#24292e') . '"';
-    } ?>>
+    <nav class="k-nav navbar navbar-expand-lg fixed-top auto-hiding-navbar navbar-light">
         <div class="container">
             <a class="navbar-brand" href="<?php echo get_option('home'); ?>">
                 <?php

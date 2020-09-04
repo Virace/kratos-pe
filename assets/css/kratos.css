@@ -159,6 +159,7 @@ button:focus {
 
 .k-main {
     padding: 23px 0;
+    background-color: var(--bg-color, #f5f5f5);
 }
 
 .k-main.color {
@@ -187,7 +188,7 @@ button:focus {
 
 .k-nav {
     /*position: absolute;*/
-    background-color: rgba(40, 42, 44, 0.6);
+    background-color: var(--navbar-color-1, rgba(40, 42, 44, 0.6));
     transition: background 0.3s linear;
 
 }
@@ -274,30 +275,30 @@ button:focus {
 }
 
 
-.navbar-light-scrolled {
-    background: white !important;
+.navbar-scrolled {
+    background-color: var(--navbar-color-2, white) !important;
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
 
 }
 
-.k-nav.navbar-light-scrolled .navbar-brand {
+.k-nav.navbar-scrolled .navbar-brand {
     color: black !important;
 }
 
-.k-nav.navbar-light-scrolled .line {
+.k-nav.navbar-scrolled .line {
     background-color: black !important;
 }
-.k-nav.navbar-light-scrolled .navbar-brand{
+.k-nav.navbar-scrolled .navbar-brand{
     overflow:hidden;
     display: inline-block;
     position: relative;
 }
-.k-nav.navbar-light-scrolled .navbar-brand img{
-    filter: drop-shadow(110px 0 rgba(40, 42, 44, 0.6));
+.k-nav.navbar-scrolled .navbar-brand img{
+    filter: drop-shadow(110px 0 var(--navbar-color-1, rgba(40, 42, 44, 0.6)));
     position: relative;
     left: -110px;
 }
-.k-nav.navbar-light-scrolled .navbar-nav > li.nav-item > a {
+.k-nav.navbar-scrolled .navbar-nav > li.nav-item > a {
     color: black !important;
 }
 

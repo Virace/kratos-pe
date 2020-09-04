@@ -147,7 +147,8 @@ function of_sanitize_background( $input ) {
 		'attachment' => 'scroll'
 	) );
 
-	$output['color'] = apply_filters( 'of_sanitize_hex', $input['color'] );
+//	$output['color'] = apply_filters( 'of_sanitize_hex', $input['color'] );
+	$output['color'] = apply_filters( 'of_sanitize_color_value', $input['color'] );
 	$output['image'] = apply_filters( 'of_sanitize_upload', $input['image'] );
 
 	return $output;
@@ -168,7 +169,17 @@ function of_sanitize_hex( $hex, $default = '' ) {
 	}
 	return $default;
 }
-add_filter( 'of_sanitize_color', 'of_sanitize_hex' );
+
+function of_sanitize_color_value($val, $default = ''){
+    if ( of_validate_hex( $val ) or preg_match( "/^[rR][gG][Bb][Aa]?[\(]((2[0-4][0-9]|25[0-5]|[01]?[0-9][0-9]?),){2}(2[0-4][0-9]|25[0-5]|[01]?[0-9][0-9]?),?(0\.\d{1,2}|1|0)?[\)]$/", $val )===1) {
+        return $val;
+    }
+    return $default;
+}
+
+//add_filter( 'of_sanitize_color', 'of_sanitize_hex' );
+// 添加对RGBA的支持, 适配拾色器
+add_filter( 'of_sanitize_color', 'of_sanitize_color_value');
 
 /**
  * Is a given string a color formatted in hexidecimal notation?

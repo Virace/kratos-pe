@@ -6,7 +6,7 @@ add_action('load-post-new.php', 'sola_post_meta_boxes_setup');
 后面的代码会自动根据数组填充的内容创建Post Meta Box */
 $fields = array(
     array(
-        'name' => __('是否显示文章目录'),
+        'name' => __('是否关闭显示文章目录'),
         'desc' => '',
         'id' => 'post_toc',
         'type' => 'checkbox',
