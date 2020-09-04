@@ -51,7 +51,7 @@ function theme_autoload()
         $top_color_1 = kratos_option('top_color_1', 'rgba(40, 42, 44, 0.6)');
         $top_color_2 = kratos_option('top_color_2', '#fff');
 
-        $root = "body{--bg-color:{$bg_color}; --navbar-color-1:{$top_color_1}; --navbar-color-2:{$top_color_2};";
+        $root = "body{--bg-color:{$bg_color}; --navbar-color-1:{$top_color_1}; --navbar-color-2:{$top_color_2};}";
         wp_add_inline_style('kratos', $root);
 
         // js

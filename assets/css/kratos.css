@@ -194,7 +194,7 @@ button:focus {
 }
 
 .k-nav .navbar-brand {
-    color: #ffffff;
+    color: var(--navbar-color-2, white);
     font-size: 24px;
 }
 
@@ -242,20 +242,6 @@ button:focus {
     margin: 5px 0;
 }
 
-.nav-close .first-line {
-    transform: rotate(45deg) translate3d(5px, 5px, 0);
-    transform-origin: center;
-}
-
-.nav-close .second-line {
-    transform: scale3d(0, 1, 1);
-}
-
-.nav-close .third-line {
-    transform: rotate(-45deg) translate3d(5px, -5px, 0);
-    transform-origin: center;
-}
-
 .navbar-light .navbar-nav .nav-link,
 .navbar-light .navbar-nav .nav-link:focus,
 .navbar-light .navbar-nav .nav-link:hover,
@@ -281,14 +267,12 @@ button:focus {
 
 }
 
-.k-nav.navbar-scrolled .navbar-brand {
-    color: black !important;
-}
-
 .k-nav.navbar-scrolled .line {
     background-color: black !important;
 }
+
 .k-nav.navbar-scrolled .navbar-brand{
+    color: var(--navbar-color-1, rgba(40, 42, 44, 0.6)) !important;
     overflow:hidden;
     display: inline-block;
     position: relative;
@@ -299,7 +283,7 @@ button:focus {
     left: -110px;
 }
 .k-nav.navbar-scrolled .navbar-nav > li.nav-item > a {
-    color: black !important;
+    color: var(--navbar-color-1, rgba(40, 42, 44, 0.6)) !important;
 }
 
 .dropdown-menu {
@@ -940,6 +924,7 @@ button:focus {
 }
 
 .k-main .board .article-panel .nothing {
+    width: 100%;
     padding: 50px;
     text-align: center;
 }

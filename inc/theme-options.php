@@ -461,14 +461,6 @@ function kratos_options()
 	);
 
     $options[] = array(
-        'name' => __('颜色导航', 'kratos'),
-        'id' => 'top_color',
-        'std' => '#24292e',
-        'class' => 'hidden',
-        'type' => 'color',
-    );
-
-    $options[] = array(
         'name' => __('图片导航', 'kratos'),
         'id' => 'top_img',
         'std' => ASSET_PATH . '/assets/img/background.png',
