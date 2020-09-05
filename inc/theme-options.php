@@ -451,6 +451,13 @@ function kratos_options()
         'type' => 'color',
     );
 
+    $options[] = array(
+        'name' => __('移动端侧边栏颜色', 'kratos'),
+        'id' => 'mb_sidebar_color',
+        'std' => '#242b31',
+        'type' => 'color',
+    );
+
 	$options[] = array(
         'name' => __( '顶部样式', 'kratos' ),
         'desc' => __('请选择顶部样式（颜色导航或图片导航）', 'kratos'),

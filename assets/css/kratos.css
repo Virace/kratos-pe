@@ -406,7 +406,7 @@ button:focus {
         height: 100%;
         padding: 4.6rem 0 2rem;
         margin: 0;
-        background: #242b31;
+        background: var(--mb-sidebar-color ,#242b31);
         -webkit-box-sizing: border-box;
         box-sizing: border-box;
     }
@@ -1014,7 +1014,7 @@ button:focus {
     }
     .k-main .board .article-panel .a-meta span {
         color: #999;
-        font-size: 14px;
+        font-size: 13px;
     }
 
     .k-main .board .article-panel .nothing .sorry {

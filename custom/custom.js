@@ -43,3 +43,4 @@ $("body").on("click", 'a[href^="#toc"],area[href^="#toc"]', function () {
         }
     }
 });
+
