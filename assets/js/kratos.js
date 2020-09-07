@@ -4,7 +4,7 @@
  */
 ;(function () {
     'use strict'
-    const KRATOS_VERSION = '1.0.0-alpha';
+    const KRATOS_VERSION = '1.0.0-beta';
 
     const navbarConfig = function () {
         function scrolled_navbar() {
