@@ -65,14 +65,6 @@ function kratos_options()
     );
 
     $options[] = array(
-        'name' => __('背景颜色', 'kratos'),
-        'desc' => __('全站页面的背景颜色，需填写十六进制颜色码', 'kratos'),
-        'id' => 'g_background',
-        'std' => '#f5f5f5',
-        'type' => 'color',
-    );
-
-    $options[] = array(
         'name' => __('CSS 动画库', 'kratos'),
         'desc' => __('开启 animate.css 效果', 'kratos'),
         'std' => '1',
@@ -151,14 +143,6 @@ function kratos_options()
     );
 
     $options[] = array(
-        'name' => __('Chrome 导航栏颜色', 'kratos'),
-        'desc' => __('Chrome 移动端浏览器导航栏的颜色', 'kratos'),
-        'id' => 'g_chrome',
-        'std' => '#282a2c',
-        'type' => 'color',
-    );
-
-    $options[] = array(
         'name' => __('微信二维码', 'kratos'),
         'desc' => __('开启页面右下角浮动微信二维码', 'kratos'),
         'id' => 's_wechat',
@@ -177,6 +161,65 @@ function kratos_options()
         'id' => 'g_404',
         'std' => ASSET_PATH . '/assets/img/404.jpg',
         'type' => 'upload',
+    );
+    $options[] = array(
+        'name' => __('颜色设置', 'kratos'),
+        'type' => 'heading',
+    );
+    $options[] = array(
+        'name' => __('背景颜色', 'kratos'),
+        'desc' => __('全站页面的背景颜色，需填写十六进制颜色码', 'kratos'),
+        'id' => 'g_background',
+        'std' => '#f5f5f5',
+        'type' => 'color',
+    );
+
+    $options[] = array(
+        'name' => __('主题色', 'kratos'),
+        'desc' => __('首页分类标签、分页以及一些按钮的背景色', 'kratos'),
+        'id' => 'g_theme_color1',
+        'std' => '#00a2ff',
+        'type' => 'color',
+    );
+
+    $options[] = array(
+        'name' => __('主题副色', 'kratos'),
+        'desc' => __('a标签hover等的颜色, 可以自行组合', 'kratos'),
+        'id' => 'g_theme_color2',
+        'std' => '#0097ee',
+        'type' => 'color',
+    );
+
+
+    $options[] = array(
+        'name' => __('导航栏颜色1', 'kratos'),
+        'desc' => __('默认导航栏颜色', 'kratos'),
+        'id' => 'top_color_1',
+        'std' => 'rgba(40, 42, 44, 0.6)',
+        'type' => 'color',
+    );
+
+    $options[] = array(
+        'name' => __('导航栏颜色2', 'kratos'),
+        'desc' => __('滚动条拖动会改变导航栏颜色', 'kratos'),
+        'id' => 'top_color_2',
+        'std' => '#fff',
+        'type' => 'color',
+    );
+
+    $options[] = array(
+        'name' => __('移动端侧边栏颜色', 'kratos'),
+        'id' => 'mb_sidebar_color',
+        'std' => '#242b31',
+        'type' => 'color',
+    );
+
+    $options[] = array(
+        'name' => __('Chrome 导航栏颜色', 'kratos'),
+        'desc' => __('Chrome 移动端浏览器导航栏的颜色', 'kratos'),
+        'id' => 'g_chrome',
+        'std' => '#282a2c',
+        'type' => 'color',
     );
 
     $options[] = array(
@@ -435,27 +478,6 @@ function kratos_options()
     $options[] = array(
         'name' => __('顶部配置', 'kratos'),
         'type' => 'heading',
-    );
-
-    $options[] = array(
-        'name' => __('导航栏颜色1', 'kratos'),
-        'id' => 'top_color_1',
-        'std' => 'rgba(40, 42, 44, 0.6)',
-        'type' => 'color',
-    );
-
-    $options[] = array(
-        'name' => __('导航栏颜色2', 'kratos'),
-        'id' => 'top_color_2',
-        'std' => '#fff',
-        'type' => 'color',
-    );
-
-    $options[] = array(
-        'name' => __('移动端侧边栏颜色', 'kratos'),
-        'id' => 'mb_sidebar_color',
-        'std' => '#242b31',
-        'type' => 'color',
     );
 
 	$options[] = array(
