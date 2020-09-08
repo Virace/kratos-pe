@@ -154,7 +154,7 @@ $select_col = $col_array[kratos_option('g_article_widgets', 'two_side')];
                             </div>
                         </article>
                     <?php endif; ?>
-                    <?php require get_template_directory() . '/pages/page-toolbar.php'; ?>
+                    <?php require get_template_directory() . '/inc/theme-pages/page-toolbar.php'; ?>
                     <nav class="navigation post-navigation clearfix" role="navigation" data-aos="fade">
                         <?php
                         $prev_post = get_previous_post(TRUE);
@@ -171,7 +171,7 @@ $select_col = $col_array[kratos_option('g_article_widgets', 'two_side')];
                 <?php if (kratos_option('g_article_widgets', 'two_side') == 'two_side') { ?>
                     <div class="col-lg-4 sidebar d-none d-lg-block">
                         <aside class="sidebar">
-                            <?php require get_template_directory() . '/pages/page-toc.php'; ?>
+                            <?php require get_template_directory() . '/inc/theme-pages/page-toc.php'; ?>
                             <?php dynamic_sidebar('sidebar_tool_post'); ?>
                         </aside>
                     </div>

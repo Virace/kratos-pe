@@ -19,7 +19,7 @@ get_header(); ?>
                 if ( have_posts() ) {
 					while ( have_posts() ){
 						the_post();
-						get_template_part('/pages/page-content', get_post_format());
+						get_template_part('/inc/theme-pages/page-content', get_post_format());
 					}
 				}else{ ?>
                     <div class="article-panel">

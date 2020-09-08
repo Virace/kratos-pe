@@ -35,6 +35,7 @@ add_action('after_setup_theme', 'theme_languages');
 function theme_autoload()
 {
     if (!is_admin()) {
+// todo: 解决古腾堡 块CSS文件"不生效"问题, 之前是加上important重新加载.
         // css
         wp_enqueue_style('bootstrap', ASSET_PATH . '/assets/css/bootstrap.min.css', array(), '4.5.1');
         wp_enqueue_style('vicon', ASSET_PATH . '/assets/css/iconfont.min.css', array(), THEME_VERSION);
@@ -47,6 +48,7 @@ function theme_autoload()
         wp_enqueue_style('kratos', ASSET_PATH . '/assets/css/kratos.css', array(), THEME_VERSION);
         wp_enqueue_style('aos', ASSET_PATH . '/assets/css/aos.min.css', array(), '3.0.0-6');
         wp_enqueue_style('custom', get_template_directory_uri() . '/custom/custom.css', array(), THEME_VERSION);
+
         $bg_color = kratos_option('g_background', '#f5f5f5');
         $theme_color1 = kratos_option('g_theme_color1', '#00a2ff');
         $theme_color2 = kratos_option('g_theme_color2', '#0097ee');

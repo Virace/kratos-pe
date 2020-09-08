@@ -9,7 +9,7 @@
 if (isset($_SERVER['SCRIPT_FILENAME']) && 'comments.php' == basename($_SERVER['SCRIPT_FILENAME'])) {
     die();
 }
-require get_template_directory() . '/pages/page-smilies.php';
+require get_template_directory() . '/inc/theme-pages/page-smilies.php';
 if (comments_open()) { ?>
     <div class="comments" id="comments" data-aos="fade">
         <h3 class="title"><?php if (is_single()) {
