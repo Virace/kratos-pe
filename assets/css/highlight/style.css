@@ -21,7 +21,7 @@ hue-6-2: #e6c07b
 .hljs {
   display: block;
   overflow-x: auto;
-  padding: 0.5em;
+  padding: 1.5em;
   color: #abb2bf;
   background: #282c34;
 }
@@ -93,4 +93,27 @@ hue-6-2: #e6c07b
 
 .hljs-link {
   text-decoration: underline;
+}
+
+/* for block of numbers */
+.hljs-ln-numbers {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  text-align: center;
+  color: #ccc;
+  border-right: 1px solid #CCC;
+  vertical-align: top;
+  padding-right: 5px;
+
+  /* your custom style here */
+}
+
+/* for block of code */
+.hljs-ln-code {
+  padding-left: 10px!important;
 }

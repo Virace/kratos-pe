@@ -257,15 +257,22 @@
     }
 
     const highlightConfig = function (flag) {
-        function action(){
+        function action() {
             document.querySelectorAll('pre code').forEach((block) => {
                 hljs.highlightBlock(block);
+                hljs.lineNumbersBlock(block);
+                hljs.addCopyButton(block);
             });
         }
+
         if ($('pre code').length >= 1) {
             if (typeof hljs == 'undefined') {
                 $('head').append('<link href="' + kratos.directory + '/assets/css/highlight/style.min.css" rel="stylesheet" type="text/css" />')
-                $.getScript(kratos.directory + '/assets/js/highlight.pack.js', action)
+
+                let JSDependencies = [kratos.directory + '/assets/js/highlight/highlight.pack.js',
+                    kratos.directory + '/assets/js/highlight/highlightjs-copy-button.min.js',
+                    kratos.directory + '/assets/js/highlight/highlightjs-line-numbers.min.js'];
+                loadScripts(JSDependencies, '').then(action);
             } else {
                 action()
             }
@@ -294,6 +301,28 @@
         highlightConfig()
     })
 }())
+
+function loadScripts(urls, path) {
+    return new Promise(function (resolve) {
+        urls.forEach(function (src, i) {
+
+            let script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.src = (path || "") + src;
+            script.async = false;
+
+            // If last script, bind the callback event to resolve
+            if (i === urls.length - 1) {
+                // Multiple binding for browser compatibility
+                script.onreadystatechange = resolve;
+                script.onload = resolve;
+            }
+
+            // Fire the loading
+            document.body.appendChild(script);
+        });
+    });
+}
 
 function grin(tag) {
     let myField, sel;
