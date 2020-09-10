@@ -249,9 +249,9 @@
     const consoleConfig = function () {
         console.log('\n Kratos v' + KRATOS_VERSION + '\n\n https://github.com/vtrois/kratos \n\n')
     };
-    const photoLayerConfig = function () {
+    const imgLayerConfig = function () {
         layer.photos({
-            photos: '.kratos-post-content p,.kratos-status-post p,.kratos-post-content .wp-block-image',
+            photos: '.article .content .wp-block-image',
             anim: 0
         });
     }
@@ -286,6 +286,7 @@
         postlikeConfig()
         donateConfig()
         highlightConfig()
+        imgLayerConfig()
     }
     $(function () {
         accordionConfig()
@@ -298,6 +299,7 @@
         postlikeConfig()
         donateConfig()
         consoleConfig()
+        imgLayerConfig()
         highlightConfig()
     })
 }())

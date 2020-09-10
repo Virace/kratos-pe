@@ -58,16 +58,7 @@ if (comments_open()) { ?>
                                                required="required">
                                     </div>
                                 </div>
-                                <div class="col-md-6 mt-3 comment-form-author">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="vicon i-url"></i></span>
-                                        </div>
-                                        <input class="form-control" id="author"
-                                               placeholder="<?php _e('网址', 'kratos'); ?>" name="url" type="url"
-                                               value="<?php echo esc_attr($commenter['comment_author_url']); ?>">
-                                    </div>
-                                </div>
+                                <?php // todo: 加入验证码？ ?>
                             </div>
                         <?php endif; ?>
                         <div class="comment-textarea">

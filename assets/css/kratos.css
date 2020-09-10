@@ -725,7 +725,7 @@ button:focus {
 }
 
 .article .content > * {
-    margin-bottom: 1rem;
+    margin-bottom: 1rem !important;
 }
 
 .article .content .paginations {
@@ -1327,7 +1327,14 @@ button:focus {
 
 .article .content .wp-block-image {
     margin-bottom: 0;
+    text-align: center;
 }
+
+.article .content .wp-block-image img {
+    box-shadow: 0 4px 7px #000;
+    transition: all .3s ease-out 0s;
+}
+
 
 .article .content .wp-block-image figcaption {
     font-size: 14px;
@@ -1455,7 +1462,7 @@ button:focus {
 }
 
 .article .copyright {
-    padding: 0 16px 16px;
+    padding: 16px;
 }
 
 .article .copyright span {
