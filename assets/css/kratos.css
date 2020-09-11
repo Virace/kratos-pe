@@ -29,7 +29,7 @@ body {
     background: #f5f5f5;
     font-weight: 350;
     font-size: 16px;
-    font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, PingFang SC, Microsoft YaHei, Source Han Sans SC, Noto Sans CJK SC, WenQuanYi Micro Hei, sans-serif
+    font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, PingFang SC, Microsoft YaHei, Source Han Sans SC, Noto Sans CJK SC, WenQuanYi Micro Hei, sans-serif;
     line-height: 1.8;
     position: relative;
     transition: all .3s ease-out 0s;
@@ -175,7 +175,8 @@ button:focus {
 
 @media only screen and (max-width: 768px) {
     .k-main {
-        padding: 10px 0;
+        /*padding: 10px 0;*/
+        padding: 0;
     }
 
     .k-main.color {
@@ -188,9 +189,9 @@ button:focus {
 --------------------------------------------------------------*/
 
 .k-nav {
-    /*position: absolute;*/
     background-color: var(--navbar-color-1, rgba(40, 42, 44, 0.6));
     transition: background 0.3s linear;
+    padding: 0 1rem;
 
 }
 
@@ -234,6 +235,7 @@ button:focus {
     font-weight: 400;
     font-size: 17px;
     padding: 7px 18px;
+    margin: 15px 0;
 }
 
 .k-nav .line {
@@ -757,6 +759,10 @@ button:focus {
 5. 文章列表
 --------------------------------------------------------------*/
 
+.k-main .container{
+    max-width: 1200px;
+}
+
 .k-main .board .article-panel {
     margin: 0 0 23px;
     border-radius: 0;
@@ -767,7 +773,9 @@ button:focus {
 .k-main .board .article-panel:last-of-type {
     margin: 0;
 }
-
+.k-main .board .article-panel .sticky-post{
+    color: var(--theme-color-2, #0097ee);
+}
 .k-main .board .article-panel .a-thumb {
     position: relative;
     float: left;
@@ -858,8 +866,10 @@ button:focus {
 }
 
 .k-main .board .article-panel .a-post .content p {
+    margin-top: 10px;
     margin-bottom: 0;
     font-size: 15px;
+    /*line-height: 1.9rem;*/
 }
 
 .k-main .board .article-panel .a-meta {

@@ -20,14 +20,16 @@
         } ?>">
             <div class="header">
                 <?php $category = get_the_category();
-                if (count($category)>0) {
+                if (count($category) > 0) {
                     echo '<a class="label" href="' . get_category_link($category[0]->term_id) . '">' . $category[0]->cat_name . '<i class="label-arrow"></i></a>';
                 }
                 ?>
-                <h3 class="title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+                <h3 class="title"><a href="<?php the_permalink(); ?>"><?php
+                        if (is_sticky()) echo '<span class="sticky-post">[置顶] </span>';
+                        the_title();?></a></h3>
             </div>
             <div class="content">
-                <p><?php echo wp_trim_words(get_the_excerpt(), 260); ?></p>
+                <p><?php echo wp_trim_words(get_the_excerpt(), 85); ?></p>
             </div>
         </div>
         <div class="a-meta">
