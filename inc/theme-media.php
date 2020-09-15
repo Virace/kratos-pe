@@ -4,8 +4,7 @@ add_filter('upload_mimes', function ($existing_mimes = array()) {
     $existing_mimes['webp'] = 'image/webp';
     $existing_mimes['svg'] = 'image/svg+xml';
     return $existing_mimes;
-}
-);
+});
 
 
 /*
@@ -38,7 +37,7 @@ function init_emwi()
     wp_register_style('emwi-css', ASSET_PATH . '/inc/options-framework/css/external-media-without-import.css');
     wp_enqueue_style('emwi-css');
 
-    wp_register_script('emwi-js', ASSET_PATH . '/inc/options-framework/css/external-media-without-import.min.js', array('jquery'));
+    wp_register_script('emwi-js', ASSET_PATH . '/inc/options-framework/js/external-media-without-import.min.js', array('jquery'));
     wp_enqueue_script('emwi-js');
 }
 
@@ -86,7 +85,7 @@ function post_upload_ui()
     ?>
     <div id="emwi-in-upload-ui">
         <div class="row1">
-            <?php echo __('or', 'kratos'); ?>
+            <?php echo __('或', 'kratos'); ?>
         </div>
         <div class="row2">
             <?php if ('grid' === $media_library_mode) :  // FIXME: seems that media_library_mode being empty also means grid mode ?>
