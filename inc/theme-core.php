@@ -68,7 +68,7 @@ function theme_autoload()
         wp_enqueue_script('bootstrap-ahn', ASSET_PATH . '/assets/js/jquery.bootstrap.autohidingnavbar.min.js', array(), '4.0.0', true);
         wp_enqueue_script('layer', ASSET_PATH . '/assets/js/layer.min.js', array(), '3.1.1', true);
         wp_enqueue_script('kratos', ASSET_PATH . '/assets/js/kratos.min.js', array(), THEME_VERSION, true);
-        wp_enqueue_script('custom', get_template_directory_uri() . '/custom/custom.min.js', array(), THEME_VERSION, true);
+        wp_enqueue_script('custom', get_template_directory_uri() . '/custom/custom.js', array(), THEME_VERSION, true);
         $data = array(
             'site' => home_url(),
             'directory' => get_stylesheet_directory_uri(),
