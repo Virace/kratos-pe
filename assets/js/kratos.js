@@ -10,10 +10,13 @@
         function scrolled_navbar() {
             const scroll = window.scrollY;
             const $navbar = $(".k-nav.navbar")
+            const $dropdown = $(".dropdown-menu")
             if (scroll > 0) {
                 $navbar.addClass("navbar-scrolled");
+                $dropdown.addClass("navbar-scrolled");
             } else {
                 $navbar.removeClass("navbar-scrolled");
+                $dropdown.removeClass("navbar-scrolled");
             }
         }
 
@@ -63,6 +66,7 @@
             }
         });
 
+        // 移动端侧边栏
         const $clone = $('#navbarResponsive').clone();
         $clone.removeAttr("id");
         $clone.attr({'class': 'mobi-navbar'})
@@ -355,3 +359,43 @@ function grin(tag) {
         myField.focus()
     }
 }
+
+document.addEventListener("DOMContentLoaded", function (event) {
+    const cloneDOMContentLoaded = new Event("cloneDOMContentLoaded");
+    document.dispatchEvent(cloneDOMContentLoaded);
+});
+
+AOS.init({
+    disable: 'mobile',
+    startEvent: 'cloneDOMContentLoaded',
+    initClassName: 'aos-init',
+    animatedClassName: 'aos-animate',
+    useClassNames: false,
+    disableMutationObserver: false,
+    debounceDelay: 50,
+    throttleDelay: 99,
+
+    offset: 40,
+    delay: 0,
+    duration: 1000,
+    easing: 'ease-in-out',
+    once: false,
+    mirror: false,
+    anchorPlacement: 'top-bottom',
+});
+
+$("body").on("click", 'a[href^="#toc"],area[href^="#toc"]', function () {
+    if (location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') && location.hostname === this.hostname) {
+        let $target = $(this.hash);
+        let height = $('.navbar')[0].offsetHeight
+        $target = $target.length && $target || $('[name=' + this.hash.slice(1) + ']');
+        if ($target.length) {
+            const targetOffset = $target.offset().top;
+            $('html,body').animate({
+                    scrollTop: targetOffset - height - 5
+                },
+                1000);
+            return false;
+        }
+    }
+});

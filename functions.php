@@ -37,7 +37,12 @@ require get_template_directory() . '/inc/theme-dogecloud.php';
 
 // SMTP 配置
 require get_template_directory() . '/inc/theme-smtp.php';
+
+// 验证码(未完成)
 require get_template_directory() . '/inc/theme-recaptcha.php';
+
+// 媒体相关
+require get_template_directory() . '/inc/theme-media.php';
 
 // 自定义函数
 require get_template_directory() . '/custom/custom.php';

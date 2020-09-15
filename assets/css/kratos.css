@@ -226,7 +226,7 @@ button:focus {
 }
 
 .k-nav .navbar-nav .dropdown-item:hover {
-    background-color: var(--navbar-color-1, rgba(40, 42, 44));
+    background-color: var(--navbar-color-1, rgba(40, 42, 44, 0.6));
 }
 
 .k-nav .navbar-nav > li.nav-item > a {
@@ -252,12 +252,11 @@ button:focus {
 
 .navbar-light .navbar-nav .nav-link,
 .navbar-light .navbar-nav .nav-link:focus,
-.navbar-light .navbar-nav .nav-link:hover,
 .navbar-light .navbar-nav .active > .nav-link,
 .navbar-light .navbar-nav .nav-link.active,
 .navbar-light .navbar-nav .nav-link.show,
 .navbar-light .navbar-nav .show > .nav-link {
-    color: #ffffff;
+    color: var(--navbar-color-2, white);
 }
 
 .navbar-light .navbar-nav .nav-link:hover {
@@ -300,11 +299,23 @@ button:focus {
     min-width: 100%;
     padding: 0.75rem 0;
     margin: 0;
-    background-color: #ffffff;
+    background-color: var(--navbar-color-1, rgba(40, 42, 44, 0.6)) !important;
     background-clip: padding-box;
-    border: 1px solid rgba(31, 37, 46, 0.15);
+    border: none;
     border-radius: 0;
     z-index: 1000;
+}
+
+.dropdown-item {
+    color: var(--navbar-color-2, white) !important;
+}
+
+.dropdown-menu.navbar-scrolled {
+    background-color: var(--navbar-color-2, white) !important;
+}
+
+.dropdown-menu.navbar-scrolled .nav-item > a {
+    color: var(--navbar-color-1, rgba(40, 42, 44, 0.6)) !important;
 }
 
 .dropdown-menu .dropdown-item {
@@ -323,7 +334,7 @@ button:focus {
 
 @media (min-width: 992px) {
     .k-nav .container {
-        max-width: 100%;
+        /*max-width: 100%;*/
     }
 
     .animated_dropdown {
@@ -515,77 +526,7 @@ button:focus {
     }
 }
 
-@media only screen and (min-width: 992px) {
-
-    /*.k-nav {*/
-    /*    border-bottom: 1px solid transparent;*/
-    /*    background: transparent;*/
-    /*    -webkit-transition: background-color 0.2s;*/
-    /*    -moz-transition: background-color 0.2s;*/
-    /*    transition: background-color 0.2s;*/
-    /*    -webkit-transform: translate3d(0, 0, 0);*/
-    /*    -moz-transform: translate3d(0, 0, 0);*/
-    /*    -o-transform: translate3d(0, 0, 0);*/
-    /*    transform: translate3d(0, 0, 0);*/
-    /*    -ms-transform: translate3d(0, 0, 0);*/
-    /*}*/
-    /*.k-nav .navbar-brand {*/
-    /*    padding: 10px 20px;*/
-    /*    color: #fff;*/
-    /*}*/
-    /*.k-nav .navbar-brand:focus,*/
-    /*.k-nav .navbar-brand:hover {*/
-    /*    color: rgba(255, 255, 255, 0.8);*/
-    /*}*/
-    /*.k-nav .navbar-nav > li.nav-item > a {*/
-    /*    padding: 10px 20px;*/
-    /*    color: #fff;*/
-    /*}*/
-    /*.k-nav .navbar-nav > li.nav-item > a:focus,*/
-    /*.k-nav .navbar-nav > li.nav-item > a:hover {*/
-    /*    color: rgba(255, 255, 255, 0.8);*/
-    /*}*/
-    /*.k-nav.is-fixed {*/
-    /*    position: fixed;*/
-    /*    top: -67px;*/
-    /*    border-bottom: 1px solid white;*/
-    /*    background-color: rgba(255, 255, 255, 0.9);*/
-    /*    -webkit-transition: -webkit-transform 0.2s;*/
-    /*    -moz-transition: -moz-transform 0.2s;*/
-    /*    transition: transform 0.2s;*/
-    /*}*/
-    /*.k-nav.is-fixed .navbar-brand {*/
-    /*    color: #212529;*/
-    /*}*/
-    /*.k-nav.is-fixed .navbar-brand:focus,*/
-    /*.k-nav.is-fixed .navbar-brand:hover {*/
-    /*    color: #007bff;*/
-    /*}*/
-    /*.k-nav.is-fixed .navbar-nav > li.nav-item > a {*/
-    /*    color: #212529;*/
-    /*}*/
-    /*.k-nav.is-fixed .navbar-nav > li.nav-item > a:focus,*/
-    /*.k-nav.is-fixed .navbar-nav > li.nav-item > a:hover {*/
-    /*    color: #007bff;*/
-    /*}*/
-    /*.k-nav.is-visible {*/
-    /*    -webkit-transform: translate3d(0, 100%, 0);*/
-    /*    -moz-transform: translate3d(0, 100%, 0);*/
-    /*    -o-transform: translate3d(0, 100%, 0);*/
-    /*    transform: translate3d(0, 100%, 0);*/
-    /*    -ms-transform: translate3d(0, 100%, 0);*/
-    /*}*/
-}
-
 @media screen and (max-width: 992px) {
-    .navbar-light .navbar-nav .dropdown-menu,
-    .navbar-light .navbar-nav .dropdown-item.active,
-    .navbar-light .navbar-nav .dropdown-item:active,
-    .navbar-light .navbar-nav .dropdown-item:focus,
-    .navbar-light .navbar-nav .dropdown-item:hover {
-        background-color: transparent;
-    }
-
     .k-nav .navbar-nav > li.nav-item > a {
         font-size: 16px;
     }
@@ -759,7 +700,7 @@ button:focus {
 5. 文章列表
 --------------------------------------------------------------*/
 
-.k-main .container{
+.k-main .container {
     max-width: 1200px;
 }
 
@@ -773,9 +714,11 @@ button:focus {
 .k-main .board .article-panel:last-of-type {
     margin: 0;
 }
-.k-main .board .article-panel .sticky-post{
+
+.k-main .board .article-panel .sticky-post {
     color: var(--theme-color-2, #0097ee);
 }
+
 .k-main .board .article-panel .a-thumb {
     position: relative;
     float: left;

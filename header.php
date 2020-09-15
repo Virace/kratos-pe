@@ -21,13 +21,13 @@
     <link rel="shortcut icon" href="<?php echo kratos_option('g_icon'); ?>">
     <?php wp_head();
     wp_print_scripts('jquery');
-    mourning(); ?>
+//    mourning(); ?>
 </head>
 <?php flush(); ?>
 <body>
 <header class="k-header">
     <nav class="k-nav navbar navbar-expand-lg fixed-top auto-hiding-navbar navbar-light">
-<!--        <div class="container">-->
+        <div class="container">
             <a class="navbar-brand" href="<?php echo get_option('home'); ?>">
                 <?php
                 if (kratos_option('g_logo')) {
@@ -55,7 +55,7 @@
                 ));
             }
             ?>
-<!--        </div>-->
+        </div>
     </nav>
     <?php if (kratos_option('top_select', 'banner') == 'banner') { ?>
         <div class="banner">

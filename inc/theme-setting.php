@@ -90,13 +90,6 @@ add_filter('robots_txt', function ($output, $public) {
     }
 }, 10, 2);
 
-// 哀悼黑白站点
-function mourning()
-{
-    if (is_home() && kratos_option('g_rip', false)) {
-        echo '<style type="text/css">html{filter: grayscale(100%);-webkit-filter: grayscale(100%);-moz-filter: grayscale(100%);-ms-filter: grayscale(100%);-o-filter: grayscale(100%);filter: progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);filter: gray;-webkit-filter: grayscale(1); } </style>';
-    }
-}
 
 // 抓取图片链接（搜索引擎或者社交工具分享时抓取图片的链接）
 function share_thumbnail_url()
@@ -116,12 +109,4 @@ function share_thumbnail_url()
         }
     }
     return $img;
-}
-
-// 支持上传 svg
-add_filter('upload_mimes', 'upload_svg');
-function upload_svg($existing_mimes = array())
-{
-    $existing_mimes['svg'] = 'image/svg+xml';
-    return $existing_mimes;
 }

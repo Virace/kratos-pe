@@ -88,6 +88,12 @@ function theme_autoload()
         wp_enqueue_script('highlight-ln', ASSET_PATH . '/assets/js/highlight/highlightjs-line-numbers.min.js', array(), '2.8.0', true);
         wp_enqueue_script('highlight-copy', ASSET_PATH . '/assets/js/highlight/highlightjs-copy-button.min.js', array(), '1.0.5', true);
     }
+
+    // 哀悼黑白站点
+    if (is_home() && kratos_option('g_rip', false)) {
+        $data =  'html{filter: grayscale(100%);-webkit-filter: grayscale(100%);-moz-filter: grayscale(100%);-ms-filter: grayscale(100%);-o-filter: grayscale(100%);filter: progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);filter: gray;-webkit-filter: grayscale(1); }';
+        wp_add_inline_style('kratos', $data);
+    }
 }
 add_action('wp_enqueue_scripts', 'theme_autoload');
 
