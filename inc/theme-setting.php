@@ -34,6 +34,7 @@ function keywords()
     } elseif (is_single()) {
         $keywords = get_post_meta($post->ID, "seo_keywords_value", true);
         if($keywords == '') {
+
             $tags = wp_get_post_tags($post->ID);    
             foreach ($tags as $tag ) {        
                 $keywords = $keywords . $tag->name . ", ";    

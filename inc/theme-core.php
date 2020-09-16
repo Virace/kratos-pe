@@ -22,6 +22,7 @@ function init_theme()
         exit;
     }
 }
+
 add_action('load-themes.php', 'init_theme');
 
 // 语言国际化
@@ -29,6 +30,7 @@ function theme_languages()
 {
     load_theme_textdomain('kratos', get_template_directory() . '/languages');
 }
+
 add_action('after_setup_theme', 'theme_languages');
 
 // 资源加载
@@ -91,10 +93,11 @@ function theme_autoload()
 
     // 哀悼黑白站点
     if (is_home() && kratos_option('g_rip', false)) {
-        $data =  'html{filter: grayscale(100%);-webkit-filter: grayscale(100%);-moz-filter: grayscale(100%);-ms-filter: grayscale(100%);-o-filter: grayscale(100%);filter: progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);filter: gray;-webkit-filter: grayscale(1); }';
+        $data = 'html{filter: grayscale(100%);-webkit-filter: grayscale(100%);-moz-filter: grayscale(100%);-ms-filter: grayscale(100%);-o-filter: grayscale(100%);filter: progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);filter: gray;-webkit-filter: grayscale(1); }';
         wp_add_inline_style('kratos', $data);
     }
 }
+
 add_action('wp_enqueue_scripts', 'theme_autoload');
 
 // 禁用 Admin Bar
@@ -153,7 +156,7 @@ remove_action('wp_head', 'index_rel_link');
 remove_action('wp_head', 'parent_post_rel_link', 10);
 remove_action('wp_head', 'start_post_rel_link', 10);
 remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10);
-remove_action('wp_head', 'wp_shortlink_wp_head', 10, 0);
+remove_action('wp_head', 'wp_shortlink_wp_head', 10);
 remove_action('wp_head', 'rest_output_link_wp_head', 10);
 remove_action('template_redirect', 'wp_shortlink_header', 11);
 remove_action('template_redirect', 'rest_output_link_header', 11);
@@ -187,6 +190,7 @@ function get_https_avatar($avatar)
     $avatar = str_replace("http://", "https://", $avatar);
     return $avatar;
 }
+
 add_filter('get_avatar', 'get_https_avatar');
 
 // 主题更新检测
@@ -206,5 +210,126 @@ if (kratos_option('g_removeimgsize', false)) {
         unset($sizes['medium_large']);
         return $sizes;
     }
+
     add_filter('intermediate_image_sizes_advanced', 'remove_default_images');
 }
+
+// 重定向优化
+add_action('template_redirect', 'redirect_single_post');
+function redirect_single_post()
+{
+    if (is_search()) {
+        global $wp_query;
+        if ($wp_query->post_count == 1) {
+            wp_redirect(get_permalink($wp_query->posts['0']->ID));
+        }
+    }
+}
+
+function get_404()
+{
+    global $wpdb, $wp_rewrite;
+
+    if (get_query_var('name')) {
+        $where = $wpdb->prepare("post_name LIKE %s", like_escape(get_query_var('name')) . '%');
+
+        $post_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE $where AND post_status = 'publish'");
+        if (!$post_id)
+            return false;
+        if (get_query_var('feed'))
+            return get_post_comments_feed_link($post_id, get_query_var('feed'));
+        elseif (get_query_var('page'))
+            return trailingslashit(get_permalink($post_id)) . user_trailingslashit(get_query_var('page'), 'single_paged');
+        else
+            return get_permalink($post_id);
+    }
+
+    return false;
+}
+
+//解决日志改变 post type 之后跳转错误的问题，
+add_action('template_redirect', 'old_slug_redirect');
+function old_slug_redirect()
+{
+    global $wp_query;
+    if (is_404() && '' != $wp_query->query_vars['name']) :
+        global $wpdb;
+
+        $query = $wpdb->prepare("SELECT post_id FROM $wpdb->postmeta WHERE meta_key = '_wp_old_slug' AND meta_value = %s", $wp_query->query_vars['name']);
+
+        $id = (int)$wpdb->get_var($query);
+
+        if (!$id) {
+            $link = get_404();
+        } else {
+            $link = get_permalink($id);
+        }
+
+        if (!$link)
+            return;
+
+        wp_redirect($link, 301);
+        exit;
+    endif;
+}
+
+
+// 禁用admin登录,
+
+if (kratos_option('g_no_admin', false)) {
+    add_filter('wp_authenticate', 'no_admin_user');
+    function no_admin_user($user)
+    {
+        if ($user == 'admin') {
+            exit;
+        }
+    }
+
+    add_filter('sanitize_user', 'sanitize_user_no_admin', 10, 3);
+    function sanitize_user_no_admin($username, $raw_username, $strict)
+    {
+        if ($raw_username == 'admin' || $username == 'admin') {
+            exit;
+        }
+        return $username;
+    }
+}
+function get_current_page_url()
+{
+    return set_url_scheme('http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
+}
+
+add_action('template_redirect', function () {
+    if (!is_404()) {
+        return;
+    }
+
+    $request_url = get_current_page_url();
+
+    if (strpos($request_url, 'feed/atom/') !== false) {
+        wp_redirect(str_replace('feed/atom/', '', $request_url), 301);
+        exit;
+    }
+
+    if (strpos($request_url, 'comment-page-') !== false) {
+        wp_redirect(preg_replace('/comment-page-(.*)\//', '', $request_url), 301);
+        exit;
+    }
+
+    if (strpos($request_url, 'page/') !== false) {
+        wp_redirect(preg_replace('/page\/(.*)\//', '', $request_url), 301);
+        exit;
+    }
+
+    if ($_301_redirects = get_option('301-redirects')) {
+        foreach ($_301_redirects as $_301_redirect) {
+            if ($_301_redirect['request'] == $request_url) {
+                wp_redirect($_301_redirect['destination'], 301);
+                exit;
+            }
+        }
+    }
+}, 99);
+
+
+

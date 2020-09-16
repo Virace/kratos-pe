@@ -51,13 +51,6 @@ function kratos_options()
     );
 
     $options[] = array(
-        'name' => __('图片 Logo', 'kratos'),
-        'desc' => __('不选择图片则显示文字标题', 'kratos'),
-        'id' => 'g_logo',
-        'type' => 'upload',
-    );
-
-    $options[] = array(
         'name' => __('Favicon 图片', 'kratos'),
         'desc' => __('浏览器收藏夹和地址栏中显示的图标', 'kratos'),
         'id' => 'g_icon',
@@ -85,7 +78,7 @@ function kratos_options()
         'name' => __('禁止生成缩略图', 'kratos'),
         'desc' => __('是否禁止生成多种尺寸图片资源', 'kratos'),
         'id' => 'g_removeimgsize',
-        'std' => '0',
+        'std' => '1',
         'type' => 'checkbox',
     );
 
@@ -128,9 +121,17 @@ function kratos_options()
 
     $options[] = array(
         'name' => __('Gutenberg 编辑器', 'kratos'),
-        'desc' => __('开启 Gutenberg 编辑器', 'kratos'),
-        'std' => '1',
+        'desc' => __('禁用 Gutenberg 编辑器', 'kratos'),
+        'std' => '0',
         'id' => 'g_gutenberg',
+        'type' => 'checkbox',
+    );
+
+    $options[] = array(
+        'name' => __('安全性管理', 'kratos'),
+        'desc' => __('禁用admin用户登录, 如果你使用admin账户则不要勾选', 'kratos'),
+        'std' => '0',
+        'id' => 'g_no_admin',
         'type' => 'checkbox',
     );
 
@@ -156,12 +157,6 @@ function kratos_options()
         'class' => 'hidden',
     );
 
-    $options[] = array(
-        'name' => __('404 页面图片', 'kratos'),
-        'id' => 'g_404',
-        'std' => ASSET_PATH . '/assets/img/404.jpg',
-        'type' => 'upload',
-    );
     $options[] = array(
         'name' => __('颜色设置', 'kratos'),
         'type' => 'heading',
@@ -315,8 +310,23 @@ function kratos_options()
     );
 
     $options[] = array(
+        'name' => __('404 页面图片', 'kratos'),
+        'id' => 'g_404',
+        'std' => ASSET_PATH . '/assets/img/404.jpg',
+        'type' => 'upload',
+    );
+
+    $options[] = array(
         'name' => __('文章配置', 'kratos'),
         'type' => 'heading',
+    );
+
+    $options[] = array(
+        'name' => __('文章复制', 'kratos'),
+        'desc' => __('将文章复制为草稿, 按钮在后台文章列表.', 'kratos'),
+        'id' => 'g_duplicate_page',
+        'std' => 1,
+        'type' => 'checkbox',
     );
 
     $options[] = array(
@@ -480,6 +490,13 @@ function kratos_options()
         'type' => 'heading',
     );
 
+    $options[] = array(
+        'name' => __('图片 Logo', 'kratos'),
+        'desc' => __('不选择图片则显示文字标题', 'kratos'),
+        'id' => 'g_logo',
+        'type' => 'upload',
+    );
+
 	$options[] = array(
         'name' => __( '顶部样式', 'kratos' ),
         'desc' => __('请选择顶部样式（颜色导航或图片导航）', 'kratos'),
@@ -492,7 +509,6 @@ function kratos_options()
     $options[] = array(
         'name' => __('图片导航', 'kratos'),
         'id' => 'top_img',
-        'std' => ASSET_PATH . '/assets/img/background.png',
         'class' => 'hidden',
         'type' => 'upload',
     );
