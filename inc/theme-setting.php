@@ -32,7 +32,7 @@ function keywords()
     if (is_home()) {
         $keywords = kratos_option('seo_keywords');
     } elseif (is_single()) {
-        $keywords = get_post_meta($post->ID, "seo_keywords_value", true);
+        $keywords = get_post_meta($post->ID, "seo-meta-keywords", true);
         if($keywords == '') {
 
             $tags = wp_get_post_tags($post->ID);    
@@ -42,7 +42,7 @@ function keywords()
             $keywords = rtrim($keywords, ', ');
         }
     } elseif (is_page()) {
-        $keywords = get_post_meta($post->ID, "seo_keywords_value", true);
+        $keywords = get_post_meta($post->ID, "seo-meta-keywords", true);
         if($keywords == '') {
             $keywords = kratos_option('seo_keywords');
         }
@@ -59,7 +59,7 @@ function description()
     if (is_home()) {
         $description = kratos_option('seo_description');
     } elseif (is_single()) {
-        $description = get_post_meta($post->ID, "seo_description_value", true);
+        $description = get_post_meta($post->ID, "seo-meta-description", true);
         if ($description == '') {
             $description = get_the_excerpt();
         }
@@ -71,7 +71,7 @@ function description()
     } elseif (is_tag()) {
         $description = tag_description();
     } elseif (is_page()) {
-        $description = get_post_meta($post->ID, "seo_description_value", true);
+        $description = get_post_meta($post->ID, "seo-meta-description", true);
         if ($description == '') {
             $description = kratos_option('seo_description');
         }

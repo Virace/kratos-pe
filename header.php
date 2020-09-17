@@ -16,12 +16,19 @@
     <meta name="format-detection" content="telphone=no, email=no">
     <meta name="keywords" content="<?php echo keywords(); ?>">
     <meta name="description" itemprop="description" content="<?php echo description(); ?>">
+    <meta property="og:title" content="<?php wp_title('-',true,'right'); ?>">
+    <meta property="og:site_name" content="<?php wp_title('-',true,'right'); ?>">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="<?php echo description(); ?>">
+    <meta property="og:url" content="<?php if(!is_home()) echo get_permalink(); else  bloginfo('url'); ?>">
+    <meta name="twitter:title" content="<?php wp_title('-',true,'right'); ?>">
+    <meta name="twitter:description" content="<?php echo description(); ?>">
+    <meta name="twitter:card" content="summary">
     <meta name="theme-color" content="<?php echo kratos_option('g_chrome', '#282a2c'); ?>">
     <meta itemprop="image" content="<?php echo share_thumbnail_url(); ?>"/>
     <link rel="shortcut icon" href="<?php echo kratos_option('g_icon'); ?>">
     <?php wp_head();
-    wp_print_scripts('jquery');
-//    mourning(); ?>
+    wp_print_scripts('jquery');?>
 </head>
 <?php flush(); ?>
 <body>

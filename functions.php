@@ -17,6 +17,9 @@ require get_template_directory() . '/inc/options-framework/autoload.php';
 // 核心配置
 require get_template_directory() . '/inc/theme-core.php';
 
+// 工具
+require get_template_directory() . '/inc/theme-utils.php';
+
 // 站点配置
 require get_template_directory() . '/inc/theme-setting.php';
 
@@ -44,6 +47,8 @@ require get_template_directory() . '/inc/theme-recaptcha.php';
 // 媒体相关
 require get_template_directory() . '/inc/theme-media.php';
 
+require get_template_directory() . '/inc/theme-optimization.php';
+
 // 自定义函数
+//require get_template_directory() . '/custom/slide-meta.php';
 require get_template_directory() . '/custom/custom.php';
-require get_template_directory() . '/custom/slide-meta.php';

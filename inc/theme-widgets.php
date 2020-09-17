@@ -6,6 +6,56 @@
  * @version 2020.04.12
  */
 
+// 获取浏览次数
+function get_totalviews($echo = 1)
+{
+    global $wpdb;
+    $total_views = $wpdb->get_var("SELECT SUM(meta_value+0) FROM $wpdb->postmeta WHERE meta_key = 'views'");
+    if ($echo) echo $total_views;
+    else return $total_views;
+}
+
+
+//取最后一次活动时间. 徒增功耗
+function last_login()
+{
+    global $wpdb;
+    $date1 = $wpdb->get_var("SELECT comment_date FROM $wpdb->comments WHERE user_id = 1");
+    $date2 = $wpdb->get_var("SELECT post_modified FROM $wpdb->posts WHERE post_author = 1");
+    $date1 = strtotime(empty($date1) ? 0 : $date1);
+    $date2 = strtotime(empty($date2) ? 0 : $date2);
+
+    echo $date1 < $date2 ? human_time_diff($date2) : human_time_diff($date1);
+
+
+}
+// 格式化时间
+function timeago($ptime)
+{
+    $ptime = strtotime($ptime);
+    $etime = time() - $ptime;
+    if ($etime < 1) return __('刚刚');
+    $interval = array(
+        12 * 30 * 24 * 60 * 60 => __(' 年前') . ' (' . date(__('m月d日'), $ptime) . ')',
+        30 * 24 * 60 * 60 => __(' 个月前') . ' (' . date(__('m月d日'), $ptime) . ')',
+        7 * 24 * 60 * 60 => __(' 周前') . ' (' . date(__('m月d日'), $ptime) . ')',
+        24 * 60 * 60 => __(' 天前') . ' (' . date(__('m月d日'), $ptime) . ')',
+        60 * 60 => __(' 小时前') . ' (' . date(__('m月d日'), $ptime) . ')',
+        60 => __(' 分钟前') . ' (' . date(__('m月d日'), $ptime) . ')',
+        1 => __(' 秒前') . ' (' . date(__('m月d日'), $ptime) . ')',
+    );
+    foreach ($interval as $secs => $str) {
+        $d = $etime / $secs;
+        if ($d >= 1) {
+            $r = round($d);
+            return $r . $str;
+        }
+    };
+}
+
+
+
+
 // 添加小工具
 function widgets_init()
 {
@@ -539,7 +589,7 @@ class widget_comments extends WP_Widget
                 $output .= '<div class="comment-user">';
                 $output .= '<span class="comment-avatar">' . get_avatar($comment, 50, null) . '</span>';
                 $output .= '<div class="comment-author" title="' . $comment->comment_author . '">' . $comment->comment_author . '</div>';
-                $output .= '<span class="comment-date">' . $comment->comment_date_gmt . '</span>';
+                $output .= '<span class="comment-date">' . timeago($comment->comment_date_gmt) . '</span>';
                 $output .= '</div>';
                 $output .= '<div class="comment-content-link"><a href="' . get_comment_link($comment->comment_ID) . '"><div class="comment-content">' . convert_smilies(wp_trim_words(strip_tags(get_comment_excerpt($comment->comment_ID)), 30)) . '</div></a></div>';
                 $output .= '</li>';

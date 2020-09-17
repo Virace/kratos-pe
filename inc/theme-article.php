@@ -416,70 +416,52 @@ function recover_comment_fields($comment_fields)
 
 add_filter('comment_form_fields', 'recover_comment_fields');
 
-$new_meta_boxes =
-    array(
-        "description" => array(
-            "name" => "seo_description",
-            "std" => "",
-            "title" => __('描述', 'kratos')
-        ),
-        "keywords" => array(
-            "name" => "seo_keywords",
-            "std" => "",
-            "title" => __('关键词', 'kratos')
-        )
+
+function seo_meta_box()
+{
+    return new WPMetaBox
+    (
+        'seo-meta',
+        __('SEO 设置', 'kratos'),
+        'post',
+        [
+            array(
+                'key' => 'description',
+                'type' => 'textarea',
+                'desc' => __('描述', 'kratos')
+            ),
+            array(
+                'key' => 'keywords',
+                'type' => 'textarea',
+                'desc' => __('关键词', 'kratos')
+            )
+        ]
     );
-
-function seo_meta_boxes()
-{
-    $post_types = get_post_types();
-    add_meta_box('meta-box-id', __('SEO 设置', 'kratos'), 'post_seo_callback', $post_types);
 }
 
-add_action('add_meta_boxes', 'seo_meta_boxes');
+add_action('load-post.php', 'seo_meta_box');
+add_action('load-post-new.php', 'seo_meta_box');
 
-function post_seo_callback($post)
+
+function toc_meta_box()
 {
-    global $new_meta_boxes;
-
-    foreach ($new_meta_boxes as $meta_box) {
-        $meta_box_value = get_post_meta($post->ID, $meta_box['name'] . '_value', true);
-
-        if ($meta_box_value == "")
-            $meta_box_value = $meta_box['std'];
-
-        echo '<h3 style="font-size: 14px; padding: 9px 0; margin: 0; line-height: 1.4;">' . $meta_box['title'] . '</h3>';
-        echo '<textarea cols="60" rows="3" style="width:100%" name="' . $meta_box['name'] . '_value">' . $meta_box_value . '</textarea><br/>';
-    }
-
-    echo '<input type="hidden" name="metaboxes_nonce" id="metaboxes_nonce" value="' . wp_create_nonce(plugin_basename(__FILE__)) . '" />';
+    return new WPMetaBox
+    (
+        'toc-meta',
+        __('文章目录', 'kratos'),
+        'post',
+        [
+            array(
+                'key' => 'switch',
+                'type' => 'checkbox',
+                'desc' => __('是否显示文章目录', 'kratos')
+            )
+        ]
+    );
 }
 
-function wpdocs_save_meta_box($post_id)
-{
-    global $new_meta_boxes;
-
-    if ( !wp_verify_nonce( $_POST['metaboxes_nonce'], plugin_basename(__FILE__) ))
-        return;
-
-    if (!current_user_can('edit_posts', $post_id))
-        return;
-
-    foreach ($new_meta_boxes as $meta_box) {
-        if (isset($_POST[$meta_box['name'] . '_value'])) {
-            $data = $_POST[$meta_box['name'] . '_value'];
-            if ($data == "")
-                delete_post_meta($post_id, $meta_box['name'] . '_value', get_post_meta($post_id, $meta_box['name'] . '_value', true));
-            else
-                update_post_meta($post_id, $meta_box['name'] . '_value', $data);
-        }
-    }
-}
-
-add_action('save_post', 'wpdocs_save_meta_box');
-
-
-
+add_action('load-post.php', 'toc_meta_box');
+add_action('load-post-new.php', 'toc_meta_box');
 
 
 /*
@@ -523,7 +505,7 @@ if (!class_exists('duplicate_page') && kratos_option('g_duplicate_page', false))
             */
             $post_id = (isset($_GET['post']) ? intval($_GET['post']) : intval($_POST['post']));
 
-            if(wp_verify_nonce( $nonce, 'dt-duplicate-page-'.$post_id) && current_user_can('edit_posts')) {
+            if (wp_verify_nonce($nonce, 'dt-duplicate-page-' . $post_id) && current_user_can('edit_posts')) {
                 // verify Nonce
                 global $wpdb;
                 $suffix = 'copy';
@@ -560,7 +542,7 @@ if (!class_exists('duplicate_page') && kratos_option('g_duplicate_page', false))
                         'post_parent' => $post->post_parent,
                         'post_password' => $post->post_password,
                         'post_status' => $post_status,
-                        'post_title' => $post->post_title.$suffix,
+                        'post_title' => $post->post_title . $suffix,
                         'post_type' => $post->post_type,
                         'to_ping' => $post->to_ping,
                         'menu_order' => $post->menu_order,
@@ -583,30 +565,32 @@ if (!class_exists('duplicate_page') && kratos_option('g_duplicate_page', false))
                     * duplicate all post meta
                     */
                     $post_meta_infos = $wpdb->get_results("SELECT meta_key, meta_value FROM $wpdb->postmeta WHERE post_id=$post_id");
-                    if (count($post_meta_infos)!=0) {
+                    if (count($post_meta_infos) != 0) {
                         $sql_query = "INSERT INTO $wpdb->postmeta (post_id, meta_key, meta_value) ";
                         foreach ($post_meta_infos as $meta_info) {
                             $meta_key = sanitize_text_field($meta_info->meta_key);
                             $meta_value = addslashes($meta_info->meta_value);
-                            $sql_query_sel[]= "SELECT $new_post_id, '$meta_key', '$meta_value'";
+                            $sql_query_sel[] = "SELECT $new_post_id, '$meta_key', '$meta_value'";
                         }
-                        $sql_query.= implode(" UNION ALL ", $sql_query_sel);
+                        $sql_query .= implode(" UNION ALL ", $sql_query_sel);
                         $wpdb->query($sql_query);
                     }
                     /*
                     * finally, redirecting to your choice
                     */
                     if ($post->post_type != 'post'):
-                        $returnpage = '?post_type='.$post->post_type;
+                        $returnpage = '?post_type=' . $post->post_type;
                     endif;
                     if (!empty($redirectit) && $redirectit == 'to_list'):
-                        wp_redirect(admin_url('edit.php'.$returnpage)); elseif (!empty($redirectit) && $redirectit == 'to_page'):
-                        wp_redirect(admin_url('post.php?action=edit&post='.$new_post_id)); else:
-                        wp_redirect(admin_url('edit.php'.$returnpage));
+                        wp_redirect(admin_url('edit.php' . $returnpage));
+                    elseif (!empty($redirectit) && $redirectit == 'to_page'):
+                        wp_redirect(admin_url('post.php?action=edit&post=' . $new_post_id));
+                    else:
+                        wp_redirect(admin_url('edit.php' . $returnpage));
                     endif;
                     exit;
                 } else {
-                    wp_die('Error! Post creation failed, could not find original post: '.$post_id);
+                    wp_die('Error! Post creation failed, could not find original post: ' . $post_id);
                 }
             } else {
                 wp_die('Security check issue, Please try again.');
@@ -619,7 +603,7 @@ if (!class_exists('duplicate_page') && kratos_option('g_duplicate_page', false))
         public function dt_duplicate_post_link($actions, $post)
         {
             if (current_user_can('edit_posts')) {
-                $actions['duplicate'] = '<a href="admin.php?action=dt_duplicate_post_as_draft&amp;post='.$post->ID.'&amp;nonce='.wp_create_nonce( 'dt-duplicate-page-'.$post->ID ).'" title="'.__('复制文章到草稿').'" rel="permalink">'.__('复制', 'duplicate-page').'</a>';
+                $actions['duplicate'] = '<a href="admin.php?action=dt_duplicate_post_as_draft&amp;post=' . $post->ID . '&amp;nonce=' . wp_create_nonce('dt-duplicate-page-' . $post->ID) . '" title="' . __('复制文章到草稿') . '" rel="permalink">' . __('复制', 'duplicate-page') . '</a>';
             }
 
             return $actions;
@@ -631,11 +615,84 @@ if (!class_exists('duplicate_page') && kratos_option('g_duplicate_page', false))
         */
         public static function dp_redirect($url)
         {
-            echo '<script>window.location.href="'.$url.'"</script>';
+            echo '<script>window.location.href="' . $url . '"</script>';
         }
 
 
-
     }
+
     new duplicate_page();
 endif;
+
+// 文章目录
+add_filter('the_content', function ($content) {
+    $post_id = get_the_ID();
+    if (doing_filter('get_the_excerpt') || !is_singular() || $post_id != get_queried_object_id()) {
+        return $content;
+    }
+
+    global $toc_count, $toc_items;
+
+    $toc_items = [];
+    $toc_count = 0;
+
+    // 取锚点, 正常设置到h3即可
+    $regex = '#<h([1-6])(.*?)>(.*?)</h\1>#';
+
+    $content = preg_replace_callback($regex, function ($matches) {
+        global $toc_count, $toc_items;
+
+        $toc_count++;
+        $toc_items[] = ['text' => trim(strip_tags($matches[3])), 'depth' => $matches[1], 'count' => $toc_count];
+
+        return "<h{$matches[1]} {$matches[2]}><a id=\"toc-{$toc_count}\"></a>{$matches[3]}</h{$matches[1]}>";
+    }, $content);
+
+
+    return $content;
+});
+function get_toc()
+{
+    global $toc_items;
+
+    if (empty($toc_items)) {
+        return '';
+    }
+
+    $index = '<ul class="nav flex-column">' . "\n";
+    $prev_depth = 0;
+    $to_depth = 0;
+    foreach ($toc_items as $toc_item) {
+        $toc_depth = $toc_item['depth'];
+
+        if ($prev_depth) {
+            if ($toc_depth == $prev_depth) {
+                $index .= '</li>' . "\n";
+            } elseif ($toc_depth > $prev_depth) {
+                $to_depth++;
+                $index .= '<ul role="tablist">' . "\n";
+            } else {
+                $to_depth2 = ($to_depth > ($prev_depth - $toc_depth)) ? ($prev_depth - $toc_depth) : $to_depth;
+
+                if ($to_depth2) {
+                    for ($i = 0; $i < $to_depth2; $i++) {
+                        $index .= '</li>' . "\n" . '</ul>' . "\n";
+                        $to_depth--;
+                    }
+                }
+
+                $index .= '</li>';
+            }
+        }
+
+        $prev_depth = $toc_depth;
+
+        $index .= '<li class="nav-item"><a class="nav-link" href="#toc-' . $toc_item['count'] . '">' . $toc_item['text'] . '</a>';
+    }
+
+    for ($i = 0; $i <= $to_depth; $i++) {
+        $index .= '</li>' . "\n" . '</ul>' . "\n";
+    }
+
+    return $index;
+}
