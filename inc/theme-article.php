@@ -426,14 +426,16 @@ function seo_meta_box()
         'post',
         [
             array(
+                'title'=> __('SEO描述', 'kratos'),
                 'key' => 'description',
                 'type' => 'textarea',
-                'desc' => __('描述', 'kratos')
+                'desc' => __('搜索引擎抓取的文章描述. 如果留空则使用文章摘要, 如果摘要为空则自动截取文章内容.', 'kratos')
             ),
             array(
+                'title'=> __('SEO关键词', 'kratos'),
                 'key' => 'keywords',
                 'type' => 'textarea',
-                'desc' => __('关键词', 'kratos')
+                'desc' => __('搜索引擎抓取的关键词. 英文分隔. 如果留空则使用文章标签.', 'kratos')
             )
         ]
     );
@@ -452,9 +454,9 @@ function toc_meta_box()
         'post',
         [
             array(
+                'title'=> __('是否显示文章目录', 'kratos'),
                 'key' => 'switch',
-                'type' => 'checkbox',
-                'desc' => __('是否显示文章目录', 'kratos')
+                'type' => 'checkbox'
             )
         ]
     );
@@ -625,7 +627,8 @@ if (!class_exists('duplicate_page') && kratos_option('g_duplicate_page', false))
 endif;
 
 // 文章目录
-add_filter('the_content', function ($content) {
+function toc_set_anchor($content)
+{
     $post_id = get_the_ID();
     if (doing_filter('get_the_excerpt') || !is_singular() || $post_id != get_queried_object_id()) {
         return $content;
@@ -650,49 +653,59 @@ add_filter('the_content', function ($content) {
 
 
     return $content;
-});
-function get_toc()
-{
-    global $toc_items;
+}
 
-    if (empty($toc_items)) {
-        return '';
-    }
+add_filter('the_content', 'toc_set_anchor');
 
-    $index = '<ul class="nav flex-column">' . "\n";
-    $prev_depth = 0;
-    $to_depth = 0;
-    foreach ($toc_items as $toc_item) {
-        $toc_depth = $toc_item['depth'];
 
-        if ($prev_depth) {
-            if ($toc_depth == $prev_depth) {
-                $index .= '</li>' . "\n";
-            } elseif ($toc_depth > $prev_depth) {
-                $to_depth++;
-                $index .= '<ul role="tablist">' . "\n";
-            } else {
-                $to_depth2 = ($to_depth > ($prev_depth - $toc_depth)) ? ($prev_depth - $toc_depth) : $to_depth;
+if (!function_exists('get_toc')):
+    /**
+     * 生成文章目录
+     * @return string
+     */
+    function get_toc()
+    {
+        global $toc_items;
 
-                if ($to_depth2) {
-                    for ($i = 0; $i < $to_depth2; $i++) {
-                        $index .= '</li>' . "\n" . '</ul>' . "\n";
-                        $to_depth--;
-                    }
-                }
-
-                $index .= '</li>';
-            }
+        if (empty($toc_items)) {
+            return '';
         }
 
-        $prev_depth = $toc_depth;
+        $index = '<ul class="nav flex-column">' . "\n";
+        $prev_depth = 0;
+        $to_depth = 0;
+        foreach ($toc_items as $toc_item) {
+            $toc_depth = $toc_item['depth'];
 
-        $index .= '<li class="nav-item"><a class="nav-link" href="#toc-' . $toc_item['count'] . '">' . $toc_item['text'] . '</a>';
+            if ($prev_depth) {
+                if ($toc_depth == $prev_depth) {
+                    $index .= '</li>' . "\n";
+                } elseif ($toc_depth > $prev_depth) {
+                    $to_depth++;
+                    $index .= '<ul role="tablist">' . "\n";
+                } else {
+                    $to_depth2 = ($to_depth > ($prev_depth - $toc_depth)) ? ($prev_depth - $toc_depth) : $to_depth;
+
+                    if ($to_depth2) {
+                        for ($i = 0; $i < $to_depth2; $i++) {
+                            $index .= '</li>' . "\n" . '</ul>' . "\n";
+                            $to_depth--;
+                        }
+                    }
+
+                    $index .= '</li>';
+                }
+            }
+
+            $prev_depth = $toc_depth;
+
+            $index .= '<li class="nav-item"><a class="nav-link" href="#toc-' . $toc_item['count'] . '">' . $toc_item['text'] . '</a>';
+        }
+
+        for ($i = 0; $i <= $to_depth; $i++) {
+            $index .= '</li>' . "\n" . '</ul>' . "\n";
+        }
+
+        return $index;
     }
-
-    for ($i = 0; $i <= $to_depth; $i++) {
-        $index .= '</li>' . "\n" . '</ul>' . "\n";
-    }
-
-    return $index;
-}
+endif;
