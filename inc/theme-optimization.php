@@ -75,22 +75,18 @@ add_filter('style_loader_src', function ($href) {
 
 // 禁用 Auto Embeds
 remove_filter('the_content', array($GLOBALS['wp_embed'], 'autoembed'), 8);
-
+if (kratos_option('g_gravatar', false)) {
 // 替换国内 Gravatar 源
-function get_https_avatar($avatar)
-{
-    if (kratos_option('g_gravatar', false)) {
+    function get_https_avatar($avatar)
+    {
         $cdn = "gravatar.loli.net";
-    } else {
-        $cdn = "cn.gravatar.com";
+        $avatar = str_replace(array("www.gravatar.com", "0.gravatar.com", "1.gravatar.com", "2.gravatar.com", "3.gravatar.com", "secure.gravatar.com", "cn.gravatar.com"), $cdn, $avatar);
+        $avatar = str_replace("http://", "https://", $avatar);
+        return $avatar;
     }
 
-    $avatar = str_replace(array("www.gravatar.com", "0.gravatar.com", "1.gravatar.com", "2.gravatar.com", "3.gravatar.com", "secure.gravatar.com"), $cdn, $avatar);
-    $avatar = str_replace("http://", "https://", $avatar);
-    return $avatar;
+    add_filter('get_avatar', 'get_https_avatar');
 }
-
-add_filter('get_avatar', 'get_https_avatar');
 // 禁止生成多种尺寸图片
 if (kratos_option('g_removeimgsize', false)) {
     function remove_default_images($sizes)
@@ -117,53 +113,6 @@ function redirect_single_post()
     }
 }
 
-function get_404()
-{
-    global $wpdb, $wp_rewrite;
-
-    if (get_query_var('name')) {
-        $where = $wpdb->prepare("post_name LIKE %s", like_escape(get_query_var('name')) . '%');
-
-        $post_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE $where AND post_status = 'publish'");
-        if (!$post_id)
-            return false;
-        if (get_query_var('feed'))
-            return get_post_comments_feed_link($post_id, get_query_var('feed'));
-        elseif (get_query_var('page'))
-            return trailingslashit(get_permalink($post_id)) . user_trailingslashit(get_query_var('page'), 'single_paged');
-        else
-            return get_permalink($post_id);
-    }
-
-    return false;
-}
-
-//解决日志改变 post type 之后跳转错误的问题，
-add_action('template_redirect', 'old_slug_redirect');
-function old_slug_redirect()
-{
-    global $wp_query;
-    if (is_404() && '' != $wp_query->query_vars['name']) :
-        global $wpdb;
-
-        $query = $wpdb->prepare("SELECT post_id FROM $wpdb->postmeta WHERE meta_key = '_wp_old_slug' AND meta_value = %s", $wp_query->query_vars['name']);
-
-        $id = (int)$wpdb->get_var($query);
-
-        if (!$id) {
-            $link = get_404();
-        } else {
-            $link = get_permalink($id);
-        }
-
-        if (!$link)
-            return;
-
-        wp_redirect($link, 301);
-        exit;
-    endif;
-}
-
 
 // 禁用admin登录,
 
@@ -185,42 +134,6 @@ if (kratos_option('g_no_admin', false)) {
         return $username;
     }
 }
-function get_current_page_url()
-{
-    return set_url_scheme('http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
-}
-
-add_action('template_redirect', function () {
-    if (!is_404()) {
-        return;
-    }
-
-    $request_url = get_current_page_url();
-
-    if (strpos($request_url, 'feed/atom/') !== false) {
-        wp_redirect(str_replace('feed/atom/', '', $request_url), 301);
-        exit;
-    }
-
-    if (strpos($request_url, 'comment-page-') !== false) {
-        wp_redirect(preg_replace('/comment-page-(.*)\//', '', $request_url), 301);
-        exit;
-    }
-
-    if (strpos($request_url, 'page/') !== false) {
-        wp_redirect(preg_replace('/page\/(.*)\//', '', $request_url), 301);
-        exit;
-    }
-
-    if ($_301_redirects = get_option('301-redirects')) {
-        foreach ($_301_redirects as $_301_redirect) {
-            if ($_301_redirect['request'] == $request_url) {
-                wp_redirect($_301_redirect['destination'], 301);
-                exit;
-            }
-        }
-    }
-}, 99);
 
 
 
