@@ -162,14 +162,13 @@ if (!class_exists('WPMetaBox')):
         {
             foreach ($this->items as $item) {
                 ?>
-                <div class="components-panel__row">
                 <div class="components-base-control">
                     <div class="components-base-control__field"><?php
                         switch ($item['type']) {
                             case ('textarea'):
                                 {
                                     $this->printlabel($item);
-                                    ?><textarea <?php $this->printCommonAttributes($item); ?> cols="100%"
+                                    ?><textarea class="components-textarea-control__input" <?php $this->printCommonAttributes($item); ?>
                                                                                               rows="6"><?= $this->getPostValue($post, $item); ?></textarea><?php
                                 }
                                 break;
@@ -205,7 +204,6 @@ if (!class_exists('WPMetaBox')):
                                 }
                                 break;
                         } ?>      </div>
-                </div>
                 </div><?php
 
             }
