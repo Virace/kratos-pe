@@ -38,18 +38,11 @@ function theme_autoload()
 {
     if (!is_admin()) {
         // css
-        wp_enqueue_style('bootstrap', ASSET_PATH . '/assets/css/bootstrap.min.css', array(), '4.5.1');
-        wp_enqueue_style('vicon', ASSET_PATH . '/assets/css/iconfont.min.css', array(), THEME_VERSION);
-        wp_enqueue_style('layer', ASSET_PATH . '/assets/css/layer.min.css', array(), '3.1.1');
-        wp_enqueue_style('ballon', ASSET_PATH . '/assets/css/ballon.min.css', array(), '1.2.1');
-        wp_enqueue_style('np', ASSET_PATH . '/assets/css/nprogress.min.css', array(), '0.2.0');
+        wp_enqueue_style('main', ASSET_PATH . '/assets/css/bundle.css', array(), THEME_VERSION);
         if (kratos_option('g_animate', false)) {
             wp_enqueue_style('animate', ASSET_PATH . '/assets/css/animate.min.css', array(), '4.1.0');
         }
-        wp_enqueue_style('kratos', ASSET_PATH . '/assets/css/kratos.css', array(), THEME_VERSION);
-        wp_enqueue_style('aos', ASSET_PATH . '/assets/css/aos.min.css', array(), '3.0.0-6');
         wp_enqueue_style('custom', get_template_directory_uri() . '/custom/custom.css', array(), THEME_VERSION);
-
         $bg_color = kratos_option('g_background', '#f5f5f5');
         $theme_color1 = kratos_option('g_theme_color1', '#00a2ff');
         $theme_color2 = kratos_option('g_theme_color2', '#0097ee');
@@ -60,17 +53,14 @@ function theme_autoload()
         $root = "body{--bg-color:{$bg_color};--theme-color-1:{$theme_color1}; --theme-color-2:{$theme_color2};--navbar-color-1:{$top_color_1}; --navbar-color-2:{$top_color_2};--mb-sidebar-color:{$mb_sidebar_color}}";
         wp_add_inline_style('kratos', $root);
 
+
         // js
         wp_deregister_script('jquery');
         wp_enqueue_script('jquery', ASSET_PATH . '/assets/js/jquery.min.js', array(), '3.4.1', false);
-        wp_enqueue_script('np', ASSET_PATH . '/assets/js/nprogress.min.js', array(), '0.2.0', true);
-        wp_enqueue_script('pjax', ASSET_PATH . '/assets/js/pjax.min.js', array(), THEME_VERSION, true);
-        wp_enqueue_script('aos', ASSET_PATH . '/assets/js/aos.min.js', array(), '3.0.0-6', true);
-        wp_enqueue_script('bootstrap', ASSET_PATH . '/assets/js/bootstrap.min.js', array(), '4.5.1', true);
-        wp_enqueue_script('bootstrap-ahn', ASSET_PATH . '/assets/js/jquery.bootstrap.autohidingnavbar.min.js', array(), '4.0.0', true);
-        wp_enqueue_script('layer', ASSET_PATH . '/assets/js/layer.min.js', array(), '3.1.1', true);
-        wp_enqueue_script('kratos', ASSET_PATH . '/assets/js/kratos.min.js', array(), THEME_VERSION, true);
+
+        wp_enqueue_script('kratos', ASSET_PATH . '/assets/js/bundle.js', array(), THEME_VERSION, false);
         wp_enqueue_script('custom', get_template_directory_uri() . '/custom/custom.js', array(), THEME_VERSION, true);
+
         $data = array(
             'site' => home_url(),
             'directory' => get_stylesheet_directory_uri(),
@@ -113,9 +103,9 @@ function get_background()
 {
     if (!kratos_option('top_img')) {
         $id = rand(2, 9);
-        return ASSET_PATH . '/assets/img/background-' . $id . '-tuya.jpg';
+        return ASSET_PATH . '/assets/img/background-' . $id . '.jpg';
     } else {
-        return kratos_option('top_img', ASSET_PATH . '/assets/img/background.jpg');
+        return kratos_option('top_img', ASSET_PATH . '/assets/img/background-1.jpg');
     }
 
 }
