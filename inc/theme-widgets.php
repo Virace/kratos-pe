@@ -61,7 +61,7 @@ function widgets_init()
     register_sidebar(array(
         'name' => __('侧边栏工具', 'kratos'),
         'id' => 'sidebar_tool',
-        'before_widget' => '<aside class="widget %2$s">',
+        'before_widget' => '<aside class="widget %2$s animate__animated animate__fadeInRight">',
         'after_widget' => '</aside>',
         'before_title' => '<div class="title">',
         'after_title' => '</div>',
@@ -69,7 +69,7 @@ function widgets_init()
     register_sidebar(array(
         'name' => '文章页面侧栏',
         'id' => 'sidebar_tool_post',
-        'before_widget' => '<aside class="widget %2$s">',
+        'before_widget' => '<aside class="widget %2$s animate__animated animate__fadeInRight">',
         'after_widget' => '</aside>',
         'before_title' => '<div class="title">',
         'after_title' => '</div>',

@@ -38,10 +38,7 @@ function theme_autoload()
 {
     if (!is_admin()) {
         // css
-        wp_enqueue_style('main', ASSET_PATH . '/assets/css/bundle.css', array(), THEME_VERSION);
-        if (kratos_option('g_animate', false)) {
-            wp_enqueue_style('animate', ASSET_PATH . '/assets/css/animate.min.css', array(), '4.1.0');
-        }
+        wp_enqueue_style('kratos', ASSET_PATH . '/assets/css/bundle.css', array(), THEME_VERSION);
         wp_enqueue_style('custom', get_template_directory_uri() . '/custom/custom.css', array(), THEME_VERSION);
         $bg_color = kratos_option('g_background', '#f5f5f5');
         $theme_color1 = kratos_option('g_theme_color1', '#00a2ff');

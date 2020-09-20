@@ -10,7 +10,7 @@ get_header(); ?>
 <section id="content" class="k-main <?php echo kratos_option('top_select', 'banner'); ?>">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 board">
+            <div class="col-lg-8 board animate__animated animate__fadeInLeft">
                 <?php if(is_search()){ ?>
                     <div class="article-panel">
                         <div class="search-title"><?php _e('搜索内容：', 'kratos');the_search_query(); ?></div>

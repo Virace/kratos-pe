@@ -16,7 +16,7 @@ $select_col = $col_array[kratos_option('g_article_widgets', 'two_side')];
     <section id="content" class="k-main <?php echo kratos_option('top_select', 'banner'); ?>">
         <div class="container">
             <div class="row">
-                <div class="<?php echo $select_col ?> details">
+                <div class="<?php echo $select_col ?> details animate__animated animate__fadeInLeft">
                     <?php if (have_posts()) : the_post();
                         update_post_caches($posts); ?>
                         <article class="article" data-aos="fade">

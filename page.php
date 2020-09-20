@@ -10,7 +10,7 @@ get_header(); ?>
 <section id="content" class="k-main <?php echo kratos_option('top_select', 'banner'); ?>">
     <div class="container">
         <div class="row">
-        <div class="col-lg-8 details">
+        <div class="col-lg-8 details animate__animated animate__fadeInLeft">
                 <?php if (have_posts()) : the_post(); update_post_caches($posts); ?>
                     <article class="article py-4" data-aos="fade">
                         <div class="header text-center">

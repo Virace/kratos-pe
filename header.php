@@ -35,7 +35,7 @@
 <header class="k-header">
     <nav class="k-nav navbar navbar-expand-lg fixed-top auto-hiding-navbar navbar-light">
         <div class="container">
-            <a class="navbar-brand" href="<?php echo get_option('home'); ?>">
+            <a class="navbar-brand animate__animated animate__backInLeft" href="<?php echo get_option('home'); ?>">
                 <?php
                 if (kratos_option('g_logo')) {
                     echo '<img src="' . kratos_option('g_logo') . '">';
@@ -55,7 +55,7 @@
                     'theme_location' => 'header_menu',
                     'depth' => 2,
                     'container' => 'div',
-                    'container_class' => 'collapse navbar-collapse',
+                    'container_class' => 'collapse navbar-collapse animate__animated animate__backInRight',
                     'container_id' => 'navbarResponsive',
                     'menu_class' => 'navbar-nav ml-auto',
                     'walker' => new WP_Bootstrap_Navwalker(),
