@@ -251,7 +251,7 @@
     };
 
     const consoleConfig = function () {
-        console.log('\n Kratos v' + KRATOS_VERSION + '\n\n https://github.com/vtrois/kratos \n\n')
+        console.log('\n Kratos-pe v' + KRATOS_VERSION + '\n\n https://github.com/Virace/kratos-pe \n\n')
     };
     const imgLayerConfig = function () {
         layer.photos({

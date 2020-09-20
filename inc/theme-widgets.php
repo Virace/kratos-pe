@@ -29,6 +29,7 @@ function last_login()
 
 
 }
+
 // 格式化时间
 function timeago($ptime)
 {
@@ -54,8 +55,6 @@ function timeago($ptime)
 }
 
 
-
-
 // 添加小工具
 function widgets_init()
 {
@@ -77,6 +76,9 @@ function widgets_init()
     ));
     // 去掉默认小工具
     $wp_widget = array(
+        'WP_Widget_Archives',
+        'WP_Widget_Categories',
+        'WP_Widget_Calendar',
         'WP_Widget_Pages',
         'WP_Widget_Meta',
         'WP_Widget_Recent_Posts',
@@ -528,7 +530,8 @@ class widget_about_detailed extends WP_Widget
     <?php } ?>
         <div class="items">
             <li><span>POSTS</span><?php echo wp_count_posts()->publish; ?></li>
-            <li><span>FRIENDS</span><?php $link = $wpdb->get_var("SELECT COUNT(*) FROM $wpdb->links WHERE link_visible = 'Y'");
+            <li>
+                <span>FRIENDS</span><?php $link = $wpdb->get_var("SELECT COUNT(*) FROM $wpdb->links WHERE link_visible = 'Y'");
                 echo $link; ?></li>
             <li><span>VISITS</span><?php get_totalviews(true, true, true); ?></li>
         </div>

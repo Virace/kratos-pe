@@ -1205,6 +1205,11 @@ button:focus {
     font-size: 15px;
 }
 
+.article .content blockquote > cite:before {
+    content: "\2014\2014";
+    margin-right: 2px;
+}
+
 .article .content blockquote p {
     margin-bottom: -3px;
 }
@@ -2703,10 +2708,9 @@ a {
 
 .k-main .sidebar .w-tags .item a {
     display: inline-block;
-    list-style: none;
     text-align: center;
     font-size: 14px;
-    margin: 3px 4px;
+    margin: 3px 0;
     padding: 4px 12px;
     border: 1px solid #f0f0f0;
     color: #666;
@@ -2717,8 +2721,8 @@ a {
 .k-main .sidebar .widget_links ul li {
     display: inline-block;
     margin: 0 1px 10px 0;
-    padding: 2px 0;
-    width: 164px;
+    padding: 3px 6px;
+    /*width: 164px;*/
     color: #333;
     list-style: none;
     font-size: 15px;
@@ -2733,9 +2737,7 @@ a {
 }
 
 .k-main .sidebar .w-tags .item a:hover,
-.k-main .sidebar .widget_links ul li:hover,
-.k-main .sidebar .widget_categories ul li:hover,
-.k-main .sidebar .widget_archive ul li:hover {
+.k-main .sidebar .widget_links ul li:hover{
     background-color: #eeeeee;
 }
 
@@ -2816,36 +2818,6 @@ a {
     box-shadow: none;
 }
 
-.k-main .sidebar .widget_categories ul,
-.k-main .sidebar .widget_archive ul {
-    margin: 0;
-    padding-left: 0;
-}
-
-.k-main .sidebar .widget_categories ul li,
-.k-main .sidebar .widget_archive ul li {
-    display: inline-block;
-    overflow: hidden;
-    margin: 0 1px 4px 0;
-    padding: 4px 0;
-    width: 164px;
-    border: 1px solid #eeeeee;
-    list-style: none;
-    text-align: center;
-    text-overflow: ellipsis;
-    font-size: 14px;
-    -webkit-transition: 0.3s;
-    -o-transition: 0.3s;
-    transition: 0.3s;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1;
-}
-
-.k-main .sidebar .widget_categories ul li a,
-.k-main .sidebar .widget_archive ul li a {
-    color: #333;
-}
-
 .k-main .sidebar .w-search .form-control,
 .k-main .sidebar .w-search .btn {
     font-size: 15px;
@@ -2867,10 +2839,6 @@ a {
         width: 110px;
     }
 
-    .k-main .sidebar .widget_categories ul li,
-    .k-main .sidebar .widget_archive ul li {
-        width: 110px;
-    }
 }
 
 @media (min-width: 992px) {
