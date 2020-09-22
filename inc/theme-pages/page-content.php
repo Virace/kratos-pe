@@ -26,7 +26,7 @@
                 ?>
                 <h3 class="title"><a href="<?php the_permalink(); ?>"><?php
                         if (is_sticky()) echo '<span class="sticky-post">[置顶] </span>';
-                        the_title();?></a></h3>
+                        the_title(); ?></a></h3>
             </div>
             <div class="content">
                 <p><?php echo wp_trim_words(get_the_excerpt(), 85); ?></p>
@@ -47,6 +47,9 @@
                     echo '0';
                 }
                 _e('人点赞', 'kratos'); ?></span>
+                <?php if (kratos_option('multiusers', false)) { ?>
+                    <span class="mr-2"><i class="vicon i-author"></i><?php echo get_the_author_meta('display_name'); ?></span>
+                <?php } ?>
         </span>
             <span class="float-right">
             <a href="<?php the_permalink(); ?>"><?php _e('阅读全文', 'kratos'); ?><i class="vicon i-rightbutton"></i></a>

@@ -38,10 +38,10 @@ function kratos_options()
         'six' => __('知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议', 'kratos'),
     );
 
-	$top_array = array(
-		'banner' => __( '图片导航', 'kratos' ),
-		'color' => __( '颜色导航', 'kratos' ),
-	);
+    $top_array = array(
+        'banner' => __('图片导航', 'kratos'),
+        'color' => __('颜色导航', 'kratos'),
+    );
 
     $options = array();
 
@@ -65,6 +65,12 @@ function kratos_options()
         'type' => 'checkbox',
     );
 
+    $options[] = array(
+        'name' => __('多人模式', 'kratos'),
+        'desc' => __('在文章列表显示当前文章作者，在文章页面页脚显示当前作者介绍', 'kratos'),
+        'id' => 'multiusers',
+        'type' => 'checkbox',
+    );
 
     $options[] = array(
         'name' => __('禁止生成缩略图', 'kratos'),
@@ -236,7 +242,7 @@ function kratos_options()
     );
 
     $options[] = array(
-        'name' => __('统计代码', 'kratos'),
+        'name' => __('额外代码', 'kratos'),
         'desc' => __('注意：输入 HTML/JS 代码时请注意辨别代码安全！', 'kratos'),
         'id' => 'seo_statistical',
         'type' => 'textarea',
@@ -376,8 +382,8 @@ function kratos_options()
         'type' => "images",
         'options' => array(
             'one_side' => $imagepath . 'col-12.png',
-			'two_side' => $imagepath . 'col-8.png')
-		);
+            'two_side' => $imagepath . 'col-8.png')
+    );
 
     $options[] = array(
         'name' => __('站长配置', 'kratos'),
@@ -489,14 +495,14 @@ function kratos_options()
         'type' => 'upload',
     );
 
-	$options[] = array(
-        'name' => __( '顶部样式', 'kratos' ),
+    $options[] = array(
+        'name' => __('顶部样式', 'kratos'),
         'desc' => __('请选择顶部样式（颜色导航或图片导航）', 'kratos'),
-		'id' => 'top_select',
-		'std' => 'banner',
-		'type' => 'select',
-		'options' => $top_array
-	);
+        'id' => 'top_select',
+        'std' => 'banner',
+        'type' => 'select',
+        'options' => $top_array
+    );
 
     $options[] = array(
         'name' => __('图片导航', 'kratos'),
