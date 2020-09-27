@@ -13,7 +13,7 @@ $col_array = array(
 );
 $select_col = $col_array[kratos_option('g_article_widgets', 'two_side')];
 ?>
-    <section id="content" class="k-main <?php echo kratos_option('top_select', 'banner'); ?>">
+    <main id="content" class="k-main <?php echo kratos_option('top_select', 'banner'); ?>">
         <div class="container">
             <div class="row">
                 <div class="<?php echo $select_col ?> details animate__animated animate__fadeInLeft">
@@ -178,5 +178,5 @@ $select_col = $col_array[kratos_option('g_article_widgets', 'two_side')];
                 <?php } ?>
             </div>
         </div>
-    </section>
+    </main>
 <?php get_footer(); ?>
