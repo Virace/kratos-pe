@@ -93,9 +93,6 @@ function theme_autoload()
         $data = 'html{filter: grayscale(100%);-webkit-filter: grayscale(100%);-moz-filter: grayscale(100%);-ms-filter: grayscale(100%);-o-filter: grayscale(100%);filter: progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);filter: gray;-webkit-filter: grayscale(1); }';
         wp_add_inline_style('kratos', $data);
     }
-
-    // 在最后加载自定义文件
-    wp_enqueue_script('custom', get_template_directory_uri() . '/custom/custom.js', array(), THEME_VERSION, true);
 }
 
 add_action('wp_enqueue_scripts', 'theme_autoload');
