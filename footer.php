@@ -27,7 +27,6 @@
             <span class="vicon i-find"></span>
             <form class="search-form" role="search" method="get" action="<?php echo home_url('/'); ?>">
                 <input type="text" name="s" id="search-footer" placeholder="<?php _e('搜点什么呢?', 'kratos'); ?>" style="display:none"/>
-                       style="display:none"/>
             </form>
         </div>
     </div>
