@@ -96,6 +96,8 @@ add_filter('robots_txt', function ($output, $public) {
 function share_thumbnail_url()
 {
     global $post;
+    if(!is_object($post))
+        return;
     if (has_post_thumbnail($post->ID)) {
         $post_thumbnail_id = get_post_thumbnail_id($post);
         $img = wp_get_attachment_image_src($post_thumbnail_id, 'full');

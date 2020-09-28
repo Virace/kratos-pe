@@ -19,9 +19,12 @@
             echo 'a-none';
         } ?>">
             <div class="header">
-                <?php $category = get_the_category();
-                if (count($category) > 0) {
-                    echo '<a class="label" href="' . get_category_link($category[0]->term_id) . '">' . $category[0]->cat_name . '<i class="label-arrow"></i></a>';
+                <?php
+                $category = get_the_category();
+                if ($category) {
+                    echo '<a class="label" href="'. get_category_link($category[0]->term_id) . '">' . $category[0]->cat_name . '<i class="label-arrow"></i></a>';
+                } else {
+                    echo '<span class="label">'. __('页面','kratos') .'<i class="label-arrow"></i></span>';
                 }
                 ?>
                 <h3 class="title"><a href="<?php the_permalink(); ?>"><?php
