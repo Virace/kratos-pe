@@ -55,9 +55,11 @@ function theme_autoload()
         wp_deregister_script('jquery');
         wp_enqueue_script('jquery', ASSET_PATH . '/assets/js/jquery.min.js', array(), '3.4.1', false);
 
+//        wp_enqueue_script('toast', ASSET_PATH . '/src/js/toast.js', array(), THEME_VERSION, false);
         wp_enqueue_script('kratos', ASSET_PATH . '/assets/js/bundle.js', array(), THEME_VERSION, false);
-//        wp_enqueue_script('custom', get_template_directory_uri() . '/custom/custom.js', array(), THEME_VERSION, true);
 
+        // 在最后加载自定义文件
+        wp_enqueue_script('custom', get_template_directory_uri() . '/custom/custom.js', array(), THEME_VERSION, true);
         $data = array(
             'site' => home_url(),
             'directory' => get_stylesheet_directory_uri(),
@@ -71,11 +73,19 @@ function theme_autoload()
         wp_localize_script('kratos', 'kratos', $data);
     }
 
+
     if (is_page() || is_single()) {
+        /* 代码高亮 */
         wp_enqueue_style('highlight', get_template_directory_uri() . '/assets/css/highlight/style.min.css', array(), '10.2.0');
         wp_enqueue_script('highlight', ASSET_PATH . '/assets/js/highlight/highlight.pack.js', array(), '10.2.0', true);
         wp_enqueue_script('highlight-ln', ASSET_PATH . '/assets/js/highlight/highlightjs-line-numbers.min.js', array(), '2.8.0', true);
         wp_enqueue_script('highlight-copy', ASSET_PATH . '/assets/js/highlight/highlightjs-copy-button.min.js', array(), '1.0.5', true);
+
+        /* 图片灯箱 */
+        wp_enqueue_style('lightgallery', ASSET_PATH . '/assets/css/lightgallery.js/lightgallery.css', array(), '1.2.0');
+        wp_enqueue_style('lightgallery-lg', ASSET_PATH . '/assets/css/lightgallery.js/lg-transitions.css', array(), '1.2.0');
+        wp_enqueue_script('lightgallery', ASSET_PATH . '/assets/js/lightgallery.js/lightgallery.js', array(), '1.2.0', true);
+        wp_enqueue_script('lightgallery-lg', ASSET_PATH . '/assets/js/lightgallery.js/lg-thumbnail.js', array(), '1.2.0', true);
     }
 
     // 哀悼黑白站点
@@ -84,6 +94,8 @@ function theme_autoload()
         wp_add_inline_style('kratos', $data);
     }
 
+    // 在最后加载自定义文件
+    wp_enqueue_script('custom', get_template_directory_uri() . '/custom/custom.js', array(), THEME_VERSION, true);
 }
 
 add_action('wp_enqueue_scripts', 'theme_autoload');

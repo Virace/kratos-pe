@@ -178,5 +178,34 @@ $select_col = $col_array[kratos_option('g_article_widgets', 'two_side')];
                 <?php } ?>
             </div>
         </div>
+        <?php if (kratos_option('g_donate', false)) { ?>
+            <div class="modal fade" id="donate-modal" role="dialog">
+                <div class="modal-dialog modal-dialog-centered donate-box">
+                    <div class="modal-content">
+                        <div class="modal-header"><?php _e('打赏作者', 'kratos') ?>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="qr-pay text-center my-3">
+                                <div class="meta-pay text-center">
+                                    <strong><?php _e('扫码支付', 'kratos') ?></strong>
+                                </div>
+
+                                <img class="pay-img" id="alipay_qr" src="<?php echo kratos_option('g_donate_alipay', ASSET_PATH . '/assets/img/donate.png') ?>">
+                                <img class="pay-img d-none" id="wechat_qr" src="<?php echo kratos_option('g_donate_wechat', ASSET_PATH . '/assets/img/donate.png') ?>">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="choose-pay text-center mt-2">
+                                <input id="alipay" type="radio" name="pay-method" checked="">
+                                <label for="alipay" class="pay-button"><img src="<?php echo ASSET_PATH ?>/assets/img/payment/alipay.png"></label>
+                                <input id="wechatpay" type="radio" name="pay-method">
+                                <label for="wechatpay" class="pay-button"><img src="<?php echo ASSET_PATH ?>/assets/img/payment/wechat.png"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
     </main>
 <?php get_footer(); ?>
