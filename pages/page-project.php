@@ -3,7 +3,7 @@
  * template name: 项目展示模板
  */
 get_header(); ?>
-<section id="content" class="k-main <?php echo kratos_option('top_select', 'banner'); ?>">
+<main id="content" class="k-main <?php echo kratos_option('top_select', 'banner'); ?>">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 details">
@@ -38,5 +38,5 @@ get_header(); ?>
             </div>
         </div>
     </div>
-</section>
+</main>
 <?php get_footer(); ?>

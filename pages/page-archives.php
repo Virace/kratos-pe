@@ -27,7 +27,7 @@ while ($the_query->have_posts()):
     $output .= '<article class="post post-type-normal" itemtype="http://schema.org/Article"><header class="post-header"><h2 class="post-title"><a class="post-title-link" href="' . get_permalink() . '" itemprop="url"><span itemprop="name">' . get_the_title() . '</span></a></h2><div class="post-meta"><time class="post-time" itemprop="dateCreated">' . get_the_time('m-d') . '</time></div></header></article>';
 endwhile;
 get_header(); ?>
-<section id="content" class="k-main <?php echo kratos_option('top_select', 'banner'); ?>">
+<main id="content" class="k-main <?php echo kratos_option('top_select', 'banner'); ?>">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 details">
@@ -65,5 +65,5 @@ get_header(); ?>
             </div>
         </div>
     </div>
-</section>
+</>
 <?php get_footer(); ?>
