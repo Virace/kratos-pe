@@ -87,19 +87,33 @@ if (kratos_option('g_gravatar', false)) {
 
     add_filter('get_avatar', 'get_https_avatar');
 }
-// 禁止生成多种尺寸图片
-if (kratos_option('g_removeimgsize', false)) {
-    function remove_default_images($sizes)
-    {
-        unset($sizes['thumbnail']);
-        unset($sizes['medium']);
-        unset($sizes['large']);
-        unset($sizes['medium_large']);
-        return $sizes;
-    }
 
-    add_filter('intermediate_image_sizes_advanced', 'remove_default_images');
+// 禁用自动生成的图片尺寸
+function shapeSpace_disable_image_sizes($sizes) {
+
+    unset($sizes['thumbnail']);    // disable thumbnail size
+    unset($sizes['medium']);       // disable medium size
+    unset($sizes['large']);        // disable large size
+    unset($sizes['medium_large']); // disable medium-large size
+    unset($sizes['1536x1536']);    // disable 2x medium-large size
+    unset($sizes['2048x2048']);    // disable 2x large size
+
+    return $sizes;
+
 }
+add_action('intermediate_image_sizes_advanced', 'shapeSpace_disable_image_sizes');
+
+// 禁用缩放尺寸
+add_filter('big_image_size_threshold', '__return_false');
+
+// 禁用其他图片尺寸
+function shapeSpace_disable_other_image_sizes() {
+
+    remove_image_size('post-thumbnail'); // disable images added via set_post_thumbnail_size()
+//    remove_image_size('another-size');   // disable any other added image sizes
+
+}
+add_action('init', 'shapeSpace_disable_other_image_sizes');
 
 // 重定向优化
 add_action('template_redirect', 'redirect_single_post');
