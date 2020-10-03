@@ -93,6 +93,11 @@ function theme_autoload()
         $data = 'html{filter: grayscale(100%);-webkit-filter: grayscale(100%);-moz-filter: grayscale(100%);-ms-filter: grayscale(100%);-o-filter: grayscale(100%);filter: progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);filter: gray;-webkit-filter: grayscale(1); }';
         wp_add_inline_style('kratos', $data);
     }
+    if (kratos_option('seo_statistical')) add_action('wp_footer', function () {
+        echo '<script id="other" type="text/javascript">' .kratos_option('seo_statistical'). '</script>';
+
+    }, 50);
+
 }
 
 add_action('wp_enqueue_scripts', 'theme_autoload');

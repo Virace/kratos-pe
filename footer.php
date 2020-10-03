@@ -26,7 +26,8 @@
         <div class="search">
             <span class="vicon i-find"></span>
             <form class="search-form" role="search" method="get" action="<?php echo home_url('/'); ?>">
-                <input type="text" name="s" id="search-footer" placeholder="<?php _e('搜点什么呢?', 'kratos'); ?>" style="display:none"/>
+                <input type="text" name="s" id="search-footer" placeholder="<?php _e('搜点什么呢?', 'kratos'); ?>"
+                       style="display:none"/>
             </form>
         </div>
     </div>
@@ -58,10 +59,10 @@
         </div>
     </div>
 </footer>
-<?php
-if (kratos_option('seo_statistical')) {
-    echo kratos_option('seo_statistical');
-}
-wp_footer(); ?>
+
+
+<?php wp_footer();?>
+
+
 </body>
 </html>

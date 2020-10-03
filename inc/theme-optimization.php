@@ -89,7 +89,8 @@ if (kratos_option('g_gravatar', false)) {
 }
 
 // 禁用自动生成的图片尺寸
-function shapeSpace_disable_image_sizes($sizes) {
+function shapeSpace_disable_image_sizes($sizes)
+{
 
     unset($sizes['thumbnail']);    // disable thumbnail size
     unset($sizes['medium']);       // disable medium size
@@ -101,18 +102,21 @@ function shapeSpace_disable_image_sizes($sizes) {
     return $sizes;
 
 }
+
 add_action('intermediate_image_sizes_advanced', 'shapeSpace_disable_image_sizes');
 
 // 禁用缩放尺寸
 add_filter('big_image_size_threshold', '__return_false');
 
 // 禁用其他图片尺寸
-function shapeSpace_disable_other_image_sizes() {
+function shapeSpace_disable_other_image_sizes()
+{
 
     remove_image_size('post-thumbnail'); // disable images added via set_post_thumbnail_size()
 //    remove_image_size('another-size');   // disable any other added image sizes
 
 }
+
 add_action('init', 'shapeSpace_disable_other_image_sizes');
 
 // 重定向优化
@@ -129,7 +133,6 @@ function redirect_single_post()
 
 
 // 禁用admin登录,
-
 if (kratos_option('g_no_admin', false)) {
     add_filter('wp_authenticate', 'no_admin_user');
     function no_admin_user($user)
@@ -148,6 +151,4 @@ if (kratos_option('g_no_admin', false)) {
         return $username;
     }
 }
-
-
 

@@ -30,7 +30,7 @@ if (!defined('WPINC')) {
 if (is_admin() && !function_exists('optionsframework_init')):
 
     function optionsframework_init()
-{
+    {
 
         //  If user can't edit theme options, exit
         if (!current_user_can('edit_theme_options')) {
@@ -69,7 +69,7 @@ endif;
  */
 if (!function_exists('kratos_option')):
     function kratos_option($name, $default = false)
-{
+    {
 
         $option_name = 'kratos';
 
@@ -91,6 +91,7 @@ function optionscheck_change_santiziation()
     remove_filter('of_sanitize_textarea', 'of_sanitize_textarea');
     add_filter('of_sanitize_textarea', 'custom_sanitize_textarea');
 }
+
 function custom_sanitize_textarea($input)
 {
     global $allowedposttags;

@@ -12,64 +12,67 @@
  *
  * @link http://developer.wordpress.org/reference/functions/sanitize_text_field/
  */
-add_filter( 'of_sanitize_text', 'sanitize_text_field' );
+add_filter('of_sanitize_text', 'sanitize_text_field');
 
 /**
  * Sanitization for password input
  *
  * @link http://developer.wordpress.org/reference/functions/sanitize_text_field/
  */
-add_filter( 'of_sanitize_password', 'sanitize_text_field' );
+add_filter('of_sanitize_password', 'sanitize_text_field');
 
 /**
  * Sanitization for select input
  *
  * Validates that the selected option is a valid option.
  */
-add_filter( 'of_sanitize_select', 'of_sanitize_enum', 10, 2 );
+add_filter('of_sanitize_select', 'of_sanitize_enum', 10, 2);
 
 /**
  * Sanitization for radio input
  *
  * Validates that the selected option is a valid option.
  */
-add_filter( 'of_sanitize_radio', 'of_sanitize_enum', 10, 2 );
+add_filter('of_sanitize_radio', 'of_sanitize_enum', 10, 2);
 
 /**
  * Sanitization for image selector
  *
  * Validates that the selected option is a valid option.
  */
-add_filter( 'of_sanitize_images', 'of_sanitize_enum', 10, 2 );
+add_filter('of_sanitize_images', 'of_sanitize_enum', 10, 2);
 
 /**
  * Sanitization for textarea field
  *
  * @param $input string
- * @return $output sanitized string
+ * @return string $output sanitized string
  */
-function of_sanitize_textarea( $input ) {
-	global $allowedposttags;
-	$output = wp_kses( $input, $allowedposttags );
-	return $output;
+function of_sanitize_textarea($input)
+{
+    global $allowedposttags;
+    return wp_kses($input, $allowedposttags);
 }
-add_filter( 'of_sanitize_textarea', 'of_sanitize_textarea' );
+
+add_filter('of_sanitize_textarea', 'of_sanitize_textarea');
 
 /**
  * Sanitization for checkbox input
  *
  * @param $input string (1 or empty) checkbox state
- * @return $output '1' or false
+ * @return false|string $output '1' or false
  */
-function of_sanitize_checkbox( $input ) {
-	if ( $input ) {
-		$output = '1';
-	} else {
-		$output = false;
-	}
-	return $output;
+function of_sanitize_checkbox($input)
+{
+    if ($input) {
+        $output = '1';
+    } else {
+        $output = false;
+    }
+    return $output;
 }
-add_filter( 'of_sanitize_checkbox', 'of_sanitize_checkbox' );
+
+add_filter('of_sanitize_checkbox', 'of_sanitize_checkbox');
 
 /**
  * File upload sanitization.
@@ -79,15 +82,17 @@ add_filter( 'of_sanitize_checkbox', 'of_sanitize_checkbox' );
  * @param string $input filepath
  * @returns string $output filepath
  */
-function of_sanitize_upload( $input ) {
-	$output = '';
-	$filetype = wp_check_filetype( $input );
-	if ( $filetype["ext"] ) {
-		$output = esc_url( $input );
-	}
-	return $output;
+function of_sanitize_upload($input)
+{
+    $output = '';
+    $filetype = wp_check_filetype($input);
+    if ($filetype["ext"]) {
+        $output = esc_url($input);
+    }
+    return $output;
 }
-add_filter( 'of_sanitize_upload', 'of_sanitize_upload' );
+
+add_filter('of_sanitize_upload', 'of_sanitize_upload');
 
 /**
  * Sanitization of input with allowed tags and wpautotop.
@@ -97,10 +102,11 @@ add_filter( 'of_sanitize_upload', 'of_sanitize_upload' );
  * @param string $input
  * @returns string $output
  */
-function of_sanitize_allowedtags( $input ) {
-	global $allowedtags;
-	$output = wpautop( wp_kses( $input, $allowedtags ) );
-	return $output;
+function of_sanitize_allowedtags($input)
+{
+    global $allowedtags;
+    $output = wpautop(wp_kses($input, $allowedtags));
+    return $output;
 }
 
 /**
@@ -111,10 +117,11 @@ function of_sanitize_allowedtags( $input ) {
  * @param string $input
  * @returns string $output
  */
-function of_sanitize_allowedposttags( $input ) {
-	global $allowedposttags;
-	$output = wpautop( wp_kses( $input, $allowedposttags) );
-	return $output;
+function of_sanitize_allowedposttags($input)
+{
+    global $allowedposttags;
+    $output = wpautop(wp_kses($input, $allowedposttags));
+    return $output;
 }
 
 /**
@@ -124,12 +131,13 @@ function of_sanitize_allowedposttags( $input ) {
  * @param string $input
  * @returns string $output
  */
-function of_sanitize_enum( $input, $option ) {
-	$output = '';
-	if ( array_key_exists( $input, $option['options'] ) ) {
-		$output = $input;
-	}
-	return $output;
+function of_sanitize_enum($input, $option)
+{
+    $output = '';
+    if (array_key_exists($input, $option['options'])) {
+        $output = $input;
+    }
+    return $output;
 }
 
 /**
@@ -137,41 +145,45 @@ function of_sanitize_enum( $input, $option ) {
  *
  * @returns array $output
  */
-function of_sanitize_background( $input ) {
+function of_sanitize_background($input)
+{
 
-	$output = wp_parse_args( $input, array(
-		'color' => '',
-		'image'  => '',
-		'repeat'  => 'repeat',
-		'position' => 'top center',
-		'attachment' => 'scroll'
-	) );
+    $output = wp_parse_args($input, array(
+        'color' => '',
+        'image' => '',
+        'repeat' => 'repeat',
+        'position' => 'top center',
+        'attachment' => 'scroll'
+    ));
 
 //	$output['color'] = apply_filters( 'of_sanitize_hex', $input['color'] );
-	$output['color'] = apply_filters( 'of_sanitize_color_value', $input['color'] );
-	$output['image'] = apply_filters( 'of_sanitize_upload', $input['image'] );
+    $output['color'] = apply_filters('of_sanitize_color_value', $input['color']);
+    $output['image'] = apply_filters('of_sanitize_upload', $input['image']);
 
-	return $output;
+    return $output;
 }
-add_filter( 'of_sanitize_background', 'of_sanitize_background' );
+
+add_filter('of_sanitize_background', 'of_sanitize_background');
 
 /**
  * Sanitize a color represented in hexidecimal notation.
  *
- * @param    string    Color in hexidecimal notation. "#" may or may not be prepended to the string.
- * @param    string    The value that this function should return if it cannot be recognized as a color.
+ * @param string    Color in hexidecimal notation. "#" may or may not be prepended to the string.
+ * @param string    The value that this function should return if it cannot be recognized as a color.
  * @return   string
  */
 
-function of_sanitize_hex( $hex, $default = '' ) {
-	if ( of_validate_hex( $hex ) ) {
-		return $hex;
-	}
-	return $default;
+function of_sanitize_hex($hex, $default = '')
+{
+    if (of_validate_hex($hex)) {
+        return $hex;
+    }
+    return $default;
 }
 
-function of_sanitize_color_value($val, $default = ''){
-    if ( of_validate_hex( $val ) or preg_match( "/^[rR][gG][Bb][Aa]?[\(]((2[0-4][0-9]|25[0-5]|[01]?[0-9][0-9]?),){2}(2[0-4][0-9]|25[0-5]|[01]?[0-9][0-9]?),?(0\.\d{1,2}|1|0)?[\)]$/", $val )===1) {
+function of_sanitize_color_value($val, $default = '')
+{
+    if (of_validate_hex($val) or preg_match("/^[rR][gG][Bb][Aa]?[\(]((2[0-4][0-9]|25[0-5]|[01]?[0-9][0-9]?),){2}(2[0-4][0-9]|25[0-5]|[01]?[0-9][0-9]?),?(0\.\d{1,2}|1|0)?[\)]$/", $val) === 1) {
         return $val;
     }
     return $default;
@@ -179,28 +191,27 @@ function of_sanitize_color_value($val, $default = ''){
 
 //add_filter( 'of_sanitize_color', 'of_sanitize_hex' );
 // 添加对RGBA的支持, 适配拾色器
-add_filter( 'of_sanitize_color', 'of_sanitize_color_value');
+add_filter('of_sanitize_color', 'of_sanitize_color_value');
 
 /**
  * Is a given string a color formatted in hexidecimal notation?
  *
- * @param    string    Color in hexidecimal notation. "#" may or may not be prepended to the string.
+ * @param string    Color in hexidecimal notation. "#" may or may not be prepended to the string.
  * @return   bool
  */
-function of_validate_hex( $hex ) {
-	$hex = trim( $hex );
-	/* Strip recognized prefixes. */
-	if ( 0 === strpos( $hex, '#' ) ) {
-		$hex = substr( $hex, 1 );
-	}
-	elseif ( 0 === strpos( $hex, '%23' ) ) {
-		$hex = substr( $hex, 3 );
-	}
-	/* Regex match. */
-	if ( 0 === preg_match( '/^[0-9a-fA-F]{6}$/', $hex ) ) {
-		return false;
-	}
-	else {
-		return true;
-	}
+function of_validate_hex($hex)
+{
+    $hex = trim($hex);
+    /* Strip recognized prefixes. */
+    if (0 === strpos($hex, '#')) {
+        $hex = substr($hex, 1);
+    } elseif (0 === strpos($hex, '%23')) {
+        $hex = substr($hex, 3);
+    }
+    /* Regex match. */
+    if (0 === preg_match('/^[0-9a-fA-F]{6}$/', $hex)) {
+        return false;
+    } else {
+        return true;
+    }
 }
