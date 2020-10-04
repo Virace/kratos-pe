@@ -1,13 +1,7 @@
 <?php
-/**
- * 站点相关函数
- * @author Seaton Jiang <seaton@vtrois.com>
- * @license MIT License
- * @version 2020.06.13
- */
 
 // 标题配置
-function title($title, $sep)
+function title($title, $sep): string
 {
     global $paged, $page;
     if (is_feed()) {
@@ -26,7 +20,7 @@ function title($title, $sep)
 add_filter('wp_title', 'title', 10, 2);
 
 // Keywords 配置
-function keywords()
+function keywords(): string
 {
     global $post;
     if (is_home()) {
@@ -35,9 +29,9 @@ function keywords()
         $keywords = get_post_meta($post->ID, "seo-meta-keywords", true);
         if($keywords == '') {
 
-            $tags = wp_get_post_tags($post->ID);    
-            foreach ($tags as $tag ) {        
-                $keywords = $keywords . $tag->name . ", ";    
+            $tags = wp_get_post_tags($post->ID);
+            foreach ($tags as $tag ) {
+                $keywords = $keywords . $tag->name . ", ";
             }
             $keywords = rtrim($keywords, ', ');
         }
@@ -53,7 +47,7 @@ function keywords()
 }
 
 // Description 配置
-function description()
+function description(): string
 {
     global $post;
     if (is_home()) {

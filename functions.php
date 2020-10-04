@@ -20,8 +20,9 @@ require get_template_directory() . '/inc/theme-core.php';
 // 工具
 require get_template_directory() . '/inc/theme-utils.php';
 
-// 站点配置
-require get_template_directory() . '/inc/theme-setting.php';
+// SEO
+require get_template_directory() . '/inc/theme-seo.php';
+
 
 // 文章配置
 require get_template_directory() . '/inc/theme-article.php';
@@ -50,5 +51,4 @@ require get_template_directory() . '/inc/theme-media.php';
 require get_template_directory() . '/inc/theme-optimization.php';
 
 // 自定义函数
-//require get_template_directory() . '/custom/slide-meta.php';
 require get_template_directory() . '/custom/custom.php';

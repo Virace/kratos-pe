@@ -301,16 +301,5 @@ if (!class_exists('WPMetaBox')):
         private string $title;
         private $post_type;
         private $items;
-
-        private const DAYS_OF_THE_WEEK =
-            [
-                'Monday',
-                'Tuesday',
-                'Wednesday',
-                'Thursday',
-                'Friday',
-                'Saturday',
-                'Sunday'
-            ];
     }
 endif;

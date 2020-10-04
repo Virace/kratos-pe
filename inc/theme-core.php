@@ -55,7 +55,6 @@ function theme_autoload()
         wp_deregister_script('jquery');
         wp_enqueue_script('jquery', ASSET_PATH . '/assets/js/jquery.min.js', array(), '3.4.1', false);
 
-//        wp_enqueue_script('toast', ASSET_PATH . '/src/js/toast.js', array(), THEME_VERSION, false);
         wp_enqueue_script('kratos', ASSET_PATH . '/assets/js/bundle.js', array(), THEME_VERSION, false);
 
         // 在最后加载自定义文件
