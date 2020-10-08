@@ -152,3 +152,15 @@ if (kratos_option('g_no_admin', false)) {
     }
 }
 
+if (kratos_option('g_gutenberg', false)) {
+    // 禁用 Gutenberg 编辑器
+    add_filter('use_block_editor_for_post', '__return_false');
+    remove_action('wp_enqueue_scripts', 'wp_common_block_scripts_and_styles');
+
+    // 删除前端的block library的css资源，
+    add_action('wp_enqueue_scripts', 'remove_block_library_css', 100);
+    function remove_block_library_css()
+    {
+        wp_dequeue_style('wp-block-library');
+    }
+}

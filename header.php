@@ -7,7 +7,7 @@
  */
 ?>
 <!DOCTYPE html>
-<html lang="zh-cn">
+<html lang="zh-cn" class="no-js">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">

@@ -12,7 +12,7 @@ get_header(); ?>
         <div class="row">
         <div class="col-lg-8 details animate__animated animate__fadeInLeft">
                 <?php if (have_posts()) : the_post(); update_post_caches($posts); ?>
-                    <article class="article py-4" data-aos="fade">
+                    <article class="article py-4">
                         <div class="header text-center">
                             <h1 class="title m-0"><?php the_title(); ?></h1>
                         </div>

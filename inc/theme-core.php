@@ -38,6 +38,7 @@ function theme_autoload()
 {
     if (!is_admin()) {
         // css
+        wp_enqueue_style('bootstrap', ASSET_PATH . '/assets/css/bootstrap.min.css', array(), '4.5.2');
         wp_enqueue_style('kratos', ASSET_PATH . '/assets/css/bundle.css', array(), THEME_VERSION);
         wp_enqueue_style('custom', get_template_directory_uri() . '/custom/custom.css', array(), THEME_VERSION);
         $bg_color = kratos_option('g_background', '#f5f5f5');
@@ -54,11 +55,11 @@ function theme_autoload()
         // js
         wp_deregister_script('jquery');
         wp_enqueue_script('jquery', ASSET_PATH . '/assets/js/jquery.min.js', array(), '3.4.1', false);
-
+//        wp_enqueue_script('qweqwe', ASSET_PATH . '/src/js/scrollreveal.js', array(), '3.4.1', false);
         wp_enqueue_script('kratos', ASSET_PATH . '/assets/js/bundle.js', array(), THEME_VERSION, false);
+        wp_enqueue_script('custom', get_template_directory_uri() . '/custom/custom.js', array(), THEME_VERSION, true);
 
         // 在最后加载自定义文件
-        wp_enqueue_script('custom', get_template_directory_uri() . '/custom/custom.js', array(), THEME_VERSION, true);
         $data = array(
             'site' => home_url(),
             'directory' => get_stylesheet_directory_uri(),

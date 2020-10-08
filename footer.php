@@ -10,7 +10,7 @@
     <div class="f-toolbox">
         <div class="gotop <?php if (kratos_option('s_wechat', false)) {
             echo 'gotop-haswechat';
-        } ?>">
+        } ?>" data-aos="fade" data-aos-anchor="main" data-aos-offset="650" data-aos-duration="600">
             <div class="gotop-btn">
                 <span class="vicon i-up"></span>
             </div>
@@ -18,7 +18,7 @@
         <?php if (kratos_option('s_wechat', false)) { ?>
             <div class="wechat">
                 <span class="vicon i-wechat"></span>
-                <div class="wechat-pic">
+                <div class="wechat-pic animate__animated">
                     <img src="<?php echo kratos_option('s_wechat_url', ASSET_PATH . '/assets/img/wechat.png'); ?>">
                 </div>
             </div>
@@ -31,7 +31,7 @@
             </form>
         </div>
     </div>
-    <div class="container" data-aos="fade">
+    <div class="container">
         <div class="row">
             <div class="col-12 text-center">
                 <p class="social">

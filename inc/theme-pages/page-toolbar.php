@@ -6,7 +6,7 @@
  * @version 2020.04.12
  */
 ?>
-<aside class="toolbar clearfix" data-aos="fade">
+<aside class="toolbar clearfix">
     <div class="meta float-md-left">
         <?php if (kratos_option('multiusers', false)) { ?>
             <img src="<?php echo get_avatar_url(get_the_author_meta('user_email')); ?>">
