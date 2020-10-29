@@ -16,7 +16,16 @@ foreach ($qmr_work_tags as $qmr_work_tag) {
 }
 
 remove_filter('the_content', 'wptexturize');
-add_filter('run_wptexturize', '__return_false');
+
+//add_filter('run_wptexturize', '__return_false');
+/**
+ * WordPress 标题中的横线“-”被转义成“–”的问题 - 龙笑天下
+ * https://www.ilxtx.com/wordpress-html-entity-decode-title.html
+ * 20181213 更新：wp_title、single_post_title、single_cat_title、get_the_title、single_tag_title
+ */
+remove_filter('the_title', 'wptexturize');
+remove_filter('wp_title', 'wptexturize');
+remove_filter('single_post_title', 'wptexturize');
 
 // 禁用 Emoji
 add_filter('emoji_svg_url', '__return_false');
@@ -75,8 +84,10 @@ add_filter('style_loader_src', function ($href) {
 
 // 禁用 Auto Embeds
 remove_filter('the_content', array($GLOBALS['wp_embed'], 'autoembed'), 8);
+
+
 if (kratos_option('g_gravatar', false)) {
-// 替换国内 Gravatar 源
+    // 替换 Gravatar 头像源
     function get_https_avatar($avatar)
     {
         $cdn = "gravatar.loli.net";
@@ -84,7 +95,6 @@ if (kratos_option('g_gravatar', false)) {
         $avatar = str_replace("http://", "https://", $avatar);
         return $avatar;
     }
-
     add_filter('get_avatar', 'get_https_avatar');
 }
 
@@ -164,3 +174,24 @@ if (kratos_option('g_gutenberg', false)) {
         wp_dequeue_style('wp-block-library');
     }
 }
+
+#######################################################
+
+//// 屏蔽 REST API
+//if ( version_compare( get_bloginfo( 'version' ), '4.7', '>=' ) ) {
+//    function disable_rest_api( $access ) {
+//        return new WP_Error( 'rest_cannot_acess', '无访问权限', array( 'status' => 403 ) );
+//    }
+//    add_filter( 'rest_authentication_errors', 'disable_rest_api' );
+//} else {
+//    // Filters for WP-API version 1.x
+//    add_filter( 'json_enabled', '__return_false' );
+//    add_filter( 'json_jsonp_enabled', '__return_false' );
+//    // Filters for WP-API version 2.x
+//    add_filter( 'rest_enabled', '__return_false' );
+//    add_filter( 'rest_jsonp_enabled', '__return_false' );
+//}
+//// 移除头部 wp-json 标签和 HTTP header 中的 link
+//remove_action('wp_head', 'rest_output_link_wp_head', 10 );
+//remove_action('template_redirect', 'rest_output_link_header', 11 );
+

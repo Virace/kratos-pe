@@ -12,11 +12,12 @@ $col_array = array(
     'two_side' => 'col-lg-8'
 );
 $select_col = $col_array[kratos_option('g_article_widgets', 'two_side')];
+$post_ID = get_the_ID();
 ?>
     <main id="content" class="k-main <?php echo kratos_option('top_select', 'banner'); ?>">
         <div class="container">
             <div class="row">
-                <div class="<?php echo $select_col ?> details animate__animated animate__fadeInLeft">
+                <div class="<?php echo $select_col ?> details animate__animated">
                     <?php if (have_posts()) : the_post();
                         update_post_caches($posts); ?>
                         <article class="article" data-aos="fade">
@@ -54,8 +55,8 @@ $select_col = $col_array[kratos_option('g_article_widgets', 'two_side')];
                                     <span><?php echo get_the_date('Y年m月d日'); ?></span>
                                     <span><?php echo get_post_views();
                                         _e('点热度', 'kratos'); ?></span>
-                                    <span><?php if (get_post_meta($post->ID, 'love', true)) {
-                                            echo get_post_meta($post->ID, 'love', true);
+                                    <span><?php if (get_post_meta($post_ID, 'love', true)) {
+                                            echo get_post_meta($post_ID, 'love', true);
                                         } else {
                                             echo '0';
                                         }
@@ -131,7 +132,7 @@ $select_col = $col_array[kratos_option('g_article_widgets', 'two_side')];
                                 $select_cc = $cc_array[kratos_option('g_cc', 'one')];
                                 echo '<div class="copyright"><span class="text-center">';
                                 echo __('本作品采用 ', 'kratos');
-                                echo '<b>'.$select_cc.'</b>';
+                                echo '<b>' . $select_cc . '</b>';
                                 echo __(' 进行许可', 'kratos');
                                 echo '</span></div>';
                             } ?>
@@ -145,11 +146,12 @@ $select_col = $col_array[kratos_option('g_article_widgets', 'two_side')];
                                     } ?>
                                 </div>
                                 <div class="tool float-right d-none d-lg-block">
-                                    <div data-toggle="tooltip" data-html="true"
-                                         data-original-title="<?php _e('最后更新：', 'kratos');
-                                         the_modified_date('Y-m-d H:i') ?>">
-                                        <span><?php _e('最后更新：', 'kratos'); ?><?php the_modified_date('Y年m月d日'); ?></span>
-                                    </div>
+                                    <div class="update-time" aria-label="<?php
+                                    _e('本文修订次数：', 'kratos');
+                                    $times = get_post_meta(get_the_ID(), 'revision_times', true);
+                                    echo $times ? $times : 1;
+                                    ?>" data-balloon-pos="up"><?php _e('最后更新：', 'kratos');
+                                        echo the_modified_date('Y-m-d H:i') ?></div>
                                 </div>
                             </div>
                         </article>
@@ -179,11 +181,11 @@ $select_col = $col_array[kratos_option('g_article_widgets', 'two_side')];
             </div>
         </div>
         <?php if (kratos_option('g_donate', false)) { ?>
-            <div class="modal fade" id="donate-modal" role="dialog">
+            <div id="modal-container" class="modal">
                 <div class="modal-dialog modal-dialog-centered donate-box">
                     <div class="modal-content">
                         <div class="modal-header"><?php _e('打赏作者', 'kratos') ?>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <span class="btn-close" data-dismiss="modal"></span>
                         </div>
                         <div class="modal-body">
                             <div class="qr-pay text-center my-3">
@@ -191,18 +193,23 @@ $select_col = $col_array[kratos_option('g_article_widgets', 'two_side')];
                                     <strong><?php _e('扫码支付', 'kratos') ?></strong>
                                 </div>
 
-                                <img class="pay-img" id="alipay_qr" src="<?php echo kratos_option('g_donate_alipay', ASSET_PATH . '/assets/img/donate.png') ?>">
-                                <img class="pay-img d-none" id="wechat_qr" src="<?php echo kratos_option('g_donate_wechat', ASSET_PATH . '/assets/img/donate.png') ?>">
+                                <img class="pay-img" id="alipay_qr"
+                                     src="<?php echo kratos_option('g_donate_alipay', ASSET_PATH . '/assets/img/donate.png') ?>">
+                                <img class="pay-img d-none" id="wechat_qr"
+                                     src="<?php echo kratos_option('g_donate_wechat', ASSET_PATH . '/assets/img/donate.png') ?>">
                             </div>
                         </div>
                         <div class="modal-footer">
                             <div class="choose-pay text-center mt-2">
                                 <input id="alipay" type="radio" name="pay-method" checked="">
-                                <label for="alipay" class="pay-button"><img src="<?php echo ASSET_PATH ?>/assets/img/payment/alipay.png"></label>
+                                <label for="alipay" class="pay-button"><img
+                                            src="<?php echo ASSET_PATH ?>/assets/img/payment/alipay.png"></label>
                                 <input id="wechatpay" type="radio" name="pay-method">
-                                <label for="wechatpay" class="pay-button"><img src="<?php echo ASSET_PATH ?>/assets/img/payment/wechat.png"></label>
+                                <label for="wechatpay" class="pay-button"><img
+                                            src="<?php echo ASSET_PATH ?>/assets/img/payment/wechat.png"></label>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>

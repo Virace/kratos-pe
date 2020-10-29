@@ -20,7 +20,7 @@
     </div>
     <div class="share float-md-right text-center">
         <?php if (kratos_option('g_donate', false)) { ?>
-            <a href="javascript:;" class="btn btn-donate mr-3" data-toggle="modal" data-target="#donate-modal"><i
+            <a href="javascript:;" class="btn btn-donate mr-3" id="donatea" data-toggle="modal" data-target="#modal-container"><i
                         class="vicon i-donate"></i> <?php _e('打赏', 'kratos'); ?></a>
         <?php } ?>
         <a href="javascript:;" id="thumbs" data-action="love" data-id="<?php the_ID(); ?>" role="button"

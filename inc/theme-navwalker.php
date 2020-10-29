@@ -63,7 +63,7 @@ if (!class_exists('WP_Bootstrap_Navwalker')) {
             }
             $indent = str_repeat($t, $depth);
             // Default class to add to the file.
-            $classes = array('dropdown-menu', 'shadow-lg','animate__animated', 'animate__fadeIn');
+            $classes = array('dropdown-menu', 'shadow-lg');
             /**
              * Filters the CSS class(es) applied to a menu list element.
              *

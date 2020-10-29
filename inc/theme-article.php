@@ -109,13 +109,14 @@ add_theme_support("post-thumbnails");
 function post_thumbnail()
 {
     global $post;
+    $title = get_the_title();
     $img_id = get_post_thumbnail_id();
     $img_url = wp_get_attachment_image_src($img_id, array(720, 435));
     if (is_array($img_url)) {
         $img_url = $img_url[0];
     }
     if (has_post_thumbnail()) {
-        echo '<img src="' . $img_url . '" />';
+        echo '<img src="' . $img_url . '" alt="' . $title . '"/>';
     } else {
         $content = $post->post_content;
         $img_preg = "/<img (.*?)src=\"(.+?)\".*?>/";
@@ -125,15 +126,33 @@ function post_thumbnail()
             $img_val = $img_src[$img_count];
         }
         if (!empty($img_val)) {
-            echo '<img src="' . $img_val . '" />';
+            echo '<img src="' . $img_val . '" alt="' . $title . '" />';
         } else {
             if (!kratos_option('g_postthumbnail')) {
                 $img = ASSET_PATH . '/assets/img/default.jpg';
             } else {
                 $img = kratos_option('g_postthumbnail', ASSET_PATH . '/assets/img/default.jpg');
             }
-            echo '<img src="' . $img . '" />';
+            echo '<img src="' . $img . '" alt="' . get_bloginfo('name') . '" />';
         }
+    }
+}
+
+function post_thumbnail_url(){
+    $img_id = get_post_thumbnail_id();
+    $img_url = wp_get_attachment_image_src($img_id, array(720, 435));
+    if (is_array($img_url)) {
+        $img_url = $img_url[0];
+    }
+    if (has_post_thumbnail()) {
+        return $img_url;
+    } else {
+        if (!kratos_option('g_postthumbnail')) {
+            $img = ASSET_PATH . '/assets/img/default.jpg';
+        } else {
+            $img = kratos_option('g_postthumbnail', ASSET_PATH . '/assets/img/default.jpg');
+        }
+        return $img;
     }
 }
 
@@ -395,7 +414,7 @@ if (!class_exists('duplicate_page') && kratos_option('g_duplicate_page', false))
         public function dt_duplicate_post_link($actions, $post)
         {
             if (current_user_can('edit_posts')) {
-                $actions['duplicate'] = '<a href="admin.php?action=dt_duplicate_post_as_draft&amp;post=' . $post->ID . '&amp;nonce=' . wp_create_nonce('dt-duplicate-page-' . $post->ID) . '" title="' . __('复制文章到草稿') . '" rel="permalink">' . __('复制', 'duplicate-page') . '</a>';
+                $actions['duplicate'] = '<a href="admin.php?action=dt_duplicate_post_as_draft&amp;post=' . $post->ID . '&amp;nonce=' . wp_create_nonce('dt-duplicate-page-' . $post->ID) . '" title="' . __('复制文章到草稿') . '" rel="permalink">' . __('复制', 'kratos') . '</a>';
             }
 
             return $actions;
@@ -499,3 +518,22 @@ if (!function_exists('get_toc')):
         return $index;
     }
 endif;
+
+
+// 添加修订次数统计
+add_action('publish_page', 'add_revision_times', 10, 2);
+add_action('publish_post', 'add_revision_times', 10, 2);
+function add_revision_times($post_ID){
+    // 判断一下请求来源, rest api排除, 否则会触发两次
+    if (!(defined('REST_REQUEST') && REST_REQUEST)) {
+        $key = 'revision_times';
+        if (!(wp_is_post_revision($post_ID) || wp_is_post_autosave($post_ID))) {
+            $times = get_post_meta($post_ID, $key, true);;
+            if ($times) {
+                update_post_meta($post_ID, $key, intval($times) + 1);
+            } else {
+                add_post_meta($post_ID, $key, 1, true);
+            }
+        }
+    }
+}

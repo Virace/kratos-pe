@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="format-detection" content="telphone=no, email=no">
     <meta name="keywords" content="<?php echo keywords(); ?>">
-    <meta name="description" itemprop="description" content="<?php echo description(); ?>">
+    <meta name="description" content="<?php echo description(); ?>">
     <meta property="og:title" content="<?php wp_title('-',true,'right'); ?>">
     <meta property="og:site_name" content="<?php wp_title('-',true,'right'); ?>">
     <meta property="og:type" content="website">
@@ -25,8 +25,8 @@
     <meta name="twitter:description" content="<?php echo description(); ?>">
     <meta name="twitter:card" content="summary">
     <meta name="theme-color" content="<?php echo kratos_option('g_chrome', '#282a2c'); ?>">
-    <meta itemprop="image" content="<?php echo share_thumbnail_url(); ?>"/>
-    <?php if (kratos_option('g_icon')) echo '<link rel="shortcut icon" href="' . kratos_option("g_icon") .'">' ?>
+    <meta itemprop="image"  content="<?php echo share_thumbnail_url(); ?>"/>
+<!--    --><?php //if (kratos_option('g_icon')) echo '<link rel="shortcut icon" href="' . kratos_option("g_icon") .'">' ?>
     <?php wp_head();
     wp_print_scripts('jquery');?>
 </head>
@@ -58,6 +58,7 @@
                     'container_class' => 'collapse navbar-collapse animate__animated animate__backInRight',
                     'container_id' => 'navbarResponsive',
                     'menu_class' => 'navbar-nav ml-auto',
+                    'menu_id' => 'navbar',
                     'walker' => new WP_Bootstrap_Navwalker(),
                 ));
             }

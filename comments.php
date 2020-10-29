@@ -23,7 +23,7 @@ if (comments_open()) { ?>
         </div>
         <?php if (get_comment_pages_count() > 1) { ?>
             <div id="comments-nav">
-                <?php paginate_comments_links('prev_text=' . __('上一页', 'moedog') . '&next_text=' . __('下一页', 'moedog')); ?>
+                <?php paginate_comments_links('prev_text=' . __('上一页', 'kratos') . '&next_text=' . __('下一页', 'kratos')); ?>
             </div>
         <?php } ?>
         <div id="respond" class="comment-respond mt-2">
@@ -67,10 +67,10 @@ if (comments_open()) { ?>
                                       required="required"></textarea>
                             <div class="text-bar clearfix">
                                 <div class="tool float-left">
-                                    <a class="addbtn" href="#" id="addsmile"><i class="vicon i-face"></i></a>
+                                    <a class="addbtn" href="javascript:" id="addsmile"><i class="vicon i-face"></i></a>
                                     <div class="smile">
                                         <div class="clearfix">
-                                            <?php echo $smilies; ?>
+                                            <?php display_smilies(); ?>
                                         </div>
                                     </div>
                                 </div>

@@ -38,9 +38,15 @@ function theme_autoload()
 {
     if (!is_admin()) {
         // css
-        wp_enqueue_style('bootstrap', ASSET_PATH . '/assets/css/bootstrap.min.css', array(), '4.5.2');
-        wp_enqueue_style('kratos', ASSET_PATH . '/assets/css/bundle.css', array(), THEME_VERSION);
-        wp_enqueue_style('custom', get_template_directory_uri() . '/custom/custom.css', array(), THEME_VERSION);
+        wp_enqueue_style('kratos-common', ASSET_PATH . '/assets/css/common.min.css', array(), THEME_VERSION);
+
+        wp_enqueue_style('vicon', ASSET_PATH . '/assets/css/iconfont.min.css', array(), THEME_VERSION);
+
+        wp_enqueue_style('kratos', ASSET_PATH . '/assets/css/kratos.min.css', array(), THEME_VERSION);
+
+        wp_enqueue_style('custom', ASSET_PATH . '/custom/custom.css', array(), THEME_VERSION);
+
+
         $bg_color = kratos_option('g_background', '#f5f5f5');
         $theme_color1 = kratos_option('g_theme_color1', '#00a2ff');
         $theme_color2 = kratos_option('g_theme_color2', '#0097ee');
@@ -54,10 +60,12 @@ function theme_autoload()
 
         // js
         wp_deregister_script('jquery');
-        wp_enqueue_script('jquery', ASSET_PATH . '/assets/js/jquery.min.js', array(), '3.4.1', false);
-//        wp_enqueue_script('qweqwe', ASSET_PATH . '/src/js/scrollreveal.js', array(), '3.4.1', false);
-        wp_enqueue_script('kratos', ASSET_PATH . '/assets/js/bundle.js', array(), THEME_VERSION, false);
+        wp_register_script('jquery', ASSET_PATH . '/assets/js/jquery.min.js', array(), '3.4.1', false);
+        wp_enqueue_script( 'jquery' );
+
+        wp_enqueue_script('kratos', ASSET_PATH . '/assets/js/bundle.js', array(), THEME_VERSION, true);
         wp_enqueue_script('custom', get_template_directory_uri() . '/custom/custom.js', array(), THEME_VERSION, true);
+
 
         // 在最后加载自定义文件
         $data = array(

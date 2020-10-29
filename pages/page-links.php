@@ -13,7 +13,7 @@ get_header(); ?>
                         <div class="header text-center">
                             <h1 class="title m-0"><?php the_title(); ?></h1>
                         </div>
-                        <div class="page-header"><?php _e('dalao们的链接，每次刷新随机排序~', 'moedog'); ?></div>
+                        <div class="page-header"><?php _e('dalao们的链接，每次刷新随机排序~', 'kratos'); ?></div>
                         <div class="linkpage">
                             <hr/>
                             <ul><?php

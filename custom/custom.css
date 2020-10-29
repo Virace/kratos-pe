@@ -1,0 +1,36 @@
+.comment .wp-smiley {
+    height: 40px !important;
+    max-height: 40px !important;
+}
+
+.k-footer .f-toolbox .search .search-form {
+    width: 0;
+    transition: width .5s;
+    -moz-transition: width .5s;
+    -webkit-transition: width .5s;
+    -o-transition: width .5s;
+}
+
+
+.k-footer .f-toolbox .search .i-find:hover + .search-form {
+    width: 200px;
+}
+
+
+.k-footer .f-toolbox .search .search-form:hover {
+    width: 200px;
+}
+
+
+.article-info {
+    font-size: .8125rem;
+    line-height: 1.4;
+    text-align: left;
+    background-color: rgba(0,0,0,.05)
+}
+
+.article-info a {
+    color: #333;
+    text-decoration: none
+}
+

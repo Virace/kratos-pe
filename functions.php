@@ -23,7 +23,6 @@ require get_template_directory() . '/inc/theme-utils.php';
 // SEO
 require get_template_directory() . '/inc/theme-seo.php';
 
-
 // 文章配置
 require get_template_directory() . '/inc/theme-article.php';
 
@@ -32,6 +31,10 @@ require get_template_directory() . '/inc/theme-widgets.php';
 
 // 文章增强
 require get_template_directory() . '/inc/theme-shortcode.php';
+require get_template_directory() . '/inc/theme-gutenberg.php';
+
+// 表情配置
+require get_template_directory() . '/inc/theme-smilies.php';
 
 // 添加导航目录
 require get_template_directory() . '/inc/theme-navwalker.php';

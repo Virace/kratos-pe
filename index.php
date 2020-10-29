@@ -10,7 +10,7 @@ get_header(); ?>
 <main id="content" class="k-main <?php echo kratos_option('top_select', 'banner'); ?>">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 board animate__animated animate__fadeInLeft">
+            <div class="col-lg-8 board animate__animated">
                 <?php if(is_search()){ ?>
                     <div class="article-panel">
                         <div class="search-title"><?php _e('搜索内容：', 'kratos');the_search_query(); ?></div>
@@ -38,7 +38,7 @@ get_header(); ?>
                 pagelist();
                 wp_reset_query(); ?>
             </div>
-            <div class="col-lg-4 sidebar d-none d-lg-block">
+            <div class="col-lg-4 sidebar d-none d-lg-block animate__animated">
                 <?php dynamic_sidebar('sidebar_tool'); ?>
             </div>
         </div>

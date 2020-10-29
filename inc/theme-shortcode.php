@@ -292,3 +292,31 @@ function add_plugin($plugin_array)
     $plugin_array['dangerbox'] = ASSET_PATH . '/assets/js/buttons/more.js';
     return $plugin_array;
 }
+
+
+/**
+ * WordPress 通过短代码在文章或评论中显示站内指定文章内容
+ * https://www.ilxtx.com/insert-post-through-post-id.html
+ * Modified: 2018-10-22 13:31:49 支持文章数超过 5，支持按 id 填写顺序排列文章
+ */
+//function lxtx_fa_insert_posts( $atts, $content = null ){
+//    extract( shortcode_atts( array(
+//        'ids' => ''
+//    ),
+//        $atts ) );
+//    global $post;
+//    $content = '';
+//    $postids =  explode(',', $ids);
+//    $inset_posts = get_posts( array(
+//        'post__in' => $postids,
+//        'numberposts' => count($postids),
+//        'orderby' => 'post__in',
+//    ) );
+//    foreach ($inset_posts as $key => $post) {
+//        setup_postdata( $post );
+//        $content .=  '<div class="card-today-history"><div class="card-thContents"><div class="card-thLine"></div><div class="card-thHeroTitle"><a target="_blank" class="label--thTitle" href="' . get_permalink() . '">' . get_the_title() . '</a><div class="v-floatRight card-thMeta">' . get_comments_number(). '<i class="iconfont icon-comment"></i></div></div></div></div>';
+//    }
+//    wp_reset_postdata();
+//    return $content;
+//}
+//add_shortcode('lxtx_fa_insert_post', 'lxtx_fa_insert_posts');

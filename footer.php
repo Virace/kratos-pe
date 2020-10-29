@@ -18,7 +18,7 @@
         <?php if (kratos_option('s_wechat', false)) { ?>
             <div class="wechat">
                 <span class="vicon i-wechat"></span>
-                <div class="wechat-pic animate__animated">
+                <div class="wechat-pic">
                     <img src="<?php echo kratos_option('s_wechat_url', ASSET_PATH . '/assets/img/wechat.png'); ?>">
                 </div>
             </div>
@@ -26,8 +26,7 @@
         <div class="search">
             <span class="vicon i-find"></span>
             <form class="search-form" role="search" method="get" action="<?php echo home_url('/'); ?>">
-                <input type="text" name="s" id="search-footer" placeholder="<?php _e('搜点什么呢?', 'kratos'); ?>"
-                       style="display:none"/>
+                <input type="text" name="s" id="search-footer" placeholder="<?php _e('搜点什么呢?', 'kratos'); ?>"/>
             </form>
         </div>
     </div>

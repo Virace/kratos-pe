@@ -1,13 +1,15 @@
 <?php
 /**
  * 侧栏小工具
+ * @param int $echo
+ * @return string|null
+ * @version 2020.04.12
  * @author Seaton Jiang <seaton@vtrois.com>
  * @license MIT License
- * @version 2020.04.12
  */
 
 // 获取浏览次数
-function get_totalviews($echo = 1)
+function get_totalviews($echo = 1): ?string
 {
     global $wpdb;
     $total_views = $wpdb->get_var("SELECT SUM(meta_value+0) FROM $wpdb->postmeta WHERE meta_key = 'views'");
@@ -31,7 +33,7 @@ function last_login()
 }
 
 // 格式化时间
-function timeago($ptime)
+function timeago($ptime): string
 {
     $ptime = strtotime($ptime);
     $etime = time() - $ptime;
@@ -61,15 +63,15 @@ function widgets_init()
     register_sidebar(array(
         'name' => __('侧边栏工具', 'kratos'),
         'id' => 'sidebar_tool',
-        'before_widget' => '<aside class="widget %2$s animate__animated animate__fadeInRight">',
+        'before_widget' => '<aside class="widget %2$s">',
         'after_widget' => '</aside>',
         'before_title' => '<div class="title">',
         'after_title' => '</div>',
     ));
     register_sidebar(array(
-        'name' => '文章页面侧栏',
+        'name' => __('文章页面侧栏', 'kratos'),
         'id' => 'sidebar_tool_post',
-        'before_widget' => '<aside class="widget %2$s animate__animated animate__fadeInRight">',
+        'before_widget' => '<aside class="widget %2$s">',
         'after_widget' => '</aside>',
         'before_title' => '<div class="title">',
         'after_title' => '</div>',
@@ -228,11 +230,7 @@ class widget_search extends WP_Widget
         $instance = wp_parse_args((array)$instance, array('title' => ''));
         $title = $instance['title'];
         ?>
-        <p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?> <input class="widefat"
-                                                                                                  id="<?php echo $this->get_field_id('title'); ?>"
-                                                                                                  name="<?php echo $this->get_field_name('title'); ?>"
-                                                                                                  type="text"
-                                                                                                  value="<?php echo esc_attr($title); ?>"/></label>
+        <p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?> <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($title); ?>"/></label>
         </p>
         <?php
     }
@@ -256,7 +254,7 @@ class widget_about extends WP_Widget
         $widget_ops = array(
             'name' => __('个人简介', 'kratos'),
             'description' => __('可跳转后台的个人简介展示工具', 'kratos'),
-            'classname' => __('w-about')
+            'classname' => __('w-about'),
         );
 
         parent::__construct(false, false, $widget_ops);
@@ -423,14 +421,6 @@ class widget_posts extends WP_Widget
                aria-controls="nav-random" aria-selected="false"><i
                         class="vicon i-tabrandom"></i><?php _e('随机', 'kratos'); ?></a>
         </div>
-        <div class="nav nav-tabs d-xl-none" id="nav-tab" role="tablist">
-            <a class="nav-item nav-link" id="nav-new-tab" data-toggle="tab" href="#nav-new" role="tab"
-               aria-controls="nav-new" aria-selected="false"><?php _e('最新', 'kratos'); ?></a>
-            <a class="nav-item nav-link active" id="nav-hot-tab" data-toggle="tab" href="#nav-hot" role="tab"
-               aria-controls="nav-hot" aria-selected="true"><?php _e('热点', 'kratos'); ?></a>
-            <a class="nav-item nav-link" id="nav-random-tab" data-toggle="tab" href="#nav-random" role="tab"
-               aria-controls="nav-random" aria-selected="false"><?php _e('随机', 'kratos'); ?></a>
-        </div>
         <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade" id="nav-new" role="tabpanel" aria-labelledby="nav-new-tab">
                 <?php $myposts = get_posts('numberposts=' . $number . ' & offset=0');
@@ -515,7 +505,7 @@ class widget_about_detailed extends WP_Widget
         echo $before_widget;
         if (!is_home()) $redirect = get_permalink(); else $redirect = home_url(); ?>
         <div class="author">
-            <img src="<?php echo $avatar ?>"/>
+            <img src="<?php echo $avatar ?>" alt="<?php echo $author ?>"/>
             <div class="in_box">
                 <?php if ($author == true) { ?>
                     <span class="name"><?php echo $author ?></span>
@@ -528,15 +518,15 @@ class widget_about_detailed extends WP_Widget
         <?php if ($author_title == true) { ?>
         <p class="author_title"><?php echo $author_title ?></p>
     <?php } ?>
-        <div class="items">
+        <ul class="items">
             <li><span>POSTS</span><?php echo wp_count_posts()->publish; ?></li>
             <li>
                 <span>FRIENDS</span><?php $link = $wpdb->get_var("SELECT COUNT(*) FROM $wpdb->links WHERE link_visible = 'Y'");
                 echo $link; ?></li>
             <li><span>VISITS</span><?php get_totalviews(true, true, true); ?></li>
-        </div>
+        </ul>
         <ul class="info">
-            <li><i></i><a href="#"><?php echo site_url(); ?></a></li>
+            <li><i></i><a href="javascript:"><?php echo site_url(); ?></a></li>
             <li>
                 <i></i>网站已艰难存活 <?php echo floor((time() - strtotime(kratos_option('a_createtime'))) / 86400); ?>
                 天
@@ -585,7 +575,7 @@ class widget_comments extends WP_Widget
         )));
         $output = $args['before_widget'];
         if ($title) $output .= $args['before_title'] . $title . $args['after_title'];
-        $output .= '<div class="recentcomments">';
+        $output .= '<ul class="recentcomments">';
         if (is_array($comments) && $comments) {
             foreach ($comments as $comment) {
                 $output .= '<li class="comment-listitem">';
@@ -598,7 +588,7 @@ class widget_comments extends WP_Widget
                 $output .= '</li>';
             }
         }
-        $output .= '</div>';
+        $output .= '</ul>';
         $output .= $args['after_widget'];
         echo $output;
     }

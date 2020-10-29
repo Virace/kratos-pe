@@ -37,7 +37,7 @@
         </div>
         <div class="a-meta">
         <span class="float-left d-block">
-            <span class="mr-2"><i class="vicon i-calendar"></i><?php echo get_the_date('Y年m月d日'); ?></span>
+            <span class="mr-2"><i class="vicon i-calendar"></i><?php echo get_the_date('Y-m-d'); ?></span>
             <span class="mr-2"><i class="vicon i-comments"></i><?php comments_number('0', '1', '%');
                 _e('条评论', 'kratos'); ?></span>
         </span>
