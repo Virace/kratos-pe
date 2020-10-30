@@ -10,7 +10,7 @@
     <div class="f-toolbox">
         <div class="gotop <?php if (kratos_option('s_wechat', false)) {
             echo 'gotop-haswechat';
-        } ?>" data-aos="fade" data-aos-anchor="main" data-aos-offset="650" data-aos-duration="600">
+        } ?>">
             <div class="gotop-btn">
                 <span class="vicon i-up"></span>
             </div>

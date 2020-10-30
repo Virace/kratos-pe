@@ -8,16 +8,6 @@
  * @license MIT License
  */
 
-// 获取浏览次数
-function get_totalviews($echo = 1): ?string
-{
-    global $wpdb;
-    $total_views = $wpdb->get_var("SELECT SUM(meta_value+0) FROM $wpdb->postmeta WHERE meta_key = 'views'");
-    if ($echo) echo $total_views;
-    else return $total_views;
-}
-
-
 //取最后一次活动时间. 徒增功耗
 function last_login()
 {
@@ -26,10 +16,7 @@ function last_login()
     $date2 = $wpdb->get_var("SELECT post_modified FROM $wpdb->posts WHERE post_author = 1");
     $date1 = strtotime(empty($date1) ? 0 : $date1);
     $date2 = strtotime(empty($date2) ? 0 : $date2);
-
     echo $date1 < $date2 ? human_time_diff($date2) : human_time_diff($date1);
-
-
 }
 
 // 格式化时间
@@ -61,7 +48,7 @@ function timeago($ptime): string
 function widgets_init()
 {
     register_sidebar(array(
-        'name' => __('侧边栏工具', 'kratos'),
+        'name' => __('首页侧边栏', 'kratos'),
         'id' => 'sidebar_tool',
         'before_widget' => '<aside class="widget %2$s">',
         'after_widget' => '</aside>',
@@ -69,7 +56,7 @@ function widgets_init()
         'after_title' => '</div>',
     ));
     register_sidebar(array(
-        'name' => __('文章页面侧栏', 'kratos'),
+        'name' => __('文章页侧边栏', 'kratos'),
         'id' => 'sidebar_tool_post',
         'before_widget' => '<aside class="widget %2$s">',
         'after_widget' => '</aside>',
@@ -230,7 +217,11 @@ class widget_search extends WP_Widget
         $instance = wp_parse_args((array)$instance, array('title' => ''));
         $title = $instance['title'];
         ?>
-        <p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?> <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($title); ?>"/></label>
+        <p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?> <input class="widefat"
+                                                                                                  id="<?php echo $this->get_field_id('title'); ?>"
+                                                                                                  name="<?php echo $this->get_field_name('title'); ?>"
+                                                                                                  type="text"
+                                                                                                  value="<?php echo esc_attr($title); ?>"/></label>
         </p>
         <?php
     }
@@ -521,9 +512,11 @@ class widget_about_detailed extends WP_Widget
         <ul class="items">
             <li><span>POSTS</span><?php echo wp_count_posts()->publish; ?></li>
             <li>
-                <span>FRIENDS</span><?php $link = $wpdb->get_var("SELECT COUNT(*) FROM $wpdb->links WHERE link_visible = 'Y'");
-                echo $link; ?></li>
-            <li><span>VISITS</span><?php get_totalviews(true, true, true); ?></li>
+                <span>FRIENDS</span><?php echo $wpdb->get_var("SELECT COUNT(*) FROM $wpdb->links WHERE link_visible = 'Y'"); ?>
+            </li>
+            <li>
+                <span>VISITS</span><?php echo $wpdb->get_var("SELECT SUM(meta_value+0) FROM $wpdb->postmeta WHERE meta_key = 'views'"); ?>
+            </li>
         </ul>
         <ul class="info">
             <li><i></i><a href="javascript:"><?php echo site_url(); ?></a></li>

@@ -1,10 +1,22 @@
 @charset "UTF-8";
+/*
+
+    公共部分
+
+*/
 :root {
     --bs-font-sans-serif: system-ui, -apple-system, BlinkMacSystemFont, Helvetica Neue, PingFang SC, Microsoft YaHei, Source Han Sans SC, Noto Sans CJK SC, WenQuanYi Micro Hei, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     --animate-duration: 1s;
     --animate-delay: 1s;
-    --animate-repeat: 1
+    --animate-repeat: 1;
+    --light: #f8f9fa;
+    --bg-color: #f5f5f5;
+    --theme-color-1: #00a2ff;
+    --theme-color-2: #0097ee;
+    --navbar-color-1: rgba(40, 42, 44, 0.6);
+    --navbar-color-2: #fff;
+    --mb-sidebar-color: #242b31
 }
 
 *, ::after, ::before {
@@ -48,6 +60,11 @@ hr:not([size]) {
     font-weight: 500;
     line-height: 1.2
 }
+
+/*h1, h2, h3, h4, h5, h6 {*/
+/*    margin: 0 0 30px;*/
+/*    font-weight: 400*/
+/*}*/
 
 .h1, h1 {
     font-size: calc(1.375rem + 1.5vw)
@@ -118,11 +135,24 @@ address {
 }
 
 ol, ul {
-    padding-left: 2rem
+    /*padding-left: 2rem;*/
+    margin: 0 0 16px;
+    padding-left: 16px
 }
 
 ol ol, ol ul, ul ol, ul ul {
     margin-bottom: 0
+}
+
+ol, p, ul {
+    margin-bottom: 16px;
+    font-size: 16px
+}
+
+ol > li, ul > li {
+    margin-bottom: 6px;
+    padding-left: 2px;
+    line-height: 22px
 }
 
 dt {
@@ -167,13 +197,22 @@ sup {
 }
 
 a {
-    color: #0d6efd;
-    text-decoration: none
+    text-decoration: none;
+    color: var(--theme-color-1, #00a2ff);
+    -webkit-transition: .3s;
+    -o-transition: .3s;
+    transition: .3s
 }
 
 a:hover {
-    color: #0a58ca
+    color: var(--theme-color-2, #0097ee);
+    text-decoration: none
 }
+
+/*a:focus {*/
+/*    outline: 0;*/
+/*    text-decoration: none*/
+/*}*/
 
 a:not([href]):not([class]), a:not([href]):not([class]):hover {
     color: inherit;
@@ -352,6 +391,54 @@ legend + * {
 ::-webkit-file-upload-button {
     font: inherit;
     -webkit-appearance: button
+}
+
+::-moz-placeholder {
+    color: #fff
+}
+
+::-webkit-input-placeholder {
+    color: #fff
+}
+
+:-ms-input-placeholder {
+    color: #fff
+}
+
+::selection {
+    background: #ddd;
+    color: #000;
+    text-shadow: none
+}
+
+::-webkit-selection {
+    background: #ddd;
+    color: #000;
+    text-shadow: none
+}
+
+::-moz-selection {
+    background: #ddd;
+    color: #000;
+    text-shadow: none
+}
+
+::-webkit-scrollbar {
+    overflow: auto;
+    width: 10px;
+    height: 6.4px
+}
+
+::-webkit-scrollbar-thumb {
+    min-width: 25px;
+    min-height: 25px;
+    border: 1px solid #e0e0e0;
+    background-color: #bbb
+}
+
+::-webkit-scrollbar-track {
+    border: 1px solid #efefef;
+    background-color: #f7f7f7
 }
 
 output {
@@ -1125,7 +1212,7 @@ a.btn.disabled, fieldset:disabled a.btn {
 }
 
 .navbar-light .navbar-brand, .navbar-light .navbar-brand:focus, .navbar-light .navbar-brand:hover {
-    color: rgba(0, 0, 0, .9)
+    color: rgba(255, 255, 255, .8)
 }
 
 .navbar-light .navbar-nav .nav-link {
@@ -1154,7 +1241,7 @@ a.btn.disabled, fieldset:disabled a.btn {
 }
 
 .navbar-light .navbar-text a, .navbar-light .navbar-text a:focus, .navbar-light .navbar-text a:hover {
-    color: rgba(0, 0, 0, .9)
+    color: rgba(255, 255, 255, .8)
 }
 
 .navbar-dark .navbar-brand, .navbar-dark .navbar-brand:focus, .navbar-dark .navbar-brand:hover {
@@ -1198,7 +1285,7 @@ a.btn.disabled, fieldset:disabled a.btn {
 }
 
 .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .show > .nav-link {
-    color: rgba(0, 0, 0, .9)
+    color: rgba(255, 255, 255, .8)
 }
 
 .navbar-dark .navbar-nav .nav-link.active, .navbar-dark .navbar-nav .show > .nav-link {

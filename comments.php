@@ -12,7 +12,7 @@ if (isset($_SERVER['SCRIPT_FILENAME']) && 'comments.php' == basename($_SERVER['S
 require get_template_directory() . '/inc/theme-pages/page-smilies.php';
 require get_template_directory() . '/inc/theme-pages/page-comments.php';
 if (comments_open()) { ?>
-    <div class="comments" id="comments" data-aos="fade">
+    <div class="comments" id="comments">
         <h3 class="title"><?php if (is_single()) {
                 _e('文章评论', 'kratos');
             } else {

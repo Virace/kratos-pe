@@ -20,7 +20,7 @@ $post_ID = get_the_ID();
                 <div class="<?php echo $select_col ?> details animate__animated">
                     <?php if (have_posts()) : the_post();
                         update_post_caches($posts); ?>
-                        <article class="article" data-aos="fade">
+                        <article class="article">
                             <div class="breadcrumb-box">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item">
@@ -157,11 +157,11 @@ $post_ID = get_the_ID();
                         </article>
                     <?php endif; ?>
                     <?php require get_template_directory() . '/inc/theme-pages/page-toolbar.php'; ?>
-                    <nav class="navigation post-navigation clearfix" role="navigation" data-aos="fade">
+                    <nav class="navigation post-navigation clearfix" role="navigation">
                         <?php
                         $prev_post = get_previous_post(TRUE);
                         if (!empty($prev_post)) {
-                            echo '<div class="nav-previous clearfix" data-aos="fade"><a title="' . $prev_post->post_title . '" href="' . get_permalink($prev_post->ID) . '">' . __('< 上一篇', 'kratos') . '</a></div>';
+                            echo '<div class="nav-previous clearfix"><a title="' . $prev_post->post_title . '" href="' . get_permalink($prev_post->ID) . '">' . __('< 上一篇', 'kratos') . '</a></div>';
                         }
                         $next_post = get_next_post(TRUE);
                         if (!empty($next_post)) {
@@ -171,7 +171,7 @@ $post_ID = get_the_ID();
                     <?php comments_template(); ?>
                 </div>
                 <?php if (kratos_option('g_article_widgets', 'two_side') == 'two_side') { ?>
-                    <div class="col-lg-4 sidebar d-none d-lg-block">
+                    <div class="col-lg-4 sidebar d-none d-lg-block animate__animated">
                         <aside class="sidebar">
                             <?php require get_template_directory() . '/inc/theme-pages/page-toc.php'; ?>
                             <?php dynamic_sidebar('sidebar_tool_post'); ?>

@@ -92,10 +92,29 @@
   }
 
   const gotopConfig = function () {
-    $('.gotop').on('click', function (t) {
-      return t.preventDefault(), $('html, body').animate({
+    const $top = $('.gotop'),
+      height = $('.navbar')[0].offsetHeight + 75
+    $(window).on('load', function () {
+      const $win = $(window)
+      if ($win.scrollTop() > height) {
+        $top.fadeIn(300)
+      } else {
+        $top.fadeOut(300)
+      }
+      $win.scroll(function () {
+        if ($win.scrollTop() > height) {
+          $top.fadeIn(300)
+        } else {
+          $top.fadeOut(300)
+        }
+      })
+    })
+    $top.on('click', function (t) {
+      t.preventDefault()
+      $('html, body').animate({
         scrollTop: $('html').offset().top
-      }, 500), !1
+      }, 500)
+      return !1
     })
   }
 

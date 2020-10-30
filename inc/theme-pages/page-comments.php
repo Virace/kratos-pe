@@ -39,7 +39,7 @@ function comment_callback()
     do_action('set_comment_cookies', $comment, $user);
     $GLOBALS['comment'] = $comment;
     ?>
-    <li class="comment cleanfix" id="comment-<?php echo esc_attr(comment_ID()); ?>" data-aos="fade">
+    <li class="comment cleanfix" id="comment-<?php echo esc_attr(comment_ID()); ?>">
         <div class="avatar float-left d-inline-block mr-2">
             <?php if (function_exists('get_avatar') && get_option('show_avatars')) {
                 echo get_avatar($comment, 50);
@@ -86,7 +86,7 @@ add_filter('comment_text', 'comment_display', '', 1);
 function comment_callbacks($comment, $args, $depth = 2)
 {
     $GLOBALS['comment'] = $comment; ?>
-    <li class="comment cleanfix" id="comment-<?php echo esc_attr(comment_ID()); ?>" data-aos="fade">
+    <li class="comment cleanfix" id="comment-<?php echo esc_attr(comment_ID()); ?>">
         <div class="avatar float-left d-inline-block mr-2">
             <?php if (function_exists('get_avatar') && get_option('show_avatars')) {
                 echo get_avatar($comment, 50);

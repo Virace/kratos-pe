@@ -1,41 +1,26 @@
 @charset "UTF-8";
-a {
-    color: var(--theme-color-1, #00a2ff);
-    -webkit-transition: .3s;
-    -o-transition: .3s;
-    transition: .3s
-}
 
-a:hover {
-    color: var(--theme-color-2, #0097ee);
-    text-decoration: none
-}
 
-a:focus {
-    outline: 0;
-    text-decoration: none
-}
+/*--------------------------------------------------------------
+>>> Kratos 样式表
+>>> Seaton Jiang <seaton@vtrois.com> and Virace <Virace@aliyun.com>
+----------------------------------------------------------------
+	1.  全局
+	2.  导航
+	3.  Banner
+	4.  分页按钮
+	5.  文章列表
+	6.  文章正文
+	7.  内容工具区
+	8.  文章评论
+	9.  小工具
+	10. 404
+	11. 页脚
+--------------------------------------------------------------*/
 
-ol, p, ul {
-    margin-bottom: 16px;
-    font-size: 16px
-}
-
-ol, ul {
-    margin: 0 0 16px;
-    padding-left: 16px
-}
-
-ol > li, ul > li {
-    margin-bottom: 6px;
-    padding-left: 2px;
-    line-height: 22px
-}
-
-h1, h2, h3, h4, h5, h6 {
-    margin: 0 0 30px;
-    font-weight: 400
-}
+/*--------------------------------------------------------------
+1. 全局
+--------------------------------------------------------------*/
 
 :active, :focus, button:focus {
     outline: 0
@@ -45,53 +30,6 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: none
 }
 
-::-moz-placeholder {
-    color: #fff
-}
-
-::-webkit-input-placeholder {
-    color: #fff
-}
-
-:-ms-input-placeholder {
-    color: #fff
-}
-
-::selection {
-    background: #ddd;
-    color: #000;
-    text-shadow: none
-}
-
-::-webkit-selection {
-    background: #ddd;
-    color: #000;
-    text-shadow: none
-}
-
-::-moz-selection {
-    background: #ddd;
-    color: #000;
-    text-shadow: none
-}
-
-::-webkit-scrollbar {
-    overflow: auto;
-    width: 10px;
-    height: 6.4px
-}
-
-::-webkit-scrollbar-thumb {
-    min-width: 25px;
-    min-height: 25px;
-    border: 1px solid #e0e0e0;
-    background-color: #bbb
-}
-
-::-webkit-scrollbar-track {
-    border: 1px solid #efefef;
-    background-color: #f7f7f7
-}
 
 .k-main {
     padding: 23px 0;
@@ -117,6 +55,10 @@ h1, h2, h3, h4, h5, h6 {
         padding-top: 83px
     }
 }
+
+/*--------------------------------------------------------------
+2. 导航
+--------------------------------------------------------------*/
 
 .k-nav {
     background-color: var(--navbar-color-1, rgba(40, 42, 44, .6));
@@ -420,6 +362,11 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
+/*--------------------------------------------------------------
+3. Banner
+--------------------------------------------------------------*/
+
+
 .k-header .banner {
     position: relative;
     height: 300px
@@ -521,6 +468,10 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
+/*--------------------------------------------------------------
+4. 分页按钮
+--------------------------------------------------------------*/
+
 .k-main .board .paginations {
     margin: 23px auto;
     width: 100%;
@@ -575,6 +526,10 @@ h1, h2, h3, h4, h5, h6 {
     color: #fff
 }
 
+/*--------------------------------------------------------------
+5. 文章列表
+--------------------------------------------------------------*/
+
 .k-main .container {
     max-width: 1200px
 }
@@ -583,22 +538,22 @@ h1, h2, h3, h4, h5, h6 {
     animation-name: fadeInLeft
 }
 
-.k-main .board .article-panel {
+article.article-panel {
     margin: 0 0 23px;
     border-radius: 0;
     background-color: #fff;
     box-shadow: 0 1px 2px rgba(0, 0, 0, .1)
 }
 
-.k-main .board .article-panel:last-of-type {
+article.article-panel:last-of-type {
     margin: 0
 }
 
-.k-main .board .article-panel .sticky-post {
+article.article-panel .sticky-post {
     color: var(--theme-color-2, #0097ee)
 }
 
-.k-main .board .article-panel .a-thumb {
+article.article-panel .a-thumb {
     position: relative;
     float: left;
     overflow: hidden;
@@ -607,7 +562,7 @@ h1, h2, h3, h4, h5, h6 {
     height: 145px
 }
 
-.k-main .board .article-panel .a-thumb img {
+article.article-panel .a-thumb img {
     padding: 2px;
     width: 100%;
     height: 100%;
@@ -615,24 +570,24 @@ h1, h2, h3, h4, h5, h6 {
     object-fit: cover
 }
 
-.k-main .board .article-panel .a-post {
+article.article-panel .a-post {
     margin-left: 255px;
     padding: 21px 20px 0 3px;
     height: 160px
 }
 
-.k-main .board .article-panel .a-post.a-none {
+article.article-panel .a-post.a-none {
     margin-left: 0;
     padding: 20px;
     height: auto
 }
 
-.k-main .board .article-panel .a-post .header {
+article.article-panel .a-post .header {
     overflow: hidden;
     margin: 3px 0 6px
 }
 
-.k-main .board .article-panel .a-post .header .label {
+article.article-panel .a-post .header .label {
     position: relative;
     top: -2px;
     display: inline-block;
@@ -648,11 +603,11 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 14px
 }
 
-.k-main .board .article-panel .a-post .header span.label {
+article.article-panel .a-post .header span.label {
     cursor: default
 }
 
-.k-main .board .article-panel .a-post .header .label .label-arrow {
+article.article-panel .a-post .header .label .label-arrow {
     position: absolute;
     top: 6px;
     right: -4px;
@@ -665,21 +620,21 @@ h1, h2, h3, h4, h5, h6 {
     vertical-align: top
 }
 
-.k-main .board .article-panel .a-post .header .title {
+article.article-panel .a-post .header .title {
     display: inline;
     margin: 0;
     font-size: 21px
 }
 
-.k-main .board .article-panel .a-post .header .title a {
+article.article-panel .a-post .header .title a {
     color: #333
 }
 
-.k-main .board .article-panel .a-post .header .title a:hover {
+article.article-panel .a-post .header .title a:hover {
     color: var(--theme-color-2, #0097ee)
 }
 
-.k-main .board .article-panel .a-post .content {
+article.article-panel .a-post .content {
     display: block;
     display: -webkit-box;
     overflow: hidden;
@@ -691,13 +646,13 @@ h1, h2, h3, h4, h5, h6 {
     -webkit-line-clamp: 4
 }
 
-.k-main .board .article-panel .a-post .content p {
+article.article-panel .a-post .content p {
     margin-top: 10px;
     margin-bottom: 0;
     font-size: 15px
 }
 
-.k-main .board .article-panel .a-meta {
+article.article-panel .a-meta {
     clear: both;
     overflow: hidden;
     padding: 8px 20px;
@@ -706,46 +661,46 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 27px
 }
 
-.k-main .board .article-panel .a-meta span {
+article.article-panel .a-meta span {
     font-size: 13px;
     line-height: 24px;
     cursor: default
 }
 
-.k-main .board .article-panel .a-meta span > i {
+article.article-panel .a-meta span > i {
     margin-right: 3px
 }
 
-.k-main .board .article-panel .a-meta span > a {
+article.article-panel .a-meta span > a {
     color: #333
 }
 
-.k-main .board .article-panel .a-meta span > a:hover {
+article.article-panel .a-meta span > a:hover {
     color: var(--theme-color-2, #0097ee);
     text-decoration: none
 }
 
-.k-main .board .article-panel .a-meta span > a > i {
+article.article-panel .a-meta span > a > i {
     margin-left: 3px
 }
 
-.k-main .board .article-panel .search-title {
+article.article-panel .search-title {
     padding: 20px 25px;
     color: #000;
     font-size: 18px
 }
 
-.k-main .board .article-panel .nothing {
+article.article-panel .nothing {
     width: 100%;
     padding: 50px;
     text-align: center
 }
 
-.k-main .board .article-panel .nothing img {
+article.article-panel .nothing img {
     width: 50%
 }
 
-.k-main .board .article-panel .nothing .sorry {
+article.article-panel .nothing .sorry {
     margin-top: 30px;
     font-size: 20px
 }
@@ -755,7 +710,7 @@ h1, h2, h3, h4, h5, h6 {
         padding: 0
     }
 
-    .k-main .board .article-panel {
+    article.article-panel {
         margin: 0;
         box-shadow: none;
         padding: .2rem;
@@ -764,35 +719,35 @@ h1, h2, h3, h4, h5, h6 {
         flex-flow: row
     }
 
-    .k-main .board .article-panel .a-thumb {
+    article.article-panel .a-thumb {
         height: 75px;
         width: 124px;
         overflow: hidden;
         margin: 0 10px 0 5px
     }
 
-    .k-main .board .article-panel .a-thumb img {
+    article.article-panel .a-thumb img {
         border: none
     }
 
-    .k-main .board .article-panel .a-right {
+    article.article-panel .a-right {
         flex: 1;
         position: relative
     }
 
-    .k-main .board .article-panel .a-post {
+    article.article-panel .a-post {
         margin-left: 0;
         padding: 0;
         height: auto;
         width: 100%
     }
 
-    .k-main .board .article-panel .a-post .header {
+    article.article-panel .a-post .header {
         line-height: 1.4 !important;
         margin-bottom: 30px
     }
 
-    .k-main .board .article-panel .a-post .header .label {
+    article.article-panel .a-post .header .label {
         position: absolute;
         left: -130px;
         top: 4px;
@@ -803,44 +758,48 @@ h1, h2, h3, h4, h5, h6 {
         opacity: .7
     }
 
-    .k-main .board .article-panel .a-post .header .label i {
+    article.article-panel .a-post .header .label i {
         display: none
     }
 
-    .k-main .board .article-panel .a-post .header .title {
+    article.article-panel .a-post .header .title {
         line-height: 1;
         font-weight: 500
     }
 
-    .k-main .board .article-panel .a-post .header .title a {
+    article.article-panel .a-post .header .title a {
         font-size: 18px;
         line-height: 16px
     }
 
-    .k-main .board .article-panel .a-post .content {
+    article.article-panel .a-post .content {
         display: none
     }
 
-    .k-main .board .article-panel .a-meta {
+    article.article-panel .a-meta {
         position: absolute;
         bottom: 0;
         padding: 0;
         border: none
     }
 
-    .k-main .board .article-panel .a-meta .float-right {
+    article.article-panel .a-meta .float-right {
         display: none
     }
 
-    .k-main .board .article-panel .a-meta span {
+    article.article-panel .a-meta span {
         color: #999;
         font-size: 13px
     }
 
-    .k-main .board .article-panel .nothing .sorry {
+    article.article-panel .nothing .sorry {
         font-size: 18px
     }
 }
+
+/*--------------------------------------------------------------
+6. 文章正文
+--------------------------------------------------------------*/
 
 .k-main .details {
     animation-name: fadeInLeft
@@ -1171,23 +1130,23 @@ h1, h2, h3, h4, h5, h6 {
     display: inline
 }
 
-.k-main .details .article .content .aligncenter::after, .k-main .details .article .content .alignleft::after, .k-main .details .article .content .alignright::after {
+.article .content .aligncenter::after, .article .content .alignleft::after, .article .content .alignright::after {
     clear: both;
     display: block;
     content: ""
 }
 
-.k-main .details .article .content .alignleft {
+.article .content .alignleft {
     float: left;
     margin-right: 16px
 }
 
-.k-main .details .article .content .aligncenter {
+.article .content .aligncenter {
     margin-right: auto;
     margin-left: auto
 }
 
-.k-main .details .article .content .alignright {
+.article .content .alignright {
     float: right;
     margin-left: 16px
 }
@@ -1604,6 +1563,11 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
+/*--------------------------------------------------------------
+7. 内容工具区
+--------------------------------------------------------------*/
+
+
 .k-main .details .toolbar {
     margin-top: 16px;
     padding: 20px;
@@ -1788,7 +1752,11 @@ h1, h2, h3, h4, h5, h6 {
     text-align: right
 }
 
-#comments {
+/*--------------------------------------------------------------
+8. 文章评论
+--------------------------------------------------------------*/
+
+.comments {
     margin-top: 16px;
     padding: 1.6px 16px 16px;
     border-radius: 2px;
@@ -1804,24 +1772,24 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: none
 }
 
-#comments .comment-form-author {
+.comments .comment-form-author {
     padding-right: 5px
 }
 
-#comments .comment-form-email {
+.comments .comment-form-email {
     padding-left: 5px
 }
 
-#comments .input-group-text {
+.comments .input-group-text {
     border: 1px solid #eee;
     background-color: #f8f8f8
 }
 
-#comments .form-control {
+.comments .form-control {
     border: 1px solid #eee
 }
 
-#comments .title {
+.comments .title {
     margin-bottom: 0;
     padding: 16px 0;
     border-bottom: 1px solid #f0f0f0;
@@ -1829,21 +1797,21 @@ h1, h2, h3, h4, h5, h6 {
     cursor: default
 }
 
-#comments .comment {
+.comments .comment {
     padding: 16px 0;
     list-style: none
 }
 
-#comments .list li {
+.comments .list li {
     border-bottom: 1px solid #f0f0f0;
     line-height: 1.8
 }
 
-#comments .comment .avatar {
+.comments .comment .avatar {
     vertical-align: middle
 }
 
-#comments .comment .avatar img {
+.comments .comment .avatar img {
     display: block;
     width: 50px;
     height: 50px;
@@ -1851,11 +1819,11 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: 50%
 }
 
-#comments .comment .info {
+.comments .comment .info {
     overflow: hidden
 }
 
-#comments .comment .info .author_name {
+.comments .comment .info .author_name {
     display: inline-block;
     margin-top: 3px;
     color: #252525;
@@ -1865,88 +1833,88 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1.375
 }
 
-#comments .comment .info .author_name a {
+.comments .comment .info .author_name a {
     color: #252525;
     font-weight: 600;
     font-size: 14px
 }
 
-#comments .comment .info .content {
+.comments .comment .info .content {
     margin-bottom: 0 !important
 }
 
-#comments .comment .info .content p {
+.comments .comment .info .content p {
     margin: 0;
     color: #000;
     font-size: 14px
 }
 
-#comments .comment .info .content p span {
+.comments .comment .info .content p span {
     color: #333
 }
 
-#comments .comment .info .meta, #comments .comment .info .meta a {
+.comments .comment .info .meta, .comments .comment .info .meta a {
     display: inline;
     color: #9b9b9b;
     font-size: 13px
 }
 
-#comments .comment .info .meta .tool {
+.comments .comment .info .meta .tool {
     opacity: 0;
     transition: opacity .3s ease-out
 }
 
-#comments .comment:hover .meta .tool {
+.comments .comment:hover .meta .tool {
     opacity: 1
 }
 
-#comments .comment .info .meta .date:before {
+.comments .comment .info .meta .date:before {
     content: "\B7";
     margin-right: .2rem;
     font-size: 13px
 }
 
-#comments .children {
+.comments .children {
     margin-left: 30px
 }
 
-#comments .children .comment {
+.comments .children .comment {
     margin-bottom: 0
 }
 
-#comments .children .comment .avatar img {
+.comments .children .comment .avatar img {
     width: 30px;
     height: 30px
 }
 
-#comments .comment-respond .comment-textarea {
+.comments .comment-respond .comment-textarea {
     border: 1px solid #eee;
     border-radius: 3px;
     background-color: hsla(0, 0%, 71%, .1)
 }
 
-#comments .comment-respond .comment-textarea textarea {
+.comments .comment-respond .comment-textarea textarea {
     height: 130px;
     border: none;
     border-radius: 0;
     resize: none
 }
 
-#comments .comment-respond .comment-textarea .text-bar {
+.comments .comment-respond .comment-textarea .text-bar {
     overflow: hidden;
     padding: 6.4px 8px;
     background-color: #f8f8f8
 }
 
-#comments .comment-respond .comment-textarea .text-bar .tool {
+.comments .comment-respond .comment-textarea .text-bar .tool {
     padding-top: 4.8px
 }
 
-.k-main .details .comments .comment-respond .comment-textarea .text-bar .tool a img {
+.comments .comment-respond .comment-textarea .text-bar .tool a img {
     width: 100%
 }
 
-#comments .comment-respond .comment-textarea .btn-primary {
+.comments .comment-respond .comment-textarea .btn-primary {
     width: 100px;
     border: none;
     border-radius: 3px;
@@ -1954,16 +1922,16 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 14px
 }
 
-#comments .comment-respond .comment-textarea .addbtn {
+.comments .comment-respond .comment-textarea .addbtn {
     padding: 0 8px;
     color: #333
 }
 
-#comments .comment-respond .comment-textarea .addbtn:hover {
+.comments .comment-respond .comment-textarea .addbtn:hover {
     color: #333
 }
 
-.k-main .details .comments .comment-respond .comment-textarea #cancel-comment-reply-link {
+.comments .comment-respond .comment-textarea #cancel-comment-reply-link {
     display: inline-block;
     padding: 6px 12px;
     border: none;
@@ -1978,7 +1946,7 @@ h1, h2, h3, h4, h5, h6 {
     user-select: none
 }
 
-#comments .comment-respond .comment-textarea .text-bar .smile {
+.comments .comment-respond .comment-textarea .text-bar .smile {
     position: absolute;
     z-index: 9;
     display: none;
@@ -1988,7 +1956,7 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: 0 2px 10px 2px rgba(0, 0, 0, .11)
 }
 
-.k-main .details .comments .comment-respond .comment-textarea .text-bar .smile a {
+.comments .comment-respond .comment-textarea .text-bar .smile a {
     float: left;
     display: block;
     padding: 4px;
@@ -1998,19 +1966,19 @@ h1, h2, h3, h4, h5, h6 {
     background-color: #f0f0f0
 }
 
-#comments .comment-respond .comment-textarea .text-bar .open {
+.comments .comment-respond .comment-textarea .text-bar .open {
     visibility: visible;
     transform: none
 }
 
-#comments .comment-respond .error {
+.comments .comment-respond .error {
     padding: 20px;
     border: 1px solid #e5e5e5;
     border-radius: 4px;
     background-color: hsla(0, 0%, 71%, .1)
 }
 
-#comments .i-reply {
+.comments .i-reply {
     font-size: 12px
 }
 
@@ -2035,29 +2003,29 @@ h1, h2, h3, h4, h5, h6 {
     user-select: none
 }
 
-#comments-nav {
+.comments-nav {
     text-align: center;
     margin: 15px 0
 }
 
-#comments-nav > a, #comments-nav > span {
+.comments-nav > a, .comments-nav > span {
     margin: 0 4px
 }
 
-#comments-nav a {
+.comments-nav a {
     padding: 5px 10px;
     border: 1px solid #eee;
     background-color: #eee;
     color: #777
 }
 
-#comments-nav a:hover {
+.comments-nav a:hover {
     border: 1px solid #51aded;
     background-color: #51aded;
     color: #fff !important
 }
 
-#comments-nav span.current {
+.comments-nav span.current {
     font-weight: 700;
     border: 1px solid #51aded;
     background-color: #51aded;
@@ -2096,14 +2064,18 @@ h1, h2, h3, h4, h5, h6 {
         line-height: 1.5
     }
 
-    #comments .comment-form-author {
+    .comments .comment-form-author {
         padding-right: 15px
     }
 
-    #comments .comment-form-email {
+    .comments .comment-form-email {
         padding-left: 15px
     }
 }
+
+/*--------------------------------------------------------------
+9. 小工具
+--------------------------------------------------------------*/
 
 .k-main .sidebar {
     position: -webkit-sticky;
@@ -2673,6 +2645,11 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
+/*--------------------------------------------------------------
+10. 404
+--------------------------------------------------------------*/
+
+
 .k-main .page404 {
     padding: 40px;
     text-align: center
@@ -2687,7 +2664,7 @@ h1, h2, h3, h4, h5, h6 {
     z-index: 2;
     width: 100%;
     height: 101%;
-    background: url(../../src/img/404.svg) center center/cover no-repeat
+    background: url(../../assets/img/404.svg) center center/cover no-repeat
 }
 
 .k-main .page404 .overlay:after, .k-main .page404 .overlay:before {
@@ -2732,7 +2709,7 @@ h1, h2, h3, h4, h5, h6 {
 .k-main .page404 .content .action .btn-outline-primary {
     width: 110px;
     border-radius: 2px;
-    letter-spacing: 2.4px
+    letter-spacing: 2px
 }
 
 .k-main .page404 .content .action .back-prevpage {
@@ -2778,11 +2755,15 @@ h1, h2, h3, h4, h5, h6 {
         height: 200px
     }
 
-    #comments-nav a, #comments-nav span.current {
+    .comments-nav a, .comments-nav span.current {
         padding: 3px 8px;
         margin: 2px
     }
 }
+
+/*--------------------------------------------------------------
+11. 页脚
+--------------------------------------------------------------*/
 
 .k-footer {
     padding: 40px 0;
@@ -2833,6 +2814,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .k-footer .f-toolbox .gotop {
+    display: none;
     bottom: 80px;
     cursor: pointer;
     background: rgba(132, 132, 132, .7)

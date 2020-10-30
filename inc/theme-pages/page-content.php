@@ -6,7 +6,7 @@
  * @version 2020.03.14
  */
 ?>
-<article class="article-panel" data-aos="fade">
+<article class="article-panel">
     <?php if (kratos_option('g_thumbnail', true)) { ?>
         <div class="a-thumb">
             <a href="<?php the_permalink(); ?>">

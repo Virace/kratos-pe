@@ -188,7 +188,7 @@ function kratos_options()
         'name' => __('导航栏颜色1', 'kratos'),
         'desc' => __('默认导航栏颜色', 'kratos'),
         'id' => 'top_color_1',
-        'std' => 'rgba(40, 42, 44, 0.6)',
+        'std' => 'rgba(40,42,44,0.6)',
         'type' => 'color',
     );
 
@@ -196,7 +196,7 @@ function kratos_options()
         'name' => __('导航栏颜色2', 'kratos'),
         'desc' => __('滚动条拖动会改变导航栏颜色', 'kratos'),
         'id' => 'top_color_2',
-        'std' => '#fff',
+        'std' => '#ffffff',
         'type' => 'color',
     );
 
