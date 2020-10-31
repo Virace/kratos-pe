@@ -2061,7 +2061,7 @@ body.modal-active, html.modal-active {
 }
 
 #nprogress .bar {
-    background: #29d;
+    background: var(--theme-color-1, #29d);
     position: fixed;
     z-index: 1031;
     top: 0;
@@ -2076,7 +2076,8 @@ body.modal-active, html.modal-active {
     right: 0;
     width: 100px;
     height: 100%;
-    box-shadow: 0 0 10px #29d, 0 0 5px #29d;
+    box-shadow: 0 0 10px var(--theme-color-1, #29d), 0 0 5px var(--theme-color-1, #29d);
+
     opacity: 1;
     -webkit-transform: rotate(3deg) translate(0, -4px);
     -ms-transform: rotate(3deg) translate(0, -4px);
@@ -2096,8 +2097,8 @@ body.modal-active, html.modal-active {
     height: 18px;
     box-sizing: border-box;
     border: 2px solid transparent;
-    border-top-color: #29d;
-    border-left-color: #29d;
+    border-top-color: var(--theme-color-1, #29d);
+    border-left-color: var(--theme-color-1, #29d);
     border-radius: 50%;
     -webkit-animation: .4s linear infinite nprogress-spinner;
     animation: .4s linear infinite nprogress-spinner

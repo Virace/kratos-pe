@@ -1868,6 +1868,11 @@ article.article-panel .nothing .sorry {
     opacity: 1
 }
 
+.comment .wp-smiley {
+    height: 40px !important;
+    max-height: 40px !important;
+}
+
 .comments .comment .info .meta .date:before {
     content: "\B7";
     margin-right: .2rem;
@@ -2867,6 +2872,25 @@ article.article-panel .nothing .sorry {
     color: #fff;
     font-size: 17px
 }
+
+.k-footer .f-toolbox .search .search-form {
+    width: 0;
+    transition: width .5s;
+    -moz-transition: width .5s;
+    -webkit-transition: width .5s;
+    -o-transition: width .5s;
+}
+
+
+.k-footer .f-toolbox .search .i-find:hover + .search-form {
+    width: 200px;
+}
+
+
+.k-footer .f-toolbox .search .search-form:hover {
+    width: 200px;
+}
+
 
 .k-footer .social {
     line-height: 45px

@@ -146,12 +146,12 @@ $post_ID = get_the_ID();
                                     } ?>
                                 </div>
                                 <div class="tool float-right d-none d-lg-block">
-                                    <div class="update-time" aria-label="<?php
+                                    <span class="update-time" aria-label="<?php
                                     _e('本文修订次数：', 'kratos');
                                     $times = get_post_meta(get_the_ID(), 'revision_times', true);
                                     echo $times ? $times : 1;
                                     ?>" data-balloon-pos="up"><?php _e('最后更新：', 'kratos');
-                                        echo the_modified_date('Y-m-d H:i') ?></div>
+                                        echo the_modified_date('Y-m-d H:i') ?></span>
                                 </div>
                             </div>
                         </article>
