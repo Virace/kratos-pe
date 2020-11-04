@@ -1878,7 +1878,9 @@ article.article-panel .nothing .sorry {
     height: 40px !important;
     max-height: 40px !important;
 }
-
+.comments .comment .info .meta .date{
+    margin-left: .2rem;
+}
 .comments .comment .info .meta .date:before {
     content: "\B7";
     margin-right: .2rem;
