@@ -93,21 +93,29 @@
 
   const gotopConfig = function () {
     const $top = $('.gotop'),
-      height = $('.navbar')[0].offsetHeight + 75
-    $(window).on('load', function () {
-      const $win = $(window)
+      height = $('.navbar')[0].offsetHeight + 75,
+      $win = $(window)
+    // $(window).on('load', function () {
+    //   const $win = $(window)
+    //   if ($win.scrollTop() > height) {
+    //     $top.fadeIn(300)
+    //   } else {
+    //     $top.fadeOut(300)
+    //   }
+    //   $win.scroll(function () {
+    //     if ($win.scrollTop() > height) {
+    //       $top.fadeIn(300)
+    //     } else {
+    //       $top.fadeOut(300)
+    //     }
+    //   })
+    // })
+    $win.scroll(function () {
       if ($win.scrollTop() > height) {
         $top.fadeIn(300)
       } else {
         $top.fadeOut(300)
       }
-      $win.scroll(function () {
-        if ($win.scrollTop() > height) {
-          $top.fadeIn(300)
-        } else {
-          $top.fadeOut(300)
-        }
-      })
     })
     $top.on('click', function (t) {
       t.preventDefault()
@@ -217,12 +225,14 @@
   const acheaderConfig = function () {
     $(document).on('click', '.acheader', function (s) {
       const $this = $(this)
+      // $this.closest('.accordion').toggleClass('active')
       $this.closest('.accordion').find('.contents').slideToggle(300)
-      if ($this.closest('.accordion').hasClass('active')) {
-        $this.closest('.accordion').removeClass('active')
-      } else {
-        $this.closest('.accordion').addClass('active')
-      }
+      $this.closest('.accordion').toggleClass('active')
+      // if ($this.closest('.accordion').hasClass('active')) {
+      //   $this.closest('.accordion').removeClass('active')
+      // } else {
+      //   $this.closest('.accordion').addClass('active')
+      // }
     })
   }
   const consoleConfig = function () {
