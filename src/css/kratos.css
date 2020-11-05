@@ -876,6 +876,9 @@ article.article-panel .nothing .sorry {
     line-height: 1.8;
     word-break: break-all
 }
+.article .content a {
+    text-decoration: underline;
+}
 
 .article .content p::after, .article .content::after {
     clear: both;
