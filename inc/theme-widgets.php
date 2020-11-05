@@ -12,11 +12,13 @@
 function last_login()
 {
     global $wpdb;
-    $date1 = $wpdb->get_var("SELECT comment_date FROM $wpdb->comments WHERE user_id = 1");
-    $date2 = $wpdb->get_var("SELECT post_modified FROM $wpdb->posts WHERE post_author = 1");
+    $date1 = $wpdb->get_var("SELECT comment_date FROM $wpdb->comments WHERE user_id = 1 ORDER BY comment_date DESC");
+    $date2 = $wpdb->get_var("SELECT post_modified FROM $wpdb->posts WHERE post_author = 1 ORDER BY post_modified DESC");
     $date1 = strtotime(empty($date1) ? 0 : $date1);
     $date2 = strtotime(empty($date2) ? 0 : $date2);
-    echo $date1 < $date2 ? human_time_diff($date2) : human_time_diff($date1);
+    $to = strtotime(wp_date('Y-m-d H:i:s'));
+    echo $date1 < $date2 ? human_time_diff($date2, $to) : human_time_diff($date1, $to);
+
 }
 
 // 格式化时间
