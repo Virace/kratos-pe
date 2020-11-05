@@ -382,6 +382,40 @@ function getTransitionTime (o) {
   return !r && !d ? 0 : (i = i.split(',')[0], a = a.split(',')[0], (parseFloat(i) + parseFloat(a)) * 1e3)
 }
 
+window.grin = function (tag) {
+  let myField
+  tag = ' ' + tag + ' '
+  if (
+    document.getElementById('comment') &&
+    document.getElementById('comment').type == 'textarea'
+  ) {
+    myField = document.getElementById('comment')
+  } else {
+    return false
+  }
+  if (document.selection) {
+    myField.focus()
+    sel = document.selection.createRange()
+    sel.text = tag
+    myField.focus()
+  } else if (myField.selectionStart || myField.selectionStart == '0') {
+    var startPos = myField.selectionStart
+    var endPos = myField.selectionEnd
+    var cursorPos = endPos
+    myField.value =
+      myField.value.substring(0, startPos) +
+      tag +
+      myField.value.substring(endPos, myField.value.length)
+    cursorPos += tag.length
+    myField.focus()
+    myField.selectionStart = cursorPos
+    myField.selectionEnd = cursorPos
+  } else {
+    myField.value += tag
+    myField.focus()
+  }
+}
+
 $('body').on('click', 'a[href^="#toc"],area[href^="#toc"]', function () {
   if (location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') && location.hostname === this.hostname) {
     let o = $(this.hash),
