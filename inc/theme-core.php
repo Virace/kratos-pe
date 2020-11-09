@@ -70,7 +70,7 @@ function theme_autoload()
         // 在最后加载自定义文件
         $data = array(
             'site' => home_url(),
-            'directory' => get_stylesheet_directory_uri(),
+            'directory' => ASSET_PATH,
             'alipay' => kratos_option('g_donate_alipay', ASSET_PATH . '/assets/img/donate.png'),
             'wechat' => kratos_option('g_donate_wechat', ASSET_PATH . '/assets/img/donate.png'),
             'repeat' => __('您已经赞过了', 'kratos'),
