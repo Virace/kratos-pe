@@ -4,7 +4,7 @@
  */
 (function () {
   'use strict'
-  const KRATOS_VERSION = '1.0.0-rc'
+  const KRATOS_VERSION = '1.0.0'
 
   const navbarConfig = function () {
     const $menu = $('.dropdown-menu')
