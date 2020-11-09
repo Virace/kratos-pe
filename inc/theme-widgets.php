@@ -26,21 +26,21 @@ function timeago($ptime): string
 {
     $ptime = strtotime($ptime);
     $etime = time() - $ptime;
-    if ($etime < 1) return __('刚刚');
+    if ($etime < 1) return __('刚刚', 'kratos');
     $interval = array(
-        12 * 30 * 24 * 60 * 60 => __(' 年前') . ' (' . date(__('m月d日'), $ptime) . ')',
-        30 * 24 * 60 * 60 => __(' 个月前') . ' (' . date(__('m月d日'), $ptime) . ')',
-        7 * 24 * 60 * 60 => __(' 周前') . ' (' . date(__('m月d日'), $ptime) . ')',
-        24 * 60 * 60 => __(' 天前') . ' (' . date(__('m月d日'), $ptime) . ')',
-        60 * 60 => __(' 小时前') . ' (' . date(__('m月d日'), $ptime) . ')',
-        60 => __(' 分钟前') . ' (' . date(__('m月d日'), $ptime) . ')',
-        1 => __(' 秒前') . ' (' . date(__('m月d日'), $ptime) . ')',
+        12 * 30 * 24 * 60 * 60 => __(' 年前', 'kratos'),
+        30 * 24 * 60 * 60 => __(' 个月前', 'kratos'),
+        7 * 24 * 60 * 60 => __(' 周前', 'kratos'),
+        24 * 60 * 60 => __(' 天前', 'kratos'),
+        60 * 60 => __(' 小时前', 'kratos'),
+        60 => __(' 分钟前', 'kratos'),
+        1 => __(' 秒前', 'kratos'),
     );
     foreach ($interval as $secs => $str) {
         $d = $etime / $secs;
         if ($d >= 1) {
             $r = round($d);
-            return $r . $str;
+            return $r . $str. ' (' . date(__('m月d日', 'kratos'), $ptime) . ')';
         }
     };
 }
@@ -195,10 +195,10 @@ class widget_search extends WP_Widget
     {
         $widget_ops = array(
             'classname' => 'widget_search',
-            'description' => __('一个搜索框'),
+            'description' => __('一个搜索框', 'kratos'),
             'customize_selective_refresh' => true,
         );
-        parent::__construct('search', _x('搜索', 'Search widget'), $widget_ops);
+        parent::__construct('search', __('搜索', 'kratos'), $widget_ops);
     }
 
     public function widget($args, $instance)
@@ -219,7 +219,7 @@ class widget_search extends WP_Widget
         $instance = wp_parse_args((array)$instance, array('title' => ''));
         $title = $instance['title'];
         ?>
-        <p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('标题:'); ?> <input class="widefat"
+        <p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('标题:', 'kratos'); ?> <input class="widefat"
                                                                                                   id="<?php echo $this->get_field_id('title'); ?>"
                                                                                                   name="<?php echo $this->get_field_name('title'); ?>"
                                                                                                   type="text"
@@ -481,8 +481,8 @@ class widget_about_detailed extends WP_Widget
     {
         $widget_ops = array(
             'classname' => 'w-about-detailed',
-            'name' => __('个人简介'),
-            'description' => __('个人简介 - 详细版')
+            'name' => __('个人简介', 'kratos'),
+            'description' => __('个人简介 - 详细版', 'kratos')
         );
         parent::__construct(false, false, $widget_ops);
     }
@@ -548,8 +548,8 @@ class widget_comments extends WP_Widget
     {
         $widget_ops = array(
             'classname' => 'w-comments',
-            'name' => __('最近评论'),
-            'description' => __('最近评论')
+            'name' => __('最近评论', 'kratos'),
+            'description' => __('最近评论', 'kratos')
         );
         parent::__construct(false, false, $widget_ops);
     }
@@ -558,7 +558,7 @@ class widget_comments extends WP_Widget
     {
         if (!isset($args['widget_id'])) $args['widget_id'] = $this->id;
         $output = '';
-        $title = isset($instance['title']) ? $instance['title'] : '最近评论';
+        $title = isset($instance['title']) ? $instance['title'] : __('最近评论', 'kratos');
         $number = isset($instance['number']) ? absint($instance['number']) : 5;
         $show_admin = !empty($instance['show_admin']) ? '1' : '0';
         $comments = get_comments(apply_filters('widget_comments_args', array(
@@ -599,17 +599,17 @@ class widget_comments extends WP_Widget
 
     public function form($instance)
     {
-        $title = !empty($instance['title']) ? $instance['title'] : __('最近评论');
+        $title = !empty($instance['title']) ? $instance['title'] : __('最近评论', 'kratos');
         $number = !empty($instance['number']) ? absint($instance['number']) : 5;
         $show_admin = isset($instance['show_admin']) ? (bool)$instance['show_admin'] : false; ?>
         <p>
-            <label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('标题：'); ?>
+            <label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('标题：', 'kratos'); ?>
                 <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>"
                        name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>"/>
             </label>
         </p>
         <p>
-            <label for="<?php echo $this->get_field_id('number'); ?>"><?php _e('显示数量：'); ?>
+            <label for="<?php echo $this->get_field_id('number'); ?>"><?php _e('显示数量：', 'kratos'); ?>
                 <input class="tiny-text" id="<?php echo $this->get_field_id('number'); ?>"
                        name="<?php echo $this->get_field_name('number'); ?>" type="number" step="1" min="1" max="99"
                        value="<?php echo $number; ?>" size="3"/>
@@ -618,7 +618,7 @@ class widget_comments extends WP_Widget
         <p>
         <input type="checkbox" class="checkbox" id="<?php echo $this->get_field_id('show_admin'); ?>"
                name="<?php echo $this->get_field_name('show_admin'); ?>"<?php checked($show_admin); ?> />
-        <label for="<?php echo $this->get_field_id('show_admin'); ?>"><?php _e('不显示管理员(用户ID为1)评论'); ?></label>
+        <label for="<?php echo $this->get_field_id('show_admin'); ?>"><?php _e('不显示管理员(用户ID为1)评论', 'kratos'); ?></label>
         </p><?php
     }
 }

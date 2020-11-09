@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Kratos-pe\n"
-"POT-Creation-Date: 2020-11-10 01:39+0800\n"
-"PO-Revision-Date: 2020-11-10 01:43+0800\n"
+"POT-Creation-Date: 2020-11-10 02:09+0800\n"
+"PO-Revision-Date: 2020-11-10 02:11+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -1014,15 +1014,15 @@ msgstr "Page"
 
 #: inc/theme-pages/page-content.php:42 single.php:65
 msgid "条评论"
-msgstr "Comments"
+msgstr " Comments"
 
 #: inc/theme-pages/page-content.php:46 single.php:57
 msgid "点热度"
-msgstr "Browse"
+msgstr " Browse"
 
 #: inc/theme-pages/page-content.php:52 single.php:63
 msgid "人点赞"
-msgstr "Like"
+msgstr " Like"
 
 #: inc/theme-pages/page-content.php:58
 msgid "阅读全文"
@@ -1118,12 +1118,6 @@ msgstr "Just"
 msgid " 年前"
 msgstr " years ago"
 
-#: inc/theme-widgets.php:31 inc/theme-widgets.php:32 inc/theme-widgets.php:33
-#: inc/theme-widgets.php:34 inc/theme-widgets.php:35 inc/theme-widgets.php:36
-#: inc/theme-widgets.php:37
-msgid "m月d日"
-msgstr "m, d"
-
 #: inc/theme-widgets.php:32
 msgid " 个月前"
 msgstr " months ago"
@@ -1147,6 +1141,10 @@ msgstr " minutes ago"
 #: inc/theme-widgets.php:37
 msgid " 秒前"
 msgstr " seconds ago"
+
+#: inc/theme-widgets.php:43
+msgid "m月d日"
+msgstr "m-d"
 
 #: inc/theme-widgets.php:53
 msgid "首页侧边栏"
@@ -1189,7 +1187,7 @@ msgid "一个搜索框"
 msgstr "A search box"
 
 #: inc/theme-widgets.php:201
-msgctxt "Search widget"
+msgctxt "kratos"
 msgid "搜索"
 msgstr "Search"
 
@@ -1274,7 +1272,7 @@ msgid "Mars"
 msgstr "Mars"
 
 #: inc/theme-widgets.php:551 inc/theme-widgets.php:552
-#: inc/theme-widgets.php:602
+#: inc/theme-widgets.php:561 inc/theme-widgets.php:602
 msgid "最近评论"
 msgstr "Recent comments"
 
@@ -1426,6 +1424,10 @@ msgstr "Seaton Jiang and Virace"
 #. Author URI of the plugin/theme
 msgid "https://www.vtrois.com/"
 msgstr "https://www.vtrois.com/"
+
+#~ msgctxt "Search widget"
+#~ msgid "搜索"
+#~ msgstr "Search"
 
 #~ msgid "Title:"
 #~ msgstr "标题:"

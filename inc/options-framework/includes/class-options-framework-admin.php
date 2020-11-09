@@ -156,12 +156,12 @@ class Options_Framework_Admin {
                 'wp-color-picker',
                 'wpColorPickerL10n',
                 array(
-                    'clear'            => __( '清空' ),
-                    'clearAriaLabel'   => __( '清空颜色' ),
-                    'defaultString'    => __( '默认' ),
-                    'defaultAriaLabel' => __( '选择默认颜色' ),
-                    'pick'             => __( '选择颜色' ),
-                    'defaultLabel'     => __( '颜色值' ),
+                    'clear'            => __( '清空' , 'kratos'),
+                    'clearAriaLabel'   => __( '清空颜色' , 'kratos'),
+                    'defaultString'    => __( '默认' , 'kratos'),
+                    'defaultAriaLabel' => __( '选择默认颜色' , 'kratos'),
+                    'pick'             => __( '选择颜色' , 'kratos'),
+                    'defaultLabel'     => __( '颜色值' , 'kratos'),
                 ) );
         }
 
