@@ -1293,13 +1293,16 @@ a.btn.disabled, fieldset:disabled a.btn {
 }
 
 .toast {
+    position: fixed;
     max-width: 350px;
     font-size: .875rem;
-    background-color: rgba(255, 255, 255, .85);
+    color: #fff;
+    background-color: rgba(0,0,0,.6);
     background-clip: padding-box;
-    border: 1px solid rgba(0, 0, 0, .1);
+    border: none;
     box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
-    border-radius: .25rem
+    /*border-radius: .25rem;*/
+    z-index: 1080;
 }
 
 .toast:not(:last-child) {
@@ -1337,7 +1340,7 @@ a.btn.disabled, fieldset:disabled a.btn {
 }
 
 .toast-body {
-    padding: .75rem
+    padding: 12px 25px;
 }
 
 .modal {

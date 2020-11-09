@@ -196,19 +196,22 @@
 
   const postlikeConfig = function () {
     $.fn.postLike = function () {
-      if ($(this).hasClass('done')) return toast.msg(kratos.repeat), !1
-      {
-        $(this).addClass('done'), toast.msg(kratos.thanks)
-        const id = $(this).data('id'),
-          action = $(this).data('action'),
-          data = {
-            action: 'love',
-            um_id: id,
-            um_action: action
-          }
-        $.post(kratos.site + '/wp-admin/admin-ajax.php', data, function (e) {})
-        return false
+      if ($(this).hasClass('done')) {
+        toast.msg(kratos.repeat)
+        return !1
       }
+      $(this).addClass('done')
+      toast.msg(kratos.thanks)
+      const id = $(this).data('id'),
+        action = $(this).data('action'),
+        data = {
+          action: 'love',
+          um_id: id,
+          um_action: action
+        }
+      $.post(kratos.site + '/wp-admin/admin-ajax.php', data, function (e) {})
+      return !1
+
     }
     $(document).on('click', '.btn-thumbs', function () {
       $(this).postLike()
@@ -359,7 +362,9 @@ const toast = {
   },
   msg: function (msg, delay = 2e3, callback = null) {
     const target = this._initEvent(msg, delay)
-
+    // 居中显示, 因为只有一处使用toast, 所以未对onresize事件进行处理.
+    target.css('left', document.documentElement.clientWidth/2 - target.innerWidth()/2)
+    target.css('top', document.documentElement.clientHeight/2 - target.innerHeight()/2)
     target.fadeIn(300)
     setTimeout(function () {
       typeof callback == 'function' && callback()
