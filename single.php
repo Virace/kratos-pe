@@ -131,9 +131,10 @@ $post_ID = get_the_ID();
                                 );
                                 $select_cc = $cc_array[kratos_option('g_cc', 'one')];
                                 echo '<div class="copyright"><span class="text-center">';
-                                echo __('本作品采用 ', 'kratos');
-                                echo '<b>' . $select_cc . '</b>';
-                                echo __(' 进行许可', 'kratos');
+//                                echo __('本作品采用 ', 'kratos');
+//                                echo '<b>' . $select_cc . '</b>';
+//                                echo __(' 进行许可', 'kratos');
+                                printf( __( '本作品采用 %s 进行许可','kratos' ) , '<b>' . $select_cc . '</b>' );
                                 echo '</span></div>';
                             } ?>
                             <div class="footer clearfix">

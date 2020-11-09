@@ -244,7 +244,7 @@ function seo_meta_box()
                 'title' => __('SEO关键词', 'kratos'),
                 'key' => 'keywords',
                 'type' => 'textarea',
-                'desc' => __('搜索引擎抓取的关键词. 英文分隔. 如果留空则使用文章标签.', 'kratos')
+                'desc' => __('搜索引擎抓取的关键词. 英文 , 分隔. 如果留空则使用文章标签.', 'kratos')
             )
         ]
     );

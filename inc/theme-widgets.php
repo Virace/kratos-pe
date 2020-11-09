@@ -119,7 +119,7 @@ class widget_ad extends WP_Widget
         $widget_ops = array(
             'name' => __('图片广告', 'kratos'),
             'description' => __('显示自定义图片广告的工具', 'kratos'),
-            'classname' => __('w-ad')
+            'classname' => 'w-ad'
         );
 
         parent::__construct(false, false, $widget_ops);
@@ -195,10 +195,10 @@ class widget_search extends WP_Widget
     {
         $widget_ops = array(
             'classname' => 'widget_search',
-            'description' => __('A search form for your site.'),
+            'description' => __('一个搜索框'),
             'customize_selective_refresh' => true,
         );
-        parent::__construct('search', _x('Search', 'Search widget'), $widget_ops);
+        parent::__construct('search', _x('搜索', 'Search widget'), $widget_ops);
     }
 
     public function widget($args, $instance)
@@ -219,7 +219,7 @@ class widget_search extends WP_Widget
         $instance = wp_parse_args((array)$instance, array('title' => ''));
         $title = $instance['title'];
         ?>
-        <p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?> <input class="widefat"
+        <p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('标题:'); ?> <input class="widefat"
                                                                                                   id="<?php echo $this->get_field_id('title'); ?>"
                                                                                                   name="<?php echo $this->get_field_name('title'); ?>"
                                                                                                   type="text"
@@ -247,7 +247,7 @@ class widget_about extends WP_Widget
         $widget_ops = array(
             'name' => __('个人简介', 'kratos'),
             'description' => __('可跳转后台的个人简介展示工具', 'kratos'),
-            'classname' => __('w-about'),
+            'classname' => 'w-about',
         );
 
         parent::__construct(false, false, $widget_ops);
@@ -316,7 +316,7 @@ class widget_tags extends WP_Widget
         $widget_ops = array(
             'name' => __('标签聚合', 'kratos'),
             'description' => __('文章标签的展示工具', 'kratos'),
-            'classname' => __('w-tags')
+            'classname' => 'w-tags'
         );
 
         parent::__construct(false, false, $widget_ops);
@@ -389,7 +389,7 @@ class widget_posts extends WP_Widget
         $widget_ops = array(
             'name' => __('文章聚合', 'kratos'),
             'description' => __('展示最热、随机、最新文章的工具', 'kratos'),
-            'classname' => __('w-recommended')
+            'classname' => 'w-recommended'
         );
 
         parent::__construct(false, false, $widget_ops);

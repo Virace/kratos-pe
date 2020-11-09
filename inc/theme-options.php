@@ -194,7 +194,7 @@ function kratos_options()
 
     $options[] = array(
         'name' => __('导航栏颜色2', 'kratos'),
-        'desc' => __('滚动条拖动会改变导航栏颜色', 'kratos'),
+        'desc' => __('滚动条滚动后会改变导航栏颜色', 'kratos'),
         'id' => 'top_color_2',
         'std' => '#ffffff',
         'type' => 'color',

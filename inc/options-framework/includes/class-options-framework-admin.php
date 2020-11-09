@@ -156,12 +156,12 @@ class Options_Framework_Admin {
                 'wp-color-picker',
                 'wpColorPickerL10n',
                 array(
-                    'clear'            => __( 'Clear' ),
-                    'clearAriaLabel'   => __( 'Clear color' ),
-                    'defaultString'    => __( 'Default' ),
-                    'defaultAriaLabel' => __( 'Select default color' ),
-                    'pick'             => __( 'Select Color' ),
-                    'defaultLabel'     => __( 'Color value' ),
+                    'clear'            => __( '清空' ),
+                    'clearAriaLabel'   => __( '清空颜色' ),
+                    'defaultString'    => __( '默认' ),
+                    'defaultAriaLabel' => __( '选择默认颜色' ),
+                    'pick'             => __( '选择颜色' ),
+                    'defaultLabel'     => __( '颜色值' ),
                 ) );
         }
 

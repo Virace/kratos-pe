@@ -209,14 +209,14 @@ function sanitize_and_validate_input()
     $width_str = $input['width'];
     $width_int = intval($width_str);
     if (!empty($width_str) && $width_int <= 0) {
-        $input['error'] = _('Width and height must be non-negative integers.');
+        $input['error'] = _('宽高必须为正整数.');
         return $input;
     }
 
     $height_str = $input['height'];
     $height_int = intval($height_str);
     if (!empty($height_str) && $height_int <= 0) {
-        $input['error'] = _('Width and height must be non-negative integers.');
+        $input['error'] = _('宽高必须为正整数.');
         return $input;
     }
 
