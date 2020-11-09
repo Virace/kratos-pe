@@ -35,7 +35,7 @@
 <header class="k-header">
     <nav class="k-nav navbar navbar-expand-lg fixed-top auto-hiding-navbar navbar-light">
         <div class="container">
-            <a class="navbar-brand animate__animated animate__backInLeft" href="<?php echo get_option('home'); ?>">
+            <a class="navbar-brand animate__animated" href="<?php echo get_option('home'); ?>">
                 <?php
                 if (kratos_option('g_logo')) {
                     echo '<img src="' . kratos_option('g_logo') . '">';
@@ -70,7 +70,7 @@
             <div class="overlay"></div>
             <div class="content text-center" style="background-image: url(<?php
             echo get_background(); ?>);">
-                <div class="introduce animate__animated animate__fadeInUp">
+                <div class="introduce animate__animated">
                     <?php
                     if (is_category() || is_tag()) {
                         echo '<div class="title">' . single_cat_title('', false) . '</div>';

@@ -68,7 +68,8 @@
 
 .k-nav .navbar-brand {
     color: var(--navbar-color-2, #fff);
-    font-size: 24px
+    font-size: 24px;
+    animation-name: backInLeft
 }
 
 .k-nav .navbar-brand img {
@@ -146,7 +147,8 @@
     color: var(--navbar-color-1, rgba(40, 42, 44, .6)) !important;
     overflow: hidden;
     display: inline-block;
-    position: relative
+    position: relative;
+
 }
 
 .k-nav.navbar-scrolled .navbar-brand img {
@@ -384,7 +386,8 @@
     width: 100%;
     color: #fff;
     text-shadow: 2px 2px 2px #666;
-    cursor: default
+    cursor: default;
+    animation-name: fadeInUp
 }
 
 .k-header .banner .content .introduce .title {
@@ -690,7 +693,9 @@ article.article-panel .nothing .sorry {
 
 @media screen and (max-width: 768px) {
     .k-main .board {
-        padding: 0
+        padding: 0;
+        -webkit-animation-name: fadeIn;
+        animation-name: fadeIn
     }
 
     article.article-panel {
@@ -1520,7 +1525,9 @@ article.article-panel .nothing .sorry {
 
 @media screen and (max-width: 768px) {
     .k-main .details {
-        padding: 0
+        padding: 0;
+        -webkit-animation-name: fadeIn;
+        animation-name: fadeIn;
     }
 
     .article {
@@ -2498,7 +2505,9 @@ article.article-panel .nothing .sorry {
 }
 
 .k-main .sidebar .w-recommended .nav-item {
-    width: 33.3%
+    width: 33.3%;
+    padding: 8px 0;
+    text-align: center;
 }
 
 .k-main .sidebar .w-recommended .nav-link .vicon {
