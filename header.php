@@ -55,7 +55,7 @@
                     'theme_location' => 'header_menu',
                     'depth' => 2,
                     'container' => 'div',
-                    'container_class' => 'collapse navbar-collapse animate__animated animate__backInRight',
+                    'container_class' => 'collapse navbar-collapse animate__animated',
                     'container_id' => 'navbarResponsive',
                     'menu_class' => 'navbar-nav ml-auto',
                     'menu_id' => 'navbar',

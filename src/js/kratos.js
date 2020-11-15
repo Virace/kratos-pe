@@ -273,6 +273,22 @@
       }
     }
   }
+  // todo: 未生效
+  const photoLazy = function () {
+    const imgs = $('.article .content img')
+    if (imgs.length >= 1) {
+      imgs.each(function () {
+        const $this = $(this)
+        const src = this.src
+        const thumb = 'http://192.168.31.31/wp-content/themes/kratos-pe/assets/img/loading.gif'
+        $this.attr('data-original', src)
+        $this.attr('src', thumb)
+        $this.attr('class', 'lazy')
+      })
+      new lazyload(document.querySelectorAll('.lazy'));
+    }
+  }
+
   const highlightConfig = function (s) {
     function action () {
       document.querySelectorAll('pre code').forEach(n => {
@@ -297,6 +313,7 @@
     photoConfig()
     modalConfig()
     tabConfig()
+    // photoLazy()
   }
   $(function () {
     acheaderConfig()
@@ -311,6 +328,7 @@
     consoleConfig()
     photoConfig()
     highlightConfig()
+    // photoLazy()
   })
 })()
 

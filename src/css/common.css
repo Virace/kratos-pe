@@ -1464,10 +1464,6 @@ a.btn.disabled, fieldset:disabled a.btn {
     animation: .5s cubic-bezier(.165, .84, .44, 1) forwards scaleUp
 }
 
-#content .container.show {
-    animation: .5s cubic-bezier(.165, .84, .44, 1) forwards scaleBack
-}
-
 .modal.show.hide {
     animation: 0s linear .5s forwards quickScaleDown
 }
@@ -1479,10 +1475,13 @@ a.btn.disabled, fieldset:disabled a.btn {
 .modal.show.hide .modal-dialog .modal-content {
     animation: .5s cubic-bezier(.165, .84, .44, 1) forwards scaleDown
 }
-
-#content .container.hide {
-    animation: .5s cubic-bezier(.165, .84, .44, 1) forwards scaleForward
-}
+/* 取消modal显示时 容器缩放特效, 文章过长为导致缩放比例问题 */
+/*#content .container.hide {*/
+/*    animation: .5s cubic-bezier(.165, .84, .44, 1) forwards scaleForward*/
+/*}*/
+/*#content .container.show {*/
+/*    animation: .5s cubic-bezier(.165, .84, .44, 1) forwards scaleBack*/
+/*}*/
 
 body.modal-active, html.modal-active {
     overflow: hidden
@@ -2031,23 +2030,23 @@ body.modal-active, html.modal-active {
     }
 }
 
-@keyframes scaleBack {
-    0% {
-        transform: scale(1)
-    }
-    100% {
-        transform: scale(.85)
-    }
-}
+/*@keyframes scaleBack {*/
+/*    0% {*/
+/*        transform: scale(1)*/
+/*    }*/
+/*    100% {*/
+/*        transform: scale(.95)*/
+/*    }*/
+/*}*/
 
-@keyframes scaleForward {
-    0% {
-        transform: scale(.85)
-    }
-    100% {
-        transform: scale(1)
-    }
-}
+/*@keyframes scaleForward {*/
+/*    0% {*/
+/*        transform: scale(.95)*/
+/*    }*/
+/*    100% {*/
+/*        transform: scale(1)*/
+/*    }*/
+/*}*/
 
 @keyframes quickScaleDown {
     0%, 99.9% {

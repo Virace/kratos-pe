@@ -86,6 +86,9 @@
     font-weight: 600;
     font-size: 12px
 }
+.k-nav .collapse{
+    animation-name: backInRight
+}
 
 .k-nav .navbar-nav {
     position: relative

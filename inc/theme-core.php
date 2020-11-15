@@ -64,6 +64,7 @@ function theme_autoload()
         wp_enqueue_script( 'jquery' );
 
         wp_enqueue_script('kratos', ASSET_PATH . '/assets/js/bundle.js', array(), THEME_VERSION, true);
+//        wp_enqueue_script('lazyload', ASSET_PATH . '/src/js/lazyload.min.js', array(), THEME_VERSION, true);
         wp_enqueue_script('custom', get_template_directory_uri() . '/custom/custom.js', array(), THEME_VERSION, true);
 
 
@@ -82,19 +83,19 @@ function theme_autoload()
     }
 
 
-    if (is_page() || is_single()) {
-        /* 代码高亮 */
-        wp_enqueue_style('highlight', get_template_directory_uri() . '/assets/css/highlight/style.min.css', array(), '10.2.0');
-        wp_enqueue_script('highlight', ASSET_PATH . '/assets/js/highlight/highlight.pack.js', array(), '10.2.0', true);
-        wp_enqueue_script('highlight-ln', ASSET_PATH . '/assets/js/highlight/highlightjs-line-numbers.min.js', array(), '2.8.0', true);
-        wp_enqueue_script('highlight-copy', ASSET_PATH . '/assets/js/highlight/highlightjs-copy-button.min.js', array(), '1.0.5', true);
-
-        /* 图片灯箱 */
-        wp_enqueue_style('lightgallery', ASSET_PATH . '/assets/css/lightgallery.js/lightgallery.css', array(), '1.2.0');
-        wp_enqueue_style('lightgallery-lg', ASSET_PATH . '/assets/css/lightgallery.js/lg-transitions.css', array(), '1.2.0');
-        wp_enqueue_script('lightgallery', ASSET_PATH . '/assets/js/lightgallery.js/lightgallery.js', array(), '1.2.0', true);
-        wp_enqueue_script('lightgallery-lg', ASSET_PATH . '/assets/js/lightgallery.js/lg-thumbnail.js', array(), '1.2.0', true);
-    }
+//    if (is_page() || is_single()) {
+//        /* 代码高亮 */
+//        wp_enqueue_style('highlight', get_template_directory_uri() . '/assets/css/highlight/style.min.css', array(), '10.2.0');
+//        wp_enqueue_script('highlight', ASSET_PATH . '/assets/js/highlight/highlight.pack.js', array(), '10.2.0', true);
+//        wp_enqueue_script('highlight-ln', ASSET_PATH . '/assets/js/highlight/highlightjs-line-numbers.min.js', array(), '2.8.0', true);
+//        wp_enqueue_script('highlight-copy', ASSET_PATH . '/assets/js/highlight/highlightjs-copy-button.min.js', array(), '1.0.5', true);
+//
+//        /* 图片灯箱 */
+//        wp_enqueue_style('lightgallery', ASSET_PATH . '/assets/css/lightgallery.js/lightgallery.css', array(), '1.2.0');
+//        wp_enqueue_style('lightgallery-lg', ASSET_PATH . '/assets/css/lightgallery.js/lg-transitions.css', array(), '1.2.0');
+//        wp_enqueue_script('lightgallery', ASSET_PATH . '/assets/js/lightgallery.js/lightgallery.js', array(), '1.2.0', true);
+//        wp_enqueue_script('lightgallery-lg', ASSET_PATH . '/assets/js/lightgallery.js/lg-thumbnail.js', array(), '1.2.0', true);
+//    }
 
     // 哀悼黑白站点
     if (is_home() && kratos_option('g_rip', false)) {
