@@ -340,8 +340,10 @@ Kratos
 - [@mndpsingh287](https://profiles.wordpress.org/mndpsingh287/), Duplicate Page插件作者
 - [@Zhixiang Zhu](https://github.com/zzxiang), **External Media without Import**插件作者
 - [@我爱水煮鱼](https://blog.wpjam.com/project/wpjam-basic/), **WPJAM-Basic**插件作者
-- 以及其他开源库的支持, [animate.css](https://github.com/animate-css/animate.css) 、[highlight.js](https://github.com/highlightjs/highlight.js) 、[lightgallery.js](https://github.com/sachinchoolur/lightgallery.js) 、[bootstrap](https://github.com/twbs/bootstrap)
-
+- 其他开源库的支持, [animate.css](https://github.com/animate-css/animate.css) 、[highlight.js](https://github.com/highlightjs/highlight.js) 、[lightgallery.js](https://github.com/sachinchoolur/lightgallery.js) 、[bootstrap](https://github.com/twbs/bootstrap)
+- 以及**JetBrains**提供开发环境支持
+  
+  <a href="https://www.jetbrains.com/?from=kratos-pe" target="_blank"><img src="https://cdn.jsdelivr.net/gh/virace/kratos-pe@master/jetbrains.svg"></a>
 
 ### 许可证
 
