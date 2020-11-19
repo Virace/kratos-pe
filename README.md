@@ -343,7 +343,7 @@ Kratos
 - 其他开源库的支持, [animate.css](https://github.com/animate-css/animate.css) 、[highlight.js](https://github.com/highlightjs/highlight.js) 、[lightgallery.js](https://github.com/sachinchoolur/lightgallery.js) 、[bootstrap](https://github.com/twbs/bootstrap)
 - 以及**JetBrains**提供开发环境支持
   
-  <a href="https://www.jetbrains.com/?from=kratos-pe" target="_blank"><img src="https://cdn.jsdelivr.net/gh/virace/kratos-pe@master/jetbrains.svg"></a>
+  <a href="https://www.jetbrains.com/?from=kratos-pe" target="_blank"><img src="https://cdn.jsdelivr.net/gh/virace/kratos-pe@main/jetbrains.svg"></a>
 
 ### 许可证
 
