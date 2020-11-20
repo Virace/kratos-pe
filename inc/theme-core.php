@@ -64,7 +64,7 @@ function theme_autoload()
         wp_enqueue_script( 'jquery' );
 
         wp_enqueue_script('kratos', ASSET_PATH . '/assets/js/bundle.js', array(), THEME_VERSION, true);
-//        wp_enqueue_script('lazyload', ASSET_PATH . '/src/js/lazyload.min.js', array(), THEME_VERSION, true);
+
         wp_enqueue_script('custom', get_template_directory_uri() . '/custom/custom.js', array(), THEME_VERSION, true);
 
 
@@ -74,6 +74,7 @@ function theme_autoload()
             'directory' => ASSET_PATH,
             'alipay' => kratos_option('g_donate_alipay', ASSET_PATH . '/assets/img/donate.png'),
             'wechat' => kratos_option('g_donate_wechat', ASSET_PATH . '/assets/img/donate.png'),
+            'loading' => kratos_option('g_photo_lazy', ASSET_PATH . '/assets/img/loading.gif'),
             'repeat' => __('您已经赞过了', 'kratos'),
             'thanks' => __('感谢您的支持', 'kratos'),
             'donate' => __('打赏作者', 'kratos'),

@@ -74,7 +74,8 @@ function display_smilies()
     foreach ($wpsmiliestrans as $k => $v) {
         if (!in_array($v, $temp) and substr($v, -1)==='g' and !in_array($k, $ignore)) {
             array_push($temp, $v);
-            echo sprintf('<a href="javascript:grin(\'%s\')"><img src="' . ASSET_PATH . '/assets/img/smilies/%s" alt="" class="d-block"/></a>', $k, str_replace('.png', '.svg', $v));
+            // img 标签 不设置src, 延迟加载
+            echo sprintf('<a href="javascript:grin(\'%s\')"><img data-src="' . ASSET_PATH . '/assets/img/smilies/%s" alt="" class="d-block"/></a>', $k, str_replace('.png', '.svg', $v));
         }
 
     }

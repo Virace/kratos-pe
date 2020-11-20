@@ -351,12 +351,21 @@ function kratos_options()
     );
 
     $options[] = array(
+        'name' => __('图片延迟加载Loading图', 'kratos'),
+        'desc' => __('可以是gif图片也可以是纯色图片', 'kratos'),
+        'id' => 'g_photo_lazy',
+        'std' => ASSET_PATH . '/assets/img/loading.gif',
+        'type' => 'upload'
+    );
+
+    $options[] = array(
         'name' => __('文章打赏', 'kratos'),
         'desc' => __('开启文章页面打赏功能', 'kratos'),
         'id' => 'g_donate',
         'std' => '1',
         'type' => 'checkbox',
     );
+
 
     $options[] = array(
         'name' => __('支付宝二维码', 'kratos'),

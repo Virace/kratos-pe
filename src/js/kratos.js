@@ -184,10 +184,23 @@
   }
 
   const smiliesConfig = function () {
+    const $smile = $('.smile')
+    function action (){
+      if(!$smile.hasClass('show')){
+        $('.smile img').each(function () {
+          const $this = $(this)
+          $this.attr('src', $this.attr('data-src'))
+          $this.removeAttr('data-src');
+        })
+        $smile.addClass('show')
+      }
+    }
     $('#addsmile').on('click', function (e) {
-      $('.smile').fadeToggle(300)
+      $smile.fadeToggle(300)
+      // 延迟加载表情
+      action()
       $(document).one('click', function () {
-        $('.smile').fadeToggle(300)
+        $smile.fadeToggle(300)
       })
       e.stopPropagation()
       return !1
@@ -273,20 +286,29 @@
       }
     }
   }
-  // todo: 未生效
+
   const photoLazy = function () {
-    const imgs = $('.article .content img')
-    if (imgs.length >= 1) {
-      imgs.each(function () {
+    const images = $('.article .content img')
+    const thumb = kratos.loading
+    if (images.length >= 1) {
+      // 图片加载前先替换自身src
+      images.each(function () {
         const $this = $(this)
         const src = this.src
-        const thumb = 'http://192.168.31.31/wp-content/themes/kratos-pe/assets/img/loading.gif'
-        $this.attr('data-original', src)
+        $this.attr('data-lazy', src)
         $this.attr('src', thumb)
-        $this.attr('class', 'lazy')
       })
-      new lazyload(document.querySelectorAll('.lazy'));
+      // 获取动画时间, animate.css 默认时间为1秒, --animate-duration
+      const delay = 1000
+      setTimeout(function () {
+        images.each(function () {
+          const $this = $(this)
+          $this.attr('src', $this.attr('data-lazy'))
+          $this.removeAttr('data-lazy');
+        })
+      }, delay)
     }
+
   }
 
   const highlightConfig = function (s) {
@@ -313,7 +335,7 @@
     photoConfig()
     modalConfig()
     tabConfig()
-    // photoLazy()
+    photoLazy()
   }
   $(function () {
     acheaderConfig()
@@ -328,7 +350,7 @@
     consoleConfig()
     photoConfig()
     highlightConfig()
-    // photoLazy()
+    photoLazy()
   })
 })()
 
@@ -381,8 +403,8 @@ const toast = {
   msg: function (msg, delay = 2e3, callback = null) {
     const target = this._initEvent(msg, delay)
     // 居中显示, 因为只有一处使用toast, 所以未对onresize事件进行处理.
-    target.css('left', document.documentElement.clientWidth/2 - target.innerWidth()/2)
-    target.css('top', document.documentElement.clientHeight/2 - target.innerHeight()/2)
+    target.css('left', document.documentElement.clientWidth / 2 - target.innerWidth() / 2)
+    target.css('top', document.documentElement.clientHeight / 2 - target.innerHeight() / 2)
     target.fadeIn(300)
     setTimeout(function () {
       typeof callback == 'function' && callback()
