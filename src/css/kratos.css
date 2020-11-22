@@ -86,7 +86,8 @@
     font-weight: 600;
     font-size: 12px
 }
-.k-nav .collapse{
+
+.k-nav .collapse {
     animation-name: backInRight
 }
 
@@ -884,6 +885,7 @@ article.article-panel .nothing .sorry {
     line-height: 1.8;
     word-break: break-all
 }
+
 .article .content a {
     text-decoration: underline;
 }
@@ -1891,9 +1893,11 @@ article.article-panel .nothing .sorry {
     height: 40px !important;
     max-height: 40px !important;
 }
-.comments .comment .info .meta .date{
+
+.comments .comment .info .meta .date {
     margin-left: .2rem;
 }
+
 .comments .comment .info .meta .date:before {
     content: "\B7";
     margin-right: .2rem;
@@ -2008,56 +2012,82 @@ article.article-panel .nothing .sorry {
     font-size: 12px
 }
 
-#commentpage {
-    display: block
-}
+/*#comments-nav {*/
+/*    display: block*/
+/*}*/
 
-#commentpage a {
-    display: inline-block;
-    width: 144px;
-    height: 37px;
-    border: none;
-    border-radius: 2px;
-    background-color: var(--theme-color-1, #00a2ff);
-    color: #fff;
-    font-size: 15px;
-    line-height: 2.4;
-    transition: .15s ease-in-out;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none
-}
+/*#comments-nav a {*/
+/*    display: inline-block;*/
+/*    width: 144px;*/
+/*    height: 37px;*/
+/*    border: none;*/
+/*    border-radius: 2px;*/
+/*    background-color: var(--theme-color-1, #00a2ff);*/
+/*    color: #fff;*/
+/*    font-size: 15px;*/
+/*    line-height: 2.4;*/
+/*    transition: .15s ease-in-out;*/
+/*    -webkit-user-select: none;*/
+/*    -moz-user-select: none;*/
+/*    -ms-user-select: none;*/
+/*    user-select: none*/
+/*}*/
 
-.comments-nav {
+
+/*.article .content .paginations a span {*/
+/*    padding: 7px 12px;*/
+/*    border: solid 1px var(--theme-color-1, #00a2ff);*/
+/*    background-color: var(--light, #f8f9fa);*/
+/*    color: var(--theme-color-1, #00a2ff)*/
+/*}*/
+
+/*.article .content .paginations .current span, .article .content .paginations a span:hover {*/
+/*    padding: 7px 12px;*/
+/*    border: solid 1px var(--theme-color-1, #00a2ff);*/
+/*    background: var(--theme-color-1, #00a2ff);*/
+/*    color: #fff*/
+/*}*/
+
+#comments-nav {
+    margin: 23px auto;
+    width: 100%;
     text-align: center;
-    margin: 15px 0
+    font-size: 14px
 }
 
-.comments-nav > a, .comments-nav > span {
-    margin: 0 4px
+
+#comments-nav .dots {
+    padding: 8px 12px;
+    background: #fff;
+    color: #444
 }
 
-.comments-nav a {
-    padding: 5px 10px;
-    border: 1px solid #eee;
-    background-color: #eee;
-    color: #777
+#comments-nav a {
+    padding: 8px 12px;
+    border: solid 1px #fff;
+    background: #fff;
+    color: #444
 }
 
-.comments-nav a:hover {
-    border: 1px solid #51aded;
-    background-color: #51aded;
-    color: #fff !important
+#comments-nav .prev , #comments-nav .next{
+    border: solid 1px var(--theme-color-1, #00a2ff);
 }
 
-.comments-nav span.current {
-    font-weight: 700;
-    border: 1px solid #51aded;
-    background-color: #51aded;
-    padding: 5px 10px;
+#comments-nav a:hover {
+    padding: 8px 12px;
+    border: solid 1px var(--theme-color-1, #00a2ff);
+    background: var(--theme-color-1, #00a2ff);
     color: #fff
 }
+
+#comments-nav span.current {
+    padding: 8px 12px;
+    border: solid 1px var(--theme-color-1, #00a2ff);
+    background: var(--theme-color-1, #00a2ff);
+    color: #fff;
+    font-weight: 400
+}
+
 
 @media screen and (max-width: 768px) {
     .k-main .details .toolbar .meta {

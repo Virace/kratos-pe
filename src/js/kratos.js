@@ -263,9 +263,10 @@
         selector: 'figure.wp-block-image, div.wp-block-image > figure, .blocks-gallery-item figure'
       })
     }
-
+    const flagElem = $('#content > article > div.content')
     const imgs = $('.article .content img')
-    if (imgs.length >= 1) {
+    if (imgs.length >= 1 && !flagElem.hasClass('lightgallery')) {
+      flagElem.addClass('lightgallery')
       imgs.each(function (c) {
         const parent = $(this.parentNode)
         parent.attr('data-src', this.src)
@@ -289,8 +290,10 @@
 
   const photoLazy = function () {
     const images = $('.article .content img')
+    const flagElem = $('#content > article > div.content')
     const thumb = kratos.loading
-    if (images.length >= 1) {
+    if (images.length >= 1 && !flagElem.hasClass('photoLazy')) {
+      flagElem.addClass('photoLazy')
       // 图片加载前先替换自身src
       images.each(function () {
         const $this = $(this)

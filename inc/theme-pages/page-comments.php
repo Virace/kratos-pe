@@ -115,7 +115,7 @@ function comment_callbacks($comment, $args, $depth = 2)
         </div>
     </li>
     <?php
-//    li标签添加解为是为了 子评论与li同级, 适应aos插件
+//    li标签添加结尾是为了 子评论与li同级, 适应aos插件
 }
 
 

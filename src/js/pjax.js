@@ -14,9 +14,11 @@ const ignoreList = ['data:', '/wp-', '/rss', '/feed', '/sitemap.xml', '/sitemap.
         for (let e in ignoreList)
           if (t.indexOf(ignoreList[e]) >= 0) return !0
         return ajax(t, 'pagelink'), !1
-      }, '#comments-nav a': function (t) {
+      },
+      '#comments-nav a': function (t) {
         return ajax(t, 'comtpagenav'), !1
-      }, '.comment-content-link > a': function (t) {
+      },
+      '.comment-content-link > a': function (t) {
         return ajax(t, 'comment'), !1
       }
     },
@@ -28,16 +30,20 @@ const ignoreList = ['data:', '/wp-', '/rss', '/feed', '/sitemap.xml', '/sitemap.
   }
 //  挂载事件
 for (let t in eventList)
-  for (let e in eventList[t]) $(document).on(t, e, function () {
-    const a = $(this).attr('href')
-    return a ? eventList[t][e](a) : !1
-  })
+  for (let f in eventList[t]) {
+    $(document.body).on(t, f, function (e) {
+      e.preventDefault()
+      const a = $(this).attr('href')
+      return a ? eventList[t][f](a) : !1
+    })
+  }
 
 function success (url, msg) {
   //  加载成功后, 滚动条缓动.
   const body = $('body,html')
   let height = $('.navbar')[0].offsetHeight
   if (msg === 'comtpagenav') {
+
     body.animate({
       scrollTop: $('#comments').offset().top - height
     }, 1e3)
@@ -84,7 +90,8 @@ function extractContainer (data) {
 }
 
 function ajax (reqUrl, msg, getData) {
-  NProgress.start(), $.ajax({
+  NProgress.start()
+  $.ajax({
     url: reqUrl,
     type: 'GET',
     data: getData,
@@ -124,7 +131,7 @@ function ajax (reqUrl, msg, getData) {
 
       } else if (msg === 'comtpagenav') {
         $('#comments').html(findAll(html, '#comments').html())
-        $('#comments-nav').html(findAll(html, '#comments-nav').html())
+
       }
       window.load = window.pjax_reload()
       NProgress.done()
