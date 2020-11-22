@@ -263,7 +263,7 @@
         selector: 'figure.wp-block-image, div.wp-block-image > figure, .blocks-gallery-item figure'
       })
     }
-    const flagElem = $('#content > article > div.content')
+    const flagElem = $('.article .content')
     const imgs = $('.article .content img')
     if (imgs.length >= 1 && !flagElem.hasClass('lightgallery')) {
       flagElem.addClass('lightgallery')
@@ -290,7 +290,7 @@
 
   const photoLazy = function () {
     const images = $('.article .content img')
-    const flagElem = $('#content > article > div.content')
+    const flagElem = $('.article .content')
     const thumb = kratos.loading
     if (images.length >= 1 && !flagElem.hasClass('photoLazy')) {
       flagElem.addClass('photoLazy')
