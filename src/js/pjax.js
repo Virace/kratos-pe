@@ -15,10 +15,10 @@ const ignoreList = ['data:', '/wp-', '/rss', '/feed', '/sitemap.xml', '/sitemap.
           if (t.indexOf(ignoreList[e]) >= 0) return !0
         return ajax(t, 'pagelink'), !1
       },
-      '#comments-nav a': function (t) {
+      '#comments-nav a, a.comment-reply-link': function (t) {
         return ajax(t, 'comtpagenav'), !1
       },
-      '.comment-content-link > a': function (t) {
+      '.comment-content-link > a[target!=_blank]': function (t) {
         return ajax(t, 'comment'), !1
       }
     },
@@ -33,6 +33,7 @@ for (let t in eventList)
   for (let f in eventList[t]) {
     $(document.body).on(t, f, function (e) {
       e.preventDefault()
+      console.log(t, f)
       const a = $(this).attr('href')
       return a ? eventList[t][f](a) : !1
     })
