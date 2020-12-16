@@ -4,7 +4,7 @@
  */
 
 // 链接屏蔽
-const ignoreList = ['data:', '/wp-', '/rss', '/feed', '/sitemap.xml', '/sitemap.html', '#respond', '#toc_i-', '#toc-', 'javascript:', '.pdf', '.zip', '.rar', '.7z', '.jpg', '.png', '.gif', '.bmp', '#nav'],
+const ignoreList = ['data:', '/wp-login', '/wp-admin', '/wp-config', '/rss', '/feed', '/sitemap.xml', '/sitemap.html', '#respond', '#toc_i-', '#toc-', 'javascript:', '.pdf', '.zip', '.rar', '.7z', '.jpg', '.png', '.gif', '.bmp', '#nav'],
   // 替换容器
   container = 'main',
   // 事件列表
