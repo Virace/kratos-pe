@@ -38,9 +38,10 @@
             <a class="navbar-brand animate__animated" href="<?php echo get_option('home'); ?>">
                 <?php
                 if (kratos_option('g_logo')) {
-                    echo '<img src="' . kratos_option('g_logo') . '">';
+                    echo '<img src="' . kratos_option('g_logo') . '"><h1 style="display:none">' . get_bloginfo('name') . '</h1>';
                 } else {
                     bloginfo('name');
+                    echo '<h1>' . get_bloginfo('name') . '</h1>';
                 }
                 ?>
             </a>

@@ -72,6 +72,16 @@
     animation-name: backInLeft
 }
 
+.k-nav .navbar-brand h1 {
+    display: inherit;
+    padding: inherit;
+    color: inherit;
+    margin: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+}
+
 .k-nav .navbar-brand img {
     width: 100px;
     transition: background .3s linear
