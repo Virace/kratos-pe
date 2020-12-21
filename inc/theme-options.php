@@ -724,7 +724,7 @@ function kratos_options()
     $options[] = array(
         'name' => __('版权信息', 'kratos'),
         'id' => 's_copyright',
-        'std' => 'COPYRIGHT © 2020 ' . $sitename . '. ALL RIGHTS RESERVED.',
+        'std' => 'COPYRIGHT © 2021 ' . $sitename . '. ALL RIGHTS RESERVED.',
         'type' => 'textarea',
     );
 
