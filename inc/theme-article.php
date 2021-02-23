@@ -7,9 +7,9 @@
  */
 
 // 文章链接添加 target 和 rel
-function imgnofollow($content)
+function content_nofollow($content)
 {
-    $regexp = "<a\s[^>]*href=(\"??)([^\" >]*?)\\1[^>]*>";
+    $regexp = "<a\s[^>]*href=['\"][^#]([^'\"]*?)\\1[^>]*>";
     if (preg_match_all("/$regexp/siU", $content, $matches, PREG_SET_ORDER)) {
         if (!empty($matches)) {
             $srcUrl = get_option('siteurl');
@@ -43,7 +43,7 @@ function imgnofollow($content)
     return $content;
 }
 
-add_filter('the_content', 'imgnofollow');
+add_filter('the_content', 'content_nofollow');
 
 // 文章点赞
 function love()
