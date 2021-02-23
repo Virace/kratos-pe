@@ -989,7 +989,7 @@ article.article-panel .nothing .sorry {
     text-align: center;
     font-size: 2em;
     opacity: .5;
-    line-height: .75;
+    line-height: .5;
     -webkit-transition: .5s;
     transition: .5s
 }
