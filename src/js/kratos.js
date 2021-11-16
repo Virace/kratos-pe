@@ -254,7 +254,7 @@
     })
   }
   const consoleConfig = function () {
-    console.log('Kratos-pe v' + KRATOS_VERSION + 'https://github.com/Virace/kratos-pe')
+    console.log('Kratos-pe v' + KRATOS_VERSION + '  https://github.com/Virace/kratos-pe')
   }
   const photoConfig = function () {
     const el = document.getElementById('content')
@@ -434,11 +434,12 @@ function getTransitionTime (o) {
 }
 
 window.grin = function (tag) {
+  console.log(tag, this)
   let myField
   tag = ' ' + tag + ' '
   if (
     document.getElementById('comment') &&
-    document.getElementById('comment').type == 'textarea'
+    document.getElementById('comment').type === 'textarea'
   ) {
     myField = document.getElementById('comment')
   } else {
@@ -449,7 +450,7 @@ window.grin = function (tag) {
     sel = document.selection.createRange()
     sel.text = tag
     myField.focus()
-  } else if (myField.selectionStart || myField.selectionStart == '0') {
+  } else if (myField.selectionStart || myField.selectionStart === '0') {
     var startPos = myField.selectionStart
     var endPos = myField.selectionEnd
     var cursorPos = endPos
