@@ -1,5 +1,16 @@
 <?php
-function set_smilies ($smilies) {
+/**
+ * 表情相关
+ * @author  Virace
+ * @site x-item.com
+ * @license GPL-3.0 License
+ * @software PhpStorm
+ * @version 2021.11.17
+ */
+
+
+function set_smilies($smilies)
+{
     /* 因为translate_smiley函数内并没有对svg格式进行支持
      * 所以这里后缀暂时改为png或$image_exts = array( 'jpg', 'jpeg', 'jpe', 'gif', 'png' );
      * 只是为了通过验证
@@ -54,6 +65,7 @@ function set_smilies ($smilies) {
     $smilies = array_merge($smilies, $new);
     return $new;
 }
+
 add_filter('smilies', 'set_smilies');
 
 //
@@ -72,10 +84,10 @@ function display_smilies()
     $temp = array();
     $ignore = array(':mrgreen:');
     foreach ($wpsmiliestrans as $k => $v) {
-        if (!in_array($v, $temp) and substr($v, -1)==='g' and !in_array($k, $ignore)) {
+        if (!in_array($v, $temp) and substr($v, -1) === 'g' and !in_array($k, $ignore)) {
             array_push($temp, $v);
             // img 标签 不设置src, 延迟加载
-            echo sprintf('<a href="javascript:grin(\'%s\')"><img data-src="' . ASSET_PATH . '/assets/img/smilies/%s" alt="" class="d-block"/></a>', $k, str_replace('.png', '.svg', $v));
+            echo sprintf('<a href="javascript::;" onclick="grin(\'%s\');"><img data-src="' . ASSET_PATH . '/assets/img/smilies/%s" alt="" class="d-block"/></a>', $k, str_replace('.png', '.svg', $v));
         }
 
     }
