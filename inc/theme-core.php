@@ -5,7 +5,7 @@
  * @site x-item.com
  * @license GPL-3.0 License
  * @software PhpStorm
- * @version 2021.11.16
+ * @version 2021.11.17
  */
 
 if (kratos_option('g_cdn', false)) {
@@ -65,7 +65,7 @@ function theme_autoload()
         wp_register_script('jquery', ASSET_PATH . '/assets/js/jquery.min.js', array(), '3.4.1', false);
         wp_enqueue_script('jquery');
 
-        wp_enqueue_script('kratos', ASSET_PATH . '/assets/js/bundle.js', array(), THEME_VERSION, true);
+        wp_enqueue_script('kratos', ASSET_PATH . '/assets/js/main.js', array(), THEME_VERSION, true);
 
 
         // 在最后加载自定义文件
