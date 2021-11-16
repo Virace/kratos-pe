@@ -1,9 +1,11 @@
 <?php
 /**
  * 文章相关函数
- * @author Seaton Jiang <seaton@vtrois.com>
- * @license MIT License
- * @version 2020.06.13
+ * @author Seaton Jiang <seaton@vtrois.com> (Modified by Virace)
+ * @site x-item.com
+ * @license GPL-3.0 License
+ * @software PhpStorm
+ * @version 2021.11.16
  */
 
 // 文章链接添加 target 和 rel
@@ -95,12 +97,12 @@ function get_post_views($echo = 1)
 }
 
 // 文章列表简介内容
-function excerpt_length($length)
+function custom_excerpt_length($length)
 {
-    return 260;
+    return kratos_option('g_excerpt_length', '260');
 }
 
-add_filter('excerpt_length', 'excerpt_length');
+add_filter('excerpt_length', 'custom_excerpt_length');
 
 // 开启特色图
 add_theme_support("post-thumbnails");
@@ -109,14 +111,13 @@ add_theme_support("post-thumbnails");
 function post_thumbnail()
 {
     global $post;
-    $title = get_the_title();
     $img_id = get_post_thumbnail_id();
-    $img_url = wp_get_attachment_image_src($img_id, array(720, 435));
+    $img_url = wp_get_attachment_image_src($img_id, 'kratos-thumbnail');
     if (is_array($img_url)) {
         $img_url = $img_url[0];
     }
     if (has_post_thumbnail()) {
-        echo '<img src="' . $img_url . '" alt="' . $title . '"/>';
+        echo '<img src="' . $img_url . '" />';
     } else {
         $content = $post->post_content;
         $img_preg = "/<img (.*?)src=\"(.+?)\".*?>/";
@@ -126,19 +127,15 @@ function post_thumbnail()
             $img_val = $img_src[$img_count];
         }
         if (!empty($img_val)) {
-            echo '<img src="' . $img_val . '" alt="' . $title . '" />';
+            echo '<img src="' . $img_val . '" />';
         } else {
-            if (!kratos_option('g_postthumbnail')) {
-                $img = ASSET_PATH . '/assets/img/default.jpg';
-            } else {
-                $img = kratos_option('g_postthumbnail', ASSET_PATH . '/assets/img/default.jpg');
-            }
-            echo '<img src="' . $img . '" alt="' . get_bloginfo('name') . '" />';
+            echo '<img src="' . kratos_option('g_postthumbnail', ASSET_PATH . '/assets/img/default.jpg') . '" />';
         }
     }
 }
 
-function post_thumbnail_url(){
+function post_thumbnail_url()
+{
     $img_id = get_post_thumbnail_id();
     $img_url = wp_get_attachment_image_src($img_id, array(720, 435));
     if (is_array($img_url)) {
@@ -435,6 +432,78 @@ if (!class_exists('duplicate_page') && kratos_option('g_duplicate_page', false))
     new duplicate_page();
 endif;
 
+
+// 主页轮播
+function kratos_carousel()
+{
+    if (kratos_option('g_carousel', false)) {
+        $slide = 0;
+        $item = 0;
+        $output = '<div id="indexCarousel" class="carousel article-carousel slide" data-ride="carousel"> <ol class="carousel-indicators">';
+
+        if (!empty(kratos_option('carousel_group'))) {
+
+            foreach (kratos_option('carousel_group') as $group_item) {
+                $active = null;
+                if ($slide == 0) {
+                    $active = 'class="active"';
+                }
+                $output .= '<li data-target="#indexCarousel" data-slide-to="' . $slide . '" ' . $active . '></li>';
+                $slide++;
+            }
+
+            $output .= '</ol><div class="carousel-inner">';
+
+            foreach (kratos_option('carousel_group') as $group_item) {
+                $active = null;
+                if ($item == 0) {
+                    $active = 'active';
+                }
+                $output .= '
+                <div class="carousel-item ' . $active . '">
+                <a href="' . $group_item['c_url'] . '"><img src="' . $group_item['c_img'] . '" class="d-block w-100"></a>
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5 style="color:' . $group_item['c_color'] . '">' . $group_item['c_title'] . '</h5>
+                        <p style="color:' . $group_item['c_color'] . '">' . $group_item['c_subtitle'] . '</p>
+                    </div>
+                </div>';
+                $item++;
+            }
+
+            $output .= '</div> <a class="carousel-control-prev" href="#indexCarousel" role="button" data-slide="prev"> <span class="carousel-control-prev-icon" aria-hidden="true"></span> </a> <a class="carousel-control-next" href="#indexCarousel" role="button" data-slide="next"> <span class="carousel-control-next-icon" aria-hidden="true"></span> </a> </div>';
+        }
+
+        echo $output;
+    }
+}
+
+// 获取文章评论数量
+function findSinglecomments($postid = 0, $which = 0)
+{
+    $comments = get_comments('status=approve&type=comment&post_id=' . $postid);
+    if ($comments) {
+        $i = 0;
+        $j = 0;
+        $commentusers = array();
+        foreach ($comments as $comment) {
+            ++$i;
+            if ($i == 1) {
+                $commentusers[] = $comment->comment_author_email;
+                ++$j;
+            }
+            if (!in_array($comment->comment_author_email, $commentusers)) {
+                $commentusers[] = $comment->comment_author_email;
+                ++$j;
+            }
+        }
+        $output = array($j, $i);
+        $which = ($which == 0) ? 0 : 1;
+        return $output[$which];
+    }
+    return 0;
+}
+
+
 // 文章目录
 function toc_set_anchor($content)
 {
@@ -523,7 +592,8 @@ endif;
 // 添加修订次数统计
 add_action('publish_page', 'add_revision_times', 10, 2);
 add_action('publish_post', 'add_revision_times', 10, 2);
-function add_revision_times($post_ID){
+function add_revision_times($post_ID)
+{
     // 判断一下请求来源, rest api排除, 否则会触发两次
     if (!(defined('REST_REQUEST') && REST_REQUEST)) {
         $key = 'revision_times';

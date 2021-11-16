@@ -1,11 +1,11 @@
 <?php
 /**
  * 侧栏小工具
- * @param int $echo
- * @return string|null
- * @version 2020.04.12
- * @author Seaton Jiang <seaton@vtrois.com>
- * @license MIT License
+ * @author Seaton Jiang <seaton@vtrois.com> (Modified by Virace)
+ * @site x-item.com
+ * @license GPL-3.0 License
+ * @software PhpStorm
+ * @version 2021.11.16
  */
 
 //取最后一次活动时间. 徒增功耗
@@ -40,7 +40,7 @@ function timeago($ptime): string
         $d = $etime / $secs;
         if ($d >= 1) {
             $r = round($d);
-            return $r . $str. ' (' . date(__('m月d日', 'kratos'), $ptime) . ')';
+            return $r . $str . ' (' . date(__('m月d日', 'kratos'), $ptime) . ')';
         }
     };
 }
@@ -50,21 +50,30 @@ function timeago($ptime): string
 function widgets_init()
 {
     register_sidebar(array(
-        'name' => __('首页侧边栏', 'kratos'),
-        'id' => 'sidebar_tool',
-        'before_widget' => '<aside class="widget %2$s">',
-        'after_widget' => '</aside>',
+        'name' => __('主页侧边栏', 'kratos'),
+        'id' => 'home_sidebar',
+        'before_widget' => '<div class="widget %2$s">',
+        'after_widget' => '</div>',
         'before_title' => '<div class="title">',
         'after_title' => '</div>',
     ));
     register_sidebar(array(
-        'name' => __('文章页侧边栏', 'kratos'),
-        'id' => 'sidebar_tool_post',
-        'before_widget' => '<aside class="widget %2$s">',
-        'after_widget' => '</aside>',
+        'name' => __('文章侧边栏', 'kratos'),
+        'id' => 'single_sidebar',
+        'before_widget' => '<div class="widget %2$s">',
+        'after_widget' => '</div>',
         'before_title' => '<div class="title">',
         'after_title' => '</div>',
     ));
+    register_sidebar(array(
+        'name' => __('页面侧边栏', 'kratos'),
+        'id' => 'page_sidebar',
+        'before_widget' => '<div class="widget %2$s">',
+        'after_widget' => '</div>',
+        'before_title' => '<div class="title">',
+        'after_title' => '</div>',
+    ));
+
     // 去掉默认小工具
     $wp_widget = array(
         'WP_Widget_Archives',
@@ -86,6 +95,27 @@ function widgets_init()
 
 add_action('widgets_init', 'widgets_init');
 
+// 分类目录计数
+function cat_count_span($links)
+{
+    $links = str_replace('</a> (', '<span> / ', $links);
+    $links = str_replace(')', __('篇', 'kratos') . '</span></a>', $links);
+    return $links;
+}
+
+add_filter('wp_list_categories', 'cat_count_span');
+
+// 文章归档计数
+function archive_count_span($links)
+{
+    $links = str_replace('</a>&nbsp;(', '<span> / ', $links);
+    $links = str_replace(')', __('篇', 'kratos') . '</span></a>', $links);
+    return $links;
+}
+
+add_filter('get_archives_link', 'archive_count_span');
+
+
 // 小工具文章聚合 - 热点文章
 function most_comm_posts($days = 30, $nums = 6)
 {
@@ -93,16 +123,16 @@ function most_comm_posts($days = 30, $nums = 6)
     date_default_timezone_set("PRC");
     $today = date("Y-m-d H:i:s");
     $daysago = date("Y-m-d H:i:s", strtotime($today) - ($days * 24 * 60 * 60));
-    $result = $wpdb->get_results("SELECT comment_count, ID, post_title, post_date FROM $wpdb->posts WHERE post_date BETWEEN '$daysago' AND '$today' and post_type='post' and post_status='publish' ORDER BY comment_count DESC LIMIT 0 , $nums");
+    $result = $wpdb->get_results($wpdb->prepare("SELECT comment_count, ID, post_title, post_date FROM $wpdb->posts WHERE post_date BETWEEN %s AND %s and post_type = 'post' AND post_status = 'publish' ORDER BY comment_count DESC LIMIT 0, %d", $daysago, $today, $nums));
     $output = '';
     if (!empty($result)) {
         foreach ($result as $topten) {
             $postid = $topten->ID;
-            $title = $topten->post_title;
+            $title = esc_attr(strip_tags($topten->post_title));
             $commentcount = $topten->comment_count;
             if ($commentcount >= 0) {
                 $output .= '<a class="bookmark-item" title="' . $title . '" href="' . get_permalink($postid) . '" rel="bookmark"><i class="vicon i-book"></i>';
-                $output .= strip_tags($title);
+                $output .= $title;
                 $output .= '</a>';
             }
         }
@@ -220,10 +250,10 @@ class widget_search extends WP_Widget
         $title = $instance['title'];
         ?>
         <p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('标题:', 'kratos'); ?> <input class="widefat"
-                                                                                                  id="<?php echo $this->get_field_id('title'); ?>"
-                                                                                                  name="<?php echo $this->get_field_name('title'); ?>"
-                                                                                                  type="text"
-                                                                                                  value="<?php echo esc_attr($title); ?>"/></label>
+                                                                                                         id="<?php echo $this->get_field_id('title'); ?>"
+                                                                                                         name="<?php echo $this->get_field_name('title'); ?>"
+                                                                                                         type="text"
+                                                                                                         value="<?php echo esc_attr($title); ?>"/></label>
         </p>
         <?php
     }
@@ -264,9 +294,9 @@ class widget_about extends WP_Widget
     public function widget($args, $instance)
     {
         extract($args);
-        $introduce = kratos_option('a_about', __('保持饥渴的专注，追求最佳的品质', 'kratos'));
-        $username = kratos_option('a_nickname', __('Kratos', 'kratos'));
-        $avatar = kratos_option('a_gravatar', ASSET_PATH . '/assets/img/gravatar.png');
+        $introduce = !empty(get_the_author_meta('description', '1')) ? get_the_author_meta('description', '1') : __('这个人很懒，什么都没留下', 'kratos');
+        $username = get_the_author_meta('display_name', '1');
+        $avatar = get_avatar_url('1');
         $background = !empty($instance['background']) ? $instance['background'] : ASSET_PATH . '/assets/img/about-background.png';
 
         echo $before_widget;
@@ -481,7 +511,7 @@ class widget_about_detailed extends WP_Widget
     {
         $widget_ops = array(
             'classname' => 'w-about-detailed',
-            'name' => __('个人简介', 'kratos'),
+            'name' => __('个人简介 - 详细版', 'kratos'),
             'description' => __('个人简介 - 详细版', 'kratos')
         );
         parent::__construct(false, false, $widget_ops);

@@ -1,25 +1,26 @@
 <?php
 /**
  * 主题页脚
- * @author Seaton Jiang <seaton@vtrois.com>
- * @license MIT License
- * @version 2020.04.12
+ * @author Seaton Jiang <seaton@vtrois.com> (Modified by Virace)
+ * @site x-item.com
+ * @license GPL-3.0 License
+ * @software PhpStorm
+ * @version 2021.11.16
  */
 ?>
+
 <footer class="k-footer">
     <div class="f-toolbox">
-        <div class="gotop <?php if (kratos_option('s_wechat', false)) {
-            echo 'gotop-haswechat';
-        } ?>">
+        <div class="gotop <?php echo kratos_option('g_wechat_fieldset')['g_wechat'] ? 'gotop-haswechat' : ''; ?>">
             <div class="gotop-btn">
                 <span class="vicon i-up"></span>
             </div>
         </div>
-        <?php if (kratos_option('s_wechat', false)) { ?>
+        <?php if (!empty(kratos_option('g_wechat_fieldset')['g_wechat'])) { ?>
             <div class="wechat">
                 <span class="vicon i-wechat"></span>
                 <div class="wechat-pic">
-                    <img src="<?php echo kratos_option('s_wechat_url', ASSET_PATH . '/assets/img/wechat.png'); ?>">
+                    <img src="<?php echo kratos_option('g_wechat_fieldset')['g_wechat_img']; ?>">
                 </div>
             </div>
         <?php } ?>
@@ -35,23 +36,27 @@
             <div class="col-12 text-center">
                 <p class="social">
                     <?php
-                    $social = array('s_sina', 's_bilibili', 's_coding', 's_gitee', 's_twitter', 's_telegram', 's_linkedin', 's_youtube', 's_github', 's_stackflow', 's_email');
-                    foreach ($social as $social) {
-                        if (kratos_option($social)) {
-                            echo '<a target="_blank" rel="nofollow" href="' . kratos_option($social . '_url') . '"><i class="vicon i-' . str_replace("s_", "", $social) . '"></i></a>';
+                    if (!empty(kratos_option('s_social_fieldset'))) {
+                        foreach (kratos_option('s_social_fieldset') as $key => $value) {
+                            if (kratos_option('s_social_fieldset')[$key]) {
+                                echo '<a target="_blank" rel="nofollow" href="' . kratos_option('s_social_fieldset')[$key] . '"><i class="vicon i-' . str_replace(array("s_", "_url"), array('', ''), $key) . '"></i></a>';
+                            }
                         }
                     }
                     ?>
                 </p>
                 <?php
                 $sitename = get_bloginfo('name');
-                echo '<p>' . kratos_option('s_copyright', 'COPYRIGHT © 2021 ' . $sitename . '. ALL RIGHTS RESERVED.') . '</p>';
-                echo '<p>THEME <a href="https://github.com/Virace/kratos-pe" target="_blank" rel="nofollow">KRATOS-PE</a> MADE BY <a href="https://github.com/vtrois" target="_blank" rel="nofollow">VTROIS</a> AND Virace</p>';
+                echo '<p>' . kratos_option('s_copyright', 'COPYRIGHT © ' . date('Y') . ' ' . get_bloginfo('name') . '. ALL RIGHTS RESERVED.') . '</p>';
+                echo '<p>THEME <a href="https://github.com/Virace/kratos-pe" target="_blank" rel="nofollow">KRATOS-PE</a> MADE BY <a href="https://github.com/vtrois" target="_blank" rel="nofollow">VTROIS</a> (Modified by Virace)</p>';
                 if (kratos_option('s_icp')) {
                     echo '<p><a href="https://beian.miit.gov.cn/" target="_blank" rel="nofollow">' . kratos_option('s_icp') . '</a></p>';
                 }
                 if (kratos_option('s_gov')) {
-                    echo '<p><a href="' . kratos_option('s_gov_link', '#') . '" target="_blank" rel="nofollow" ><i class="police-ico"></i>' . kratos_option('s_gov') . '</a></p>';
+                    echo '<p><a href="' . kratos_option('s_gov_link') . '" target="_blank" rel="nofollow" ><i class="police-ico"></i>' . kratos_option('s_gov') . '</a></p>';
+                }
+                if (kratos_option('seo_statistical')) {
+                    echo kratos_option('seo_statistical');
                 }
                 ?>
             </div>
@@ -60,7 +65,7 @@
 </footer>
 
 
-<?php wp_footer();?>
+<?php wp_footer(); ?>
 
 
 </body>

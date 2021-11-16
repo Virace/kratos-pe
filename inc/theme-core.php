@@ -1,9 +1,11 @@
 <?php
 /**
  * 核心函数
- * @author Seaton Jiang <seaton@vtrois.com>
- * @license MIT License
- * @version 2020.07.29
+ * @author Seaton Jiang <seaton@vtrois.com> (Modified by Virace)
+ * @site x-item.com
+ * @license GPL-3.0 License
+ * @software PhpStorm
+ * @version 2021.11.16
  */
 
 if (kratos_option('g_cdn', false)) {
@@ -11,6 +13,8 @@ if (kratos_option('g_cdn', false)) {
 } else {
     $asset_path = get_template_directory_uri();
 }
+
+
 define('ASSET_PATH', $asset_path);
 
 // 自动跳转主题设置
@@ -18,7 +22,7 @@ function init_theme()
 {
     global $pagenow;
     if ('themes.php' == $pagenow && isset($_GET['activated'])) {
-        wp_redirect(admin_url('admin.php?page=kratos_options'));
+        wp_redirect(admin_url('admin.php?page=kratos-options'));
         exit;
     }
 }
@@ -44,8 +48,6 @@ function theme_autoload()
 
         wp_enqueue_style('kratos', ASSET_PATH . '/assets/css/kratos.min.css', array(), THEME_VERSION);
 
-        wp_enqueue_style('custom', ASSET_PATH . '/custom/custom.css', array(), THEME_VERSION);
-
 
         $bg_color = kratos_option('g_background', '#f5f5f5');
         $theme_color1 = kratos_option('g_theme_color1', '#00a2ff');
@@ -61,11 +63,9 @@ function theme_autoload()
         // js
         wp_deregister_script('jquery');
         wp_register_script('jquery', ASSET_PATH . '/assets/js/jquery.min.js', array(), '3.4.1', false);
-        wp_enqueue_script( 'jquery' );
+        wp_enqueue_script('jquery');
 
         wp_enqueue_script('kratos', ASSET_PATH . '/assets/js/bundle.js', array(), THEME_VERSION, true);
-
-        wp_enqueue_script('custom', get_template_directory_uri() . '/custom/custom.js', array(), THEME_VERSION, true);
 
 
         // 在最后加载自定义文件
@@ -98,13 +98,8 @@ function theme_autoload()
 //        wp_enqueue_script('lightgallery-lg', ASSET_PATH . '/assets/js/lightgallery.js/lg-thumbnail.js', array(), '1.2.0', true);
 //    }
 
-    // 哀悼黑白站点
-    if (is_home() && kratos_option('g_rip', false)) {
-        $data = 'html{filter: grayscale(100%);-webkit-filter: grayscale(100%);-moz-filter: grayscale(100%);-ms-filter: grayscale(100%);-o-filter: grayscale(100%);filter: progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);filter: gray;-webkit-filter: grayscale(1); }';
-        wp_add_inline_style('kratos', $data);
-    }
     if (kratos_option('seo_statistical')) add_action('wp_footer', function () {
-        echo '<script id="other" type="text/javascript">' .kratos_option('seo_statistical'). '</script>';
+        echo '<script id="other" type="text/javascript">' . kratos_option('seo_statistical') . '</script>';
 
     }, 50);
 
@@ -120,14 +115,11 @@ add_action('wp_enqueue_scripts', 'theme_autoload');
 //    'Kratos'
 //);
 
-//Banner 设置
-function get_background()
-{
-    if (!kratos_option('top_img')) {
-        $id = rand(2, 9);
-        return ASSET_PATH . '/assets/img/background-' . $id . '.jpg';
-    } else {
-        return kratos_option('top_img', ASSET_PATH . '/assets/img/background-1.jpg');
-    }
 
+// 哀悼黑白站点
+function mourning()
+{
+    if (is_home() && kratos_option('g_rip', false)) {
+        echo '<style type="text/css">html{filter: grayscale(100%);-webkit-filter: grayscale(100%);-moz-filter: grayscale(100%);-ms-filter: grayscale(100%);-o-filter: grayscale(100%);filter: progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);filter: gray;-webkit-filter: grayscale(1); } </style>';
+    }
 }

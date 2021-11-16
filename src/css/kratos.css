@@ -440,7 +440,7 @@
     }
 
     .k-nav .navbar-brand img {
-        width: 88px
+        width: 88px;
     }
 
     .navbar-light .navbar-nav .nav-link {
@@ -2120,7 +2120,8 @@ article.article-panel .nothing .sorry {
     }
 
     .k-main .details .toolbar .motto {
-        padding-bottom: 5px
+        padding-bottom: 5px;
+        min-height: 30px;
     }
 
     .k-main .details .toolbar .share .btn {

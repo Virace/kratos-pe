@@ -1,13 +1,15 @@
 <?php
 /**
  * 主题页眉
- * @author Seaton Jiang <seaton@vtrois.com>
- * @license MIT License
- * @version 2020.06.21
+ * @author Seaton Jiang <seaton@vtrois.com> (Modified by Virace)
+ * @site x-item.com
+ * @license GPL-3.0 License
+ * @software PhpStorm
+ * @version 2021.11.16
  */
 ?>
 <!DOCTYPE html>
-<html lang="zh-cn" class="no-js">
+<html lang="zh-cn">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -16,19 +18,13 @@
     <meta name="format-detection" content="telphone=no, email=no">
     <meta name="keywords" content="<?php echo keywords(); ?>">
     <meta name="description" content="<?php echo description(); ?>">
-    <meta property="og:title" content="<?php wp_title('-',true,'right'); ?>">
-    <meta property="og:site_name" content="<?php wp_title('-',true,'right'); ?>">
-    <meta property="og:type" content="website">
-    <meta property="og:description" content="<?php echo description(); ?>">
-    <meta property="og:url" content="<?php if(!is_home()) echo get_permalink(); else  bloginfo('url'); ?>">
-    <meta name="twitter:title" content="<?php wp_title('-',true,'right'); ?>">
-    <meta name="twitter:description" content="<?php echo description(); ?>">
-    <meta name="twitter:card" content="summary">
     <meta name="theme-color" content="<?php echo kratos_option('g_chrome', '#282a2c'); ?>">
-    <meta itemprop="image"  content="<?php echo share_thumbnail_url(); ?>"/>
-    <?php if (kratos_option('g_icon')) echo '<link rel="shortcut icon" href="' . kratos_option("g_icon") .'">' ?>
+    <meta itemprop="image" content="<?php echo share_thumbnail_url(); ?>"/>
+    <?php if (kratos_option('g_icon')) echo '<link rel="shortcut icon" href="' . kratos_option("g_icon") . '">' ?>
     <?php wp_head();
-    wp_print_scripts('jquery');?>
+    wp_print_scripts('jquery');
+    mourning();
+    ?>
 </head>
 <?php flush(); ?>
 <body>
@@ -40,7 +36,6 @@
                 if (kratos_option('g_logo')) {
                     echo '<img src="' . kratos_option('g_logo') . '"><h1 style="display:none">' . get_bloginfo('name') . '</h1>';
                 } else {
-                    bloginfo('name');
                     echo '<h1>' . get_bloginfo('name') . '</h1>';
                 }
                 ?>
@@ -51,7 +46,7 @@
                     <span class="line second-line"></span>
                     <span class="line third-line"></span>
                 </button>
-            <?php
+                <?php
                 wp_nav_menu(array(
                     'theme_location' => 'header_menu',
                     'depth' => 2,
@@ -66,11 +61,11 @@
             ?>
         </div>
     </nav>
-    <?php if (kratos_option('top_select', 'banner') == 'banner') { ?>
+    <?php if (kratos_option('top_img_switch', true)) { ?>
         <div class="banner">
             <div class="overlay"></div>
-            <div class="content text-center" style="background-image: url(<?php
-            echo get_background(); ?>);">
+            <div class="content text-center"
+                 style="background-image: url(<?php echo kratos_option('top_img', ASSET_PATH . '/assets/img/background.jpg'); ?>);">
                 <div class="introduce animate__animated">
                     <?php
                     if (is_category() || is_tag()) {

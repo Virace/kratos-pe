@@ -1,10 +1,10 @@
 /*!
  * Kratos
- * Seaton Jiang <seaton@vtrois.com> and Virace <Virace@aliyun.com>
+ * Seaton Jiang <seaton@vtrois.com> (Modified by Virace)
  */
 (function () {
   'use strict'
-  const KRATOS_VERSION = '1.0.4'
+  const KRATOS_VERSION = '2.0.0'
 
   const navbarConfig = function () {
     const $menu = $('.dropdown-menu')
@@ -185,16 +185,18 @@
 
   const smiliesConfig = function () {
     const $smile = $('.smile')
-    function action (){
-      if(!$smile.hasClass('show')){
+
+    function action () {
+      if (!$smile.hasClass('show')) {
         $('.smile img').each(function () {
           const $this = $(this)
           $this.attr('src', $this.attr('data-src'))
-          $this.removeAttr('data-src');
+          $this.removeAttr('data-src')
         })
         $smile.addClass('show')
       }
     }
+
     $('#addsmile').on('click', function (e) {
       $smile.fadeToggle(300)
       // 延迟加载表情
@@ -263,6 +265,7 @@
         selector: 'figure.wp-block-image, div.wp-block-image > figure, .blocks-gallery-item figure'
       })
     }
+
     const flagElem = $('.article .content')
     const imgs = $('.article .content img')
     if (imgs.length >= 1 && !flagElem.hasClass('lightgallery')) {
@@ -307,7 +310,7 @@
         images.each(function () {
           const $this = $(this)
           $this.attr('src', $this.attr('data-lazy'))
-          $this.removeAttr('data-lazy');
+          $this.removeAttr('data-lazy')
         })
       }, delay)
     }

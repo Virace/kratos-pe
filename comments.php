@@ -1,16 +1,19 @@
 <?php
 /**
  * 评论模板
- * @author Seaton Jiang <seaton@vtrois.com>
- * @license MIT License
- * @version 2020.03.14
+ * @author Seaton Jiang <seaton@vtrois.com> (Modified by Virace)
+ * @site x-item.com
+ * @license GPL-3.0 License
+ * @software PhpStorm
+ * @version 2021.11.16
  */
 
 if (isset($_SERVER['SCRIPT_FILENAME']) && 'comments.php' == basename($_SERVER['SCRIPT_FILENAME'])) {
     die();
 }
-require get_template_directory() . '/inc/theme-pages/page-smilies.php';
-require get_template_directory() . '/inc/theme-pages/page-comments.php';
+
+require get_template_directory() . '/pages/page-smilies.php';
+require get_template_directory() . '/inc/theme-comments.php';
 if (comments_open()) { ?>
     <div class="comments" id="comments">
         <h3 class="title"><?php if (is_single()) {
@@ -44,8 +47,7 @@ if (comments_open()) { ?>
                                         </div>
                                         <input class="form-control" id="author"
                                                placeholder="<?php _e('昵称', 'kratos'); ?>" name="author" type="text"
-                                               value="<?php echo esc_attr($commenter['comment_author']); ?>"
-                                               required="required">
+                                               value="<?php echo esc_attr($commenter['comment_author']); ?>">
                                     </div>
                                 </div>
                                 <div class="col-md-6 mt-3 mt-md-0 comment-form-email">
@@ -55,8 +57,7 @@ if (comments_open()) { ?>
                                         </div>
                                         <input id="email" class="form-control" name="email"
                                                placeholder="<?php _e('邮箱', 'kratos'); ?>" type="email"
-                                               value="<?php echo esc_attr($commenter['comment_author_email']); ?>"
-                                               required="required">
+                                               value="<?php echo esc_attr($commenter['comment_author_email']); ?>">
                                     </div>
                                 </div>
                                 <?php // todo: 加入验证码？ ?>
@@ -83,6 +84,7 @@ if (comments_open()) { ?>
                         </div>
                     </div>
                     <?php comment_id_fields(); ?>
+                    <?php do_action('comment_form_after'); ?>
                     <?php do_action('comment_form', $post->ID); ?>
                 </form>
             <?php endif; ?>

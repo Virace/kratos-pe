@@ -1,9 +1,11 @@
 <?php
 /**
  * 文章短代码
- * @author Seaton Jiang <seaton@vtrois.com>
- * @license MIT License
- * @version 2020.06.25
+ * @author Seaton Jiang <seaton@vtrois.com> (Modified by Virace)
+ * @site x-item.com
+ * @license GPL-3.0 License
+ * @software PhpStorm
+ * @version 2021.11.16
  */
 
 function h2title($atts, $content = null, $code = "")
@@ -13,6 +15,7 @@ function h2title($atts, $content = null, $code = "")
     $return .= '</h2>';
     return $return;
 }
+
 add_shortcode('h2title', 'h2title');
 
 function success($atts, $content = null, $code = "")
@@ -22,6 +25,7 @@ function success($atts, $content = null, $code = "")
     $return .= '</div>';
     return $return;
 }
+
 add_shortcode('success', 'success');
 
 function info($atts, $content = null, $code = "")
@@ -31,6 +35,7 @@ function info($atts, $content = null, $code = "")
     $return .= '</div>';
     return $return;
 }
+
 add_shortcode('info', 'info');
 
 function warning($atts, $content = null, $code = "")
@@ -40,6 +45,7 @@ function warning($atts, $content = null, $code = "")
     $return .= '</div>';
     return $return;
 }
+
 add_shortcode('warning', 'warning');
 
 function danger($atts, $content = null, $code = "")
@@ -49,6 +55,7 @@ function danger($atts, $content = null, $code = "")
     $return .= '</div>';
     return $return;
 }
+
 add_shortcode('danger', 'danger');
 
 function wymusic($atts, $content = null, $code = "")
@@ -58,6 +65,7 @@ function wymusic($atts, $content = null, $code = "")
     $return .= '&auto=' . kratos_option('g_163mic', false) . '&height=66"></iframe></div>';
     return $return;
 }
+
 add_shortcode('music', 'wymusic');
 
 function bdbtn($atts, $content = null, $code = "")
@@ -67,6 +75,7 @@ function bdbtn($atts, $content = null, $code = "")
     $return .= '" target="_blank"><i class="vicon i-download mr-1"></i>立即下载</a>';
     return $return;
 }
+
 add_shortcode('bdbtn', 'bdbtn');
 
 function kbd($atts, $content = null, $code = "")
@@ -76,6 +85,7 @@ function kbd($atts, $content = null, $code = "")
     $return .= '</kbd>';
     return $return;
 }
+
 add_shortcode('kbd', 'kbd');
 
 function nrmark($atts, $content = null, $code = "")
@@ -85,6 +95,7 @@ function nrmark($atts, $content = null, $code = "")
     $return .= '</mark>';
     return $return;
 }
+
 add_shortcode('mark', 'nrmark');
 
 function striped($atts, $content = null, $code = "")
@@ -98,6 +109,7 @@ function striped($atts, $content = null, $code = "")
     $return .= '%</div></div>';
     return $return;
 }
+
 add_shortcode('striped', 'striped');
 
 function successbox($atts, $content = null, $code = "")
@@ -110,6 +122,7 @@ function successbox($atts, $content = null, $code = "")
     $return .= '</p></div></div>';
     return $return;
 }
+
 add_shortcode('successbox', 'successbox');
 
 function infobox($atts, $content = null, $code = "")
@@ -122,6 +135,7 @@ function infobox($atts, $content = null, $code = "")
     $return .= '</p></div></div>';
     return $return;
 }
+
 add_shortcode('infobox', 'infobox');
 
 function warningbox($atts, $content = null, $code = "")
@@ -134,6 +148,7 @@ function warningbox($atts, $content = null, $code = "")
     $return .= '</p></div></div>';
     return $return;
 }
+
 add_shortcode('warningbox', 'warningbox');
 
 function dangerbox($atts, $content = null, $code = "")
@@ -146,6 +161,7 @@ function dangerbox($atts, $content = null, $code = "")
     $return .= '</p></div></div>';
     return $return;
 }
+
 add_shortcode('dangerbox', 'dangerbox');
 
 function vqq($atts, $content = null, $code = "")
@@ -155,6 +171,7 @@ function vqq($atts, $content = null, $code = "")
     $return .= '" allowFullScreen="true"></iframe></div>';
     return $return;
 }
+
 add_shortcode('vqq', 'vqq');
 
 function youtube($atts, $content = null, $code = "")
@@ -164,6 +181,7 @@ function youtube($atts, $content = null, $code = "")
     $return .= '" frameborder="0" allowfullscreen="allowfullscreen"></iframe></div>';
     return $return;
 }
+
 add_shortcode('youtube', 'youtube');
 
 function bilibili($atts, $content = null, $code = "")
@@ -173,13 +191,14 @@ function bilibili($atts, $content = null, $code = "")
     $return .= '&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe></div>';
     return $return;
 }
+
 add_shortcode('bilibili', 'bilibili');
 
 function reply($atts, $content = null)
 {
-    extract(shortcode_atts(array("notice" => '<div class="alert alert-primary text-center" role="alert">'.__('温馨提示：此处内容已隐藏，<a href="#comments">回复</a>后刷新页面即可查看！', 'kratos').'</div>'), $atts));
+    extract(shortcode_atts(array("notice" => '<div class="alert alert-primary text-center" role="alert">' . __('温馨提示：此处内容已隐藏，<a href="#comments">回复</a>后刷新页面即可查看！', 'kratos') . '</div>'), $atts));
     $userEmail = null;
-    $user_ID = (int) wp_get_current_user()->ID;
+    $user_ID = (int)wp_get_current_user()->ID;
     if ($user_ID > 0) {
         $userEmail = get_userdata($user_ID)->user_email;
         $adminUsers = get_users('role=Administrator');
@@ -204,17 +223,18 @@ function reply($atts, $content = null)
     }
     global $wpdb;
     $post_id = get_the_ID();
-    $query = "SELECT `comment_ID` FROM {$wpdb->comments} WHERE `comment_post_ID`={$post_id} and `comment_approved`='1' and `comment_author_email`='{$userEmail}' LIMIT 1";
-    if ($wpdb->get_results($query)) {
+    if ($wpdb->get_results($wpdb->prepare("SELECT comment_ID FROM {$wpdb->comments} WHERE comment_post_ID = %d AND comment_approved = '1' AND comment_author_email = %s LIMIT 1", $post_id, $userEmail))) {
         return do_shortcode($content);
     } else {
         return $notice;
     }
 }
+
 add_shortcode('reply', 'reply');
 
-function accordion($atts, $content=null, $code=""){
-    extract(shortcode_atts(array("title"=>__('标题内容','kratos')),$atts));
+function accordion($atts, $content = null, $code = "")
+{
+    extract(shortcode_atts(array("title" => __('标题内容', 'kratos')), $atts));
     $return = '<div class="accordion"><div class="acheader"><div class="icon"><i class="vicon i-plus"></i></div><span>';
     $return .= $title;
     $return .= '</span></div><div class="contents"><div class="inner">';
@@ -222,7 +242,8 @@ function accordion($atts, $content=null, $code=""){
     $return .= '</div></div></div>';
     return $return;
 }
-add_shortcode('accordion','accordion');
+
+add_shortcode('accordion', 'accordion');
 
 add_action('init', 'more_button');
 function more_button()
@@ -236,13 +257,15 @@ function more_button()
     }
 }
 
-function add_more_buttons($buttons) {
+function add_more_buttons($buttons)
+{
     $buttons[] = 'hr';
     $buttons[] = 'wp_page';
     $buttons[] = 'fontsizeselect';
     $buttons[] = 'styleselect';
-return $buttons;
+    return $buttons;
 }
+
 add_filter("mce_buttons", "add_more_buttons");
 
 function register_button($buttons)

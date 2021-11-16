@@ -1,15 +1,17 @@
 <?php
 /**
  * 模板函数
- * @author Seaton Jiang <seaton@vtrois.com>
- * @license MIT License
- * @version 2020.03.17
+ * @author Seaton Jiang <seaton@vtrois.com> (Modified by Virace)
+ * @site x-item.com
+ * @license GPL-3.0 License
+ * @software PhpStorm
+ * @version 2021.11.16
  */
 
 define('THEME_VERSION', wp_get_theme()->get('Version'));
 
 // 主题配置
-require get_template_directory() . '/inc/options-framework/autoload.php';
+require get_template_directory() . '/inc/codestar-framework/autoload.php';
 
 // 更新配置
 //require get_template_directory() . '/inc/update-checker/autoload.php';
@@ -52,6 +54,3 @@ require get_template_directory() . '/inc/theme-recaptcha.php';
 require get_template_directory() . '/inc/theme-media.php';
 
 require get_template_directory() . '/inc/theme-optimization.php';
-
-// 自定义函数
-require get_template_directory() . '/custom/custom.php';

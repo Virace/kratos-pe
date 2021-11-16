@@ -297,8 +297,8 @@ if (!class_exists('WPMetaBox')):
             return isset($_POST[$nonce_id]) && wp_verify_nonce($_POST[$nonce_id], plugin_basename(__FILE__));
         }
 
-        private string $slug;
-        private string $title;
+        private $slug;
+        private $title;
         private $post_type;
         private $items;
     }
