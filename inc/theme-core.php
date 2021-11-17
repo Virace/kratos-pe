@@ -5,7 +5,7 @@
  * @site x-item.com
  * @license GPL-3.0 License
  * @software PhpStorm
- * @version 2021.11.17
+ * @version 2021.11.18
  */
 
 if (kratos_option('g_cdn', false)) {
@@ -98,10 +98,10 @@ function theme_autoload()
 //        wp_enqueue_script('lightgallery-lg', ASSET_PATH . '/assets/js/lightgallery.js/lg-thumbnail.js', array(), '1.2.0', true);
 //    }
 
-    if (kratos_option('seo_statistical')) add_action('wp_footer', function () {
-        echo '<script id="other" type="text/javascript">' . kratos_option('seo_statistical') . '</script>';
-
-    }, 50);
+//    if (kratos_option('seo_statistical')) add_action('wp_footer', function () {
+//        echo '<script id="other" type="text/javascript">' . kratos_option('seo_statistical') . '</script>';
+//
+//    }, 50);
 
 }
 
@@ -110,7 +110,7 @@ add_action('wp_enqueue_scripts', 'theme_autoload');
 
 // 主题更新检测
 //$myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
-//    'https://github.com/vtrois/kratos/',
+//    'https://cdn.jsdelivr.net/gh/virace/kratos-pe/inc/update-checker/update.json',
 //    get_template_directory() . '/functions.php',
 //    'Kratos'
 //);
