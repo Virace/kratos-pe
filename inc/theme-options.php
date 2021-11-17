@@ -5,7 +5,7 @@
  * @site x-item.com
  * @license GPL-3.0 License
  * @software PhpStorm
- * @version 2021.11.16
+ * @version 2021.11.18
  */
 
 defined('ABSPATH') || exit;
@@ -237,6 +237,41 @@ CSF::createSection($prefix, array(
             'subtitle' => __('全站页面的背景颜色', 'kratos'),
         ),
         array(
+            'id' => 'g_theme_color1',
+            'type' => 'color',
+            'default' => '#00a2ff',
+            'title' => __('主题色', 'kratos'),
+            'subtitle' => __('首页分类标签、分页以及一些按钮的背景色', 'kratos'),
+        ),
+        array(
+            'id' => 'g_theme_color2',
+            'type' => 'color',
+            'default' => '#0097ee',
+            'title' => __('主题辅色', 'kratos'),
+            'subtitle' => __('a标签hover等的颜色, 可以自行组合', 'kratos'),
+        ),
+        array(
+            'id' => 'top_color_1',
+            'type' => 'color',
+            'default' => 'rgba(40, 42, 44, 0.6)',
+            'title' => __('导航栏颜色', 'kratos'),
+            'subtitle' => __('默认导航栏颜色', 'kratos'),
+        ),
+        array(
+            'id' => 'top_color_2',
+            'type' => 'color',
+            'default' => '#fff',
+            'title' => __('导航栏颜色', 'kratos'),
+            'subtitle' => __('滚动条滚动后会改变导航栏颜色', 'kratos'),
+        ),
+        array(
+            'id' => 'mb_sidebar_color',
+            'type' => 'color',
+            'default' => '#242b31',
+            'title' => __('移动端侧边栏颜色', 'kratos'),
+            'subtitle' => __('移动页面侧边导航栏背景色', 'kratos'),
+        ),
+        array(
             'id' => 'g_chrome',
             'type' => 'color',
             'default' => '#282a2c',
@@ -266,6 +301,15 @@ CSF::createSection($prefix, array(
             'library' => 'image',
             'preview' => true,
             'subtitle' => __('浏览器收藏夹和地址栏中显示的图标', 'kratos'),
+        ),
+        array(
+            'id' => 'g_photo_lazy',
+            'type' => 'upload',
+            'title' => __('延迟加载loading图片', 'kratos'),
+            'library' => 'image',
+            'preview' => true,
+            'default' => get_template_directory_uri() . '/assets/img/loading.gif',
+            'subtitle' => __('文章内图片延迟加载，首先展示的为loading动画', 'kratos'),
         ),
         array(
             'id' => 'g_404',
@@ -590,6 +634,13 @@ CSF::createSection($prefix, array(
             'title' => __('网易云音乐', 'kratos'),
             'subtitle' => __('启用/禁用网易云音乐自动播放功能', 'kratos'),
             'default' => false,
+        ),
+        array(
+            'id' => 'g_duplicate_page',
+            'type' => 'switcher',
+            'title' => __('文章复制', 'kratos'),
+            'subtitle' => __('开启后可以在后台快速复制文章', 'kratos'),
+            'default' => true,
         ),
         array(
             'id' => 'g_post_revision',
@@ -1125,6 +1176,14 @@ CSF::createSection($prefix, array(
         array(
             'type' => 'content',
             'content' => __('主题源码使用 <a href="https://github.com/vtrois/kratos/blob/main/LICENSE" target="_blank">GPL-3.0 协议</a> 进行许可，说明文档使用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a> 进行许可。', 'kratos'),
+        ),
+        array(
+            'type' => 'subheading',
+            'content' => __('版本说明', 'kratos'),
+        ),
+        array(
+            'type' => 'content',
+            'content' => __('你看到此提示说明该主题非原版kratos主题，为Virace修改自用主题，修改详情访问：<a href="https://github.com/Virace/kratos-pe" target="_blank">kratos-pe</a>', 'kratos'),
         ),
         array(
             'type' => 'subheading',
