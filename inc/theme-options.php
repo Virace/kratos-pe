@@ -5,17 +5,17 @@
  * @site x-item.com
  * @license GPL-3.0 License
  * @software PhpStorm
- * @version 2021.11.18
+ * @version 2021.11.20
  */
 
 defined('ABSPATH') || exit;
 
-$prefix = 'kratos_options';
+$prefix = 'kratos_pe_options';
 
 if (!function_exists('kratos_option')) {
     function kratos_option($name, $default = false)
     {
-        $options = get_option('kratos_options');
+        $options = get_option('kratos_pe_options');
         if (isset($options[$name])) {
             return $options[$name];
         }
