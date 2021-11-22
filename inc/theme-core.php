@@ -5,7 +5,7 @@
  * @site x-item.com
  * @license GPL-3.0 License
  * @software PhpStorm
- * @version 2021.11.18
+ * @version 2021.11.23
  */
 
 if (kratos_option('g_cdn', false)) {
@@ -30,12 +30,12 @@ function init_theme()
 add_action('load-themes.php', 'init_theme');
 
 // 语言国际化
-function theme_languages()
-{
-    load_theme_textdomain('kratos', get_template_directory() . '/languages');
-}
-
-add_action('after_setup_theme', 'theme_languages');
+//function theme_languages()
+//{
+//    load_theme_textdomain('kratos', get_template_directory() . '/languages');
+//}
+//
+//add_action('after_setup_theme', 'theme_languages');
 
 // 资源加载
 function theme_autoload()
@@ -79,6 +79,9 @@ function theme_autoload()
             'thanks' => __('感谢您的支持', 'kratos'),
             'donate' => __('打赏作者', 'kratos'),
             'scan' => __('扫码支付', 'kratos'),
+            'ajax_url' => admin_url('admin-ajax.php'),
+            'comment_order' => get_option('comment_order'),
+            'theme_version' => THEME_VERSION
         );
         wp_localize_script('kratos', 'kratos', $data);
     }
