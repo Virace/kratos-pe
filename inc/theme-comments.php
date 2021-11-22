@@ -5,22 +5,8 @@
  * @site x-item.com
  * @license GPL-3.0 License
  * @software PhpStorm
- * @version 2021.11.16
+ * @version 2021.11.23
  */
-
-// 文章评论
-function comment_scripts()
-{
-    wp_enqueue_script('comment', ASSET_PATH . '/assets/js/comments.min.js', array(), THEME_VERSION);
-    wp_localize_script('comment', 'ajaxcomment', array(
-        'ajax_url' => admin_url('admin-ajax.php'),
-        'order' => get_option('comment_order'),
-        'compost' => __('评论正在提交中', 'kratos'),
-        'comsucc' => __('评论提交成功', 'kratos'),
-    ));
-}
-
-add_action('wp_enqueue_scripts', 'comment_scripts');
 
 function comment_err($a)
 {
@@ -53,16 +39,11 @@ function comment_callback()
         </div>
         <div class="info clearfix">
             <cite class="author_name"><?php echo get_comment_author_link(); ?></cite>
+            <div class="meta clearfix">
+                <div class="date d-inline-block"><?php echo get_comment_date('Y年m月d日'); ?></div>
+            </div>
             <div class="content pb-2">
                 <?php comment_text(); ?>
-            </div>
-            <div class="meta clearfix">
-                <div class="date d-inline-block float-left"><?php echo get_comment_date('Y年m月d日'); ?><?php if (current_user_can('edit_posts')) {
-                        echo '<span class="ml-2">';
-                        edit_comment_link(__('编辑', 'kratos'));
-                        echo '</span>';
-                    }; ?>
-                </div>
             </div>
         </div>
     </li>
@@ -101,11 +82,7 @@ function comment_callbacks($comment, $args, $depth = 2)
         <div class="info clearfix">
             <cite class="author_name"><?php echo get_comment_author_link(); ?></cite>
             <div class="meta clearfix">
-                <div class="date d-inline-block"><?php echo get_comment_date('Y年m月d日'); ?><?php if (current_user_can('edit_posts')) {
-                        echo '<span class="ml-2">';
-                        edit_comment_link(__('编辑', 'kratos'));
-                        echo '</span>';
-                    }; ?>
+                <div class="date d-inline-block"><?php echo get_comment_date('Y年m月d日'); ?>
                 </div>
                 <div class="tool reply d-inline-block float-right">
                     <?php
@@ -121,7 +98,6 @@ function comment_callbacks($comment, $args, $depth = 2)
         </div>
     </li>
     <?php
-//    li标签添加结尾是为了 子评论与li同级, 适应aos插件
 }
 
 
@@ -145,4 +121,3 @@ function recover_comment_fields($comment_fields)
 }
 
 add_filter('comment_form_fields', 'recover_comment_fields');
-

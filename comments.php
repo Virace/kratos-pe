@@ -5,7 +5,7 @@
  * @site x-item.com
  * @license GPL-3.0 License
  * @software PhpStorm
- * @version 2021.11.16
+ * @version 2021.11.23
  */
 
 if (isset($_SERVER['SCRIPT_FILENAME']) && 'comments.php' == basename($_SERVER['SCRIPT_FILENAME'])) {
@@ -13,7 +13,6 @@ if (isset($_SERVER['SCRIPT_FILENAME']) && 'comments.php' == basename($_SERVER['S
 }
 
 require get_template_directory() . '/pages/page-smilies.php';
-require get_template_directory() . '/inc/theme-comments.php';
 if (comments_open()) { ?>
     <div class="comments" id="comments">
         <h3 class="title"><?php if (is_single()) {
@@ -21,9 +20,9 @@ if (comments_open()) { ?>
             } else {
                 _e('评论内容', 'kratos');
             } ?></h3>
-        <div class="list">
+        <ul class="list">
             <?php wp_list_comments('type=comment&callback=comment_callbacks'); ?>
-        </div>
+        </ul>
         <?php if (get_comment_pages_count() > 1) { ?>
             <div id="comments-nav">
                 <?php paginate_comments_links('prev_text=' . __('上一页', 'kratos') . '&next_text=' . __('下一页', 'kratos')); ?>
@@ -64,7 +63,9 @@ if (comments_open()) { ?>
                             </div>
                         <?php endif; ?>
                         <div class="comment-textarea">
-                            <textarea class="form-control" id="comment" name="comment" rows="7"
+                            <label for="comment"></label>
+                            <textarea class="form-control" id="comment"
+                                      name="comment" rows="7"
                                       required="required"></textarea>
                             <div class="text-bar clearfix">
                                 <div class="tool float-left">
