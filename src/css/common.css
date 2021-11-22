@@ -1000,6 +1000,41 @@ a.btn.disabled, fieldset:disabled a.btn {
     box-shadow: 0 0 0 .2rem rgba(38, 143, 255, .5)
 }
 
+.btn-dark {
+    color: #fff;
+    background-color: #212529;
+    border-color: #212529;
+}
+
+.btn-dark:hover {
+    color: #fff;
+    background-color: #1c1f23;
+    border-color: #1a1e21;
+}
+
+.btn-check:focus + .btn-dark, .btn-dark:focus {
+    color: #fff;
+    background-color: #1c1f23;
+    border-color: #1a1e21;
+    box-shadow: 0 0 0 0.25rem rgba(66, 70, 73, 0.5);
+}
+
+.btn-check:checked + .btn-dark, .btn-check:active + .btn-dark, .btn-dark:active, .btn-dark.active, .show > .btn-dark.dropdown-toggle {
+    color: #fff;
+    background-color: #1a1e21;
+    border-color: #191c1f;
+}
+
+.btn-check:checked + .btn-dark:focus, .btn-check:active + .btn-dark:focus, .btn-dark:active:focus, .btn-dark.active:focus, .show > .btn-dark.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.25rem rgba(66, 70, 73, 0.5);
+}
+
+.btn-dark:disabled, .btn-dark.disabled {
+    color: #fff;
+    background-color: #212529;
+    border-color: #212529;
+}
+
 .fade {
     transition: opacity .15s linear
 }
@@ -1297,7 +1332,7 @@ a.btn.disabled, fieldset:disabled a.btn {
     max-width: 350px;
     font-size: .875rem;
     color: #fff;
-    background-color: rgba(0,0,0,.6);
+    background-color: rgba(0, 0, 0, .6);
     background-clip: padding-box;
     border: none;
     box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
@@ -1475,6 +1510,7 @@ a.btn.disabled, fieldset:disabled a.btn {
 .modal.show.hide .modal-dialog .modal-content {
     animation: .5s cubic-bezier(.165, .84, .44, 1) forwards scaleDown
 }
+
 /* 取消modal显示时 容器缩放特效, 文章过长为导致缩放比例问题 */
 /*#content .container.hide {*/
 /*    animation: .5s cubic-bezier(.165, .84, .44, 1) forwards scaleForward*/
@@ -1739,6 +1775,13 @@ body.modal-active, html.modal-active {
     display: block
 }
 
+/*!
+ * animate.css - https://animate.style/
+ * Version - 4.1.1
+ * Licensed under the MIT license - http://opensource.org/licenses/MIT
+ *
+ * Copyright (c) 2020 Animate.css
+ */
 .animate__animated {
     -webkit-animation-duration: 1s;
     animation-duration: 1s;
@@ -1773,6 +1816,11 @@ body.modal-active, html.modal-active {
     animation-name: fadeInLeft
 }
 
+.animate__fadeOut {
+    -webkit-animation-name: fadeOut;
+    animation-name: fadeOut;
+}
+
 .animate__fadeOutLeft {
     -webkit-animation-name: fadeOutLeft;
     animation-name: fadeOutLeft
@@ -1781,6 +1829,26 @@ body.modal-active, html.modal-active {
 .animate__backInLeft {
     -webkit-animation-name: backInLeft;
     animation-name: backInLeft
+}
+
+@-webkit-keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
 }
 
 @keyframes shakeX {
@@ -1841,19 +1909,23 @@ body.modal-active, html.modal-active {
 
 @-webkit-keyframes fadeIn {
     from {
-        opacity: 0
+        opacity: 0;
+        visibility: hidden;
     }
     to {
-        opacity: 1
+        opacity: 1;
+        visibility: visible;
     }
 }
 
 @keyframes fadeIn {
     from {
-        opacity: 0
+        opacity: 0;
+        visibility: hidden;
     }
     to {
-        opacity: 1
+        opacity: 1;
+        visibility: visible;
     }
     0% {
         background: rgba(0, 0, 0, 0)
