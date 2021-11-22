@@ -2,9 +2,9 @@
  * Kratos
  * Seaton Jiang <seaton@vtrois.com> (Modified by Virace)
  */
+
 (function () {
   'use strict'
-  const KRATOS_VERSION = '2.0.0'
 
   const navbarConfig = function () {
     const $menu = $('.dropdown-menu')
@@ -224,7 +224,7 @@
           um_id: id,
           um_action: action
         }
-      $.post(kratos.site + '/wp-admin/admin-ajax.php', data, function (e) {})
+      $.post(kratos.ajax_url, data, function (e) {})
       return !1
 
     }
@@ -254,7 +254,7 @@
     })
   }
   const consoleConfig = function () {
-    console.log('Kratos-pe v' + KRATOS_VERSION + '  https://github.com/Virace/kratos-pe')
+    console.log('Kratos-pe v' + kratos.theme_version + '  https://github.com/Virace/kratos-pe')
   }
   const photoConfig = function () {
     const el = document.getElementById('content')
@@ -324,6 +324,7 @@
       })
     }
 
+    // 动态加载高亮插件
     if ($('pre code').length >= 1)
       if (typeof hljs == 'undefined') {
         const path = kratos.directory
@@ -331,6 +332,13 @@
         let c = [path + '/assets/js/highlight/highlight.pack.js', path + '/assets/js/highlight/highlightjs-copy-button.min.js', path + '/assets/js/highlight/highlightjs-line-numbers.min.js']
         loadRes.LoadJS(c, '').then(action)
       } else action()
+  }
+
+  const commentConfig = function (e) {
+    // 动态加载 ajax 评论js
+    if ($('#commentform').length >= 1 && typeof commentLoad == 'undefined') loadRes.LoadJS([kratos.directory + '/assets/js/comments.min.js?ver=2.0.0'], '').then(function () {
+      commentLoad()
+    })
   }
   window.pjax_reload = function () {
     wechatConfig()
@@ -342,6 +350,7 @@
     modalConfig()
     tabConfig()
     photoLazy()
+    commentConfig()
   }
   $(function () {
     acheaderConfig()
@@ -357,6 +366,7 @@
     photoConfig()
     highlightConfig()
     photoLazy()
+    commentConfig()
   })
 })()
 
@@ -387,6 +397,7 @@ const loadRes = {
     return new Promise(function (d) {
       path.forEach(function (m, p) {
         let f = document.createElement(ele.tag)
+        m += '?ver=' + kratos.theme_version
         Object.assign(f, ele.attr), file === 'css' ? f.href = (a || '') + m : f.src = (a || '') + m, f.async = !1, p === path.length - 1 && (f.onreadystatechange = d, f.onload = d), document.body.appendChild(f)
       })
     })
@@ -396,7 +407,7 @@ const loadRes = {
     return this._load('css', o, i)
   }
 }
-const toast = {
+window.toast = {
   _initEvent: function (msg) {
     // 创建元素并添加到body,
     const ele = document.createElement('div')
