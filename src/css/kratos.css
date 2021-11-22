@@ -1834,6 +1834,7 @@ article.article-panel .nothing .sorry {
 }
 
 .comments .list li {
+    margin-bottom: 0;
     border-bottom: 1px solid #f0f0f0;
     line-height: 1.8
 }
@@ -1910,7 +1911,7 @@ article.article-panel .nothing .sorry {
 
 .comments .comment .info .meta .date:before {
     content: "\B7";
-    margin-right: .2rem;
+    margin-right: .4rem;
     font-size: 13px
 }
 
@@ -1919,7 +1920,7 @@ article.article-panel .nothing .sorry {
 }
 
 .comments .children .comment {
-    margin-bottom: 0
+    margin-bottom: 0;
 }
 
 .comments .children .comment .avatar img {
@@ -1931,6 +1932,10 @@ article.article-panel .nothing .sorry {
     border: 1px solid #eee;
     border-radius: 3px;
     background-color: hsla(0, 0%, 71%, .1)
+}
+
+.comments .comment-respond .comment-textarea label {
+    display: none;
 }
 
 .comments .comment-respond .comment-textarea textarea {
@@ -1954,12 +1959,15 @@ article.article-panel .nothing .sorry {
     width: 100%
 }
 
-.comments .comment-respond .comment-textarea .btn-primary {
+.comments .comment-respond .comment-textarea .btn {
     width: 100px;
     border: none;
     border-radius: 3px;
-    background-color: var(--theme-color-1, #00a2ff);
     font-size: 14px
+}
+
+.comments .comment-respond .comment-textarea .btn-primary {
+    background-color: var(--theme-color-1, #00a2ff);
 }
 
 .comments .comment-respond .comment-textarea .addbtn {
@@ -1971,7 +1979,8 @@ article.article-panel .nothing .sorry {
     color: #333
 }
 
-.comments .comment-respond .comment-textarea #cancel-comment-reply-link {
+/*.comments .comment-respond .comment-textarea*/
+#cancel-comment-reply-link {
     display: inline-block;
     padding: 6px 12px;
     border: none;
@@ -1983,7 +1992,8 @@ article.article-panel .nothing .sorry {
     white-space: nowrap;
     font-size: 14px;
     line-height: 1.5;
-    user-select: none
+    user-select: none;
+    transition: none;
 }
 
 .comments .comment-respond .comment-textarea .text-bar .smile {
@@ -2079,7 +2089,7 @@ article.article-panel .nothing .sorry {
     color: #444
 }
 
-#comments-nav .prev , #comments-nav .next{
+#comments-nav .prev, #comments-nav .next {
     border: solid 1px var(--theme-color-1, #00a2ff);
 }
 
