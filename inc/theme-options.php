@@ -5,7 +5,7 @@
  * @site x-item.com
  * @license GPL-3.0 License
  * @software PhpStorm
- * @version 2021.11.20
+ * @version 2021.11.23
  */
 
 defined('ABSPATH') || exit;
@@ -119,15 +119,8 @@ CSF::createSection($prefix, array(
             'type' => 'switcher',
             'title' => __('静态资源加速', 'kratos'),
             'subtitle' => __('启用/禁用静态资源加速', 'kratos'),
-            'default' => true,
+            'default' => false,
         ),
-//        array(
-//            'id' => 'g_renameimg',
-//            'type' => 'switcher',
-//            'title' => __('自定义图片类型的文件名', 'kratos'),
-//            'subtitle' => __('启用/禁用 图片类型的文件名改为 MD5 值', 'kratos'),
-//            'default' => false,
-//        ),
         array(
             'id' => 'g_removeimgsize',
             'type' => 'switcher',
@@ -156,41 +149,6 @@ CSF::createSection($prefix, array(
             'subtitle' => __('自定义 Gravatar 头像加速地址', 'kratos'),
             'default' => 'sdn.geekzu.org',
         ),
-//        array(
-//            'id' => 'g_renameother_fieldset',
-//            'type' => 'fieldset',
-//            'fields' => array(
-//                array(
-//                    'type' => 'subheading',
-//                    'content' => __('附件重命名', 'kratos'),
-//                ),
-//                array(
-//                    'id' => 'g_renameother',
-//                    'type' => 'switcher',
-//                    'title' => __('功能开关', 'kratos'),
-//                    'subtitle' => __('开启/关闭附件重命名', 'kratos'),
-//                    'text_on' => __('开启', 'kratos'),
-//                    'text_off' => __('关闭', 'kratos'),
-//                ),
-//                array(
-//                    'id' => 'g_renameother_prdfix',
-//                    'type' => 'text',
-//                    'title' => __('文件前缀', 'kratos'),
-//                    'subtitle' => __('前缀与文件名之间会用 - 连接', 'kratos'),
-//                ),
-//                array(
-//                    'id' => 'g_renameother_mime',
-//                    'type' => 'text',
-//                    'title' => __('文件类型', 'kratos'),
-//                    'subtitle' => __('每个类型之间用 | 隔开', 'kratos'),
-//                ),
-//            ),
-//            'default' => array(
-//                'g_renameother' => false,
-//                'g_renameother_prdfix' => getdomain(home_url()),
-//                'g_renameother_mime' => 'tar|zip|gz|gzip|rar|7z',
-//            ),
-//        ),
         array(
             'id' => 'g_wechat_fieldset',
             'type' => 'fieldset',
@@ -406,162 +364,6 @@ CSF::createSection($prefix, array(
         ),
     )
 ));
-
-//CSF::createSection($prefix, array(
-//    'parent' => 'global_fields',
-//    'title' => __('第三方配置', 'kratos'),
-//    'icon' => 'fas fa-arrow-right',
-//    'fields' => array(
-//        array(
-//            'type' => 'notice',
-//            'style' => 'info',
-//            'content' => '提示：<strong>DogeCloud 云存储</strong> 与 <strong>火山引擎 ImageX</strong>请勿同时开启！',
-//        ),
-//        array(
-//            'id' => 'g_cos_fieldset',
-//            'type' => 'fieldset',
-//            'fields' => array(
-//                array(
-//                    'type' => 'subheading',
-//                    'content' => __('DogeCloud 云存储', 'kratos'),
-//                ),
-//                array(
-//                    'type' => 'submessage',
-//                    'style' => 'info',
-//                    'content' => 'DogeCloud 云存储提供<strong> 10 GB </strong>的免费存储额度，<strong> 20 GB </strong>每月的免费 CDN 额度，<a target="_blank" href="https://console.dogecloud.com/register.html?iuid=614">立即注册</a>',
-//                ),
-//                array(
-//                    'id' => 'g_cos',
-//                    'type' => 'switcher',
-//                    'title' => __('功能开关', 'kratos'),
-//                    'subtitle' => __('开启/关闭 DogeCloud 云存储', 'kratos'),
-//                    'text_on' => __('开启', 'kratos'),
-//                    'text_off' => __('关闭', 'kratos'),
-//                ),
-//                array(
-//                    'id' => 'g_cos_bucketname',
-//                    'type' => 'text',
-//                    'title' => __('空间名称', 'kratos'),
-//                    'subtitle' => __('空间名称可在空间基本信息中查看', 'kratos'),
-//                    'desc' => __('<a target="_blank" href="https://console.dogecloud.com/oss/list">点击这里</a>查询空间名称', 'kratos'),
-//                ),
-//                array(
-//                    'id' => 'g_cos_url',
-//                    'type' => 'text',
-//                    'title' => __('加速域名', 'kratos'),
-//                    'subtitle' => __('域名结尾不要添加 /', 'kratos'),
-//                    'desc' => __('<a target="_blank" href="https://console.dogecloud.com/oss/list">点击这里</a>查询加速域名', 'kratos'),
-//                ),
-//                array(
-//                    'id' => 'g_cos_accesskey',
-//                    'type' => 'text',
-//                    'title' => __('AccessKey', 'kratos'),
-//                    'subtitle' => __('出于安全考虑，建议周期性地更换密钥', 'kratos'),
-//                    'desc' => __('<a target="_blank" href="https://console.dogecloud.com/user/keys">点击这里</a>查询 AccessKey', 'kratos'),
-//                ),
-//                array(
-//                    'id' => 'g_cos_secretkey',
-//                    'type' => 'text',
-//                    'attributes' => array(
-//                        'type' => 'password',
-//                    ),
-//                    'title' => __('SecretKey', 'kratos'),
-//                    'subtitle' => __('出于安全考虑，建议周期性地更换密钥', 'kratos'),
-//                    'desc' => __('<a target="_blank" href="https://console.dogecloud.com/user/keys">点击这里</a>查询 SecretKey', 'kratos'),
-//                ),
-//            ),
-//            'default' => array(
-//                'g_cos' => false,
-//                'g_cos_bucketname' => '',
-//                'g_cos_url' => '',
-//                'g_cos_accesskey' => '',
-//                'g_cos_secretkey' => '',
-//            ),
-//        ),
-//        array(
-//            'id' => 'g_imgx_fieldset',
-//            'type' => 'fieldset',
-//            'fields' => array(
-//                array(
-//                    'type' => 'subheading',
-//                    'content' => __('火山引擎 ImageX', 'kratos'),
-//                ),
-//                array(
-//                    'type' => 'submessage',
-//                    'style' => 'info',
-//                    'content' => '火山引擎 ImageX 提供<strong> 10 GB </strong>的免费存储额度，<strong> 10 GB </strong>每月的免费 CDN 额度，<strong> 20 TB </strong>每月的图像处理额度，<a target="_blank" href="https://www.volcengine.com/products/imagex?utm_content=ImageX&utm_medium=i4vj9y&utm_source=u7g4zk&utm_term=ImageX-kratos">立即注册</a>',
-//                ),
-//                array(
-//                    'id' => 'g_imgx',
-//                    'type' => 'switcher',
-//                    'title' => __('功能开关', 'kratos'),
-//                    'subtitle' => __('开启/关闭 火山引擎 ImageX', 'kratos'),
-//                    'text_on' => __('开启', 'kratos'),
-//                    'text_off' => __('关闭', 'kratos'),
-//                ),
-//                array(
-//                    'id' => 'g_imgx_region',
-//                    'type' => 'select',
-//                    'title' => __('加速地域', 'kratos'),
-//                    'subtitle' => __('加速地域在创建服务的时候进行选择', 'kratos'),
-//                    'desc' => __('<a target="_blank" href="https://console.volcengine.com/imagex/service_manage/">点击这里</a>查询加速地域', 'kratos'),
-//                    'options' => array(
-//                        'cn-north-1' => __('国内', 'kratos'),
-//                        'us-east-1' => __('美东', 'kratos'),
-//                        'ap-singapore-1' => __('新加坡', 'kratos')
-//                    ),
-//                ),
-//                array(
-//                    'id' => 'g_imgx_serviceid',
-//                    'type' => 'text',
-//                    'title' => __('服务 ID', 'kratos'),
-//                    'subtitle' => __('服务 ID 可在图片服务管理中查看', 'kratos'),
-//                    'desc' => __('<a target="_blank" href="https://console.volcengine.com/imagex/service_manage/">点击这里</a>查询服务 ID', 'kratos'),
-//                ),
-//                array(
-//                    'id' => 'g_imgx_url',
-//                    'type' => 'text',
-//                    'title' => __('加速域名', 'kratos'),
-//                    'subtitle' => __('域名结尾不要添加 /', 'kratos'),
-//                    'desc' => __('<a target="_blank" href="https://console.volcengine.com/imagex/service_manage/">点击这里</a>查询加速域名', 'kratos'),
-//                ),
-//                array(
-//                    'id' => 'g_imgx_tmp',
-//                    'type' => 'text',
-//                    'title' => __('处理模板', 'kratos'),
-//                    'subtitle' => __('处理模板可在图片处理配置中查看', 'kratos'),
-//                    'desc' => __('<a target="_blank" href="https://console.volcengine.com/imagex/image_template/">点击这里</a>查询处理模板', 'kratos'),
-//                ),
-//                array(
-//                    'id' => 'g_imgx_accesskey',
-//                    'type' => 'text',
-//                    'title' => __('AccessKey', 'kratos'),
-//                    'subtitle' => __('出于安全考虑，建议周期性地更换密钥', 'kratos'),
-//                    'desc' => __('<a target="_blank" href="https://console.volcengine.com/iam/keymanage/">点击这里</a>查询 AccessKey', 'kratos'),
-//                ),
-//                array(
-//                    'id' => 'g_imgx_secretkey',
-//                    'type' => 'text',
-//                    'attributes' => array(
-//                        'type' => 'password',
-//                    ),
-//                    'title' => __('SecretKey', 'kratos'),
-//                    'subtitle' => __('出于安全考虑，建议周期性地更换密钥', 'kratos'),
-//                    'desc' => __('<a target="_blank" href="https://console.volcengine.com/iam/keymanage/">点击这里</a>查询 SecretKey', 'kratos'),
-//                ),
-//            ),
-//            'default' => array(
-//                'g_imgx' => false,
-//                'g_imgx_region' => 'cn-north-1',
-//                "g_imgx_serviceid" => "",
-//                "g_imgx_url" => "",
-//                "g_imgx_tmp" => "",
-//                "g_imgx_accesskey" => "",
-//                "g_imgx_secretkey" => "",
-//            ),
-//        ),
-//    ),
-//));
 
 CSF::createSection($prefix, array(
     'title' => __('收录配置', 'kratos'),
