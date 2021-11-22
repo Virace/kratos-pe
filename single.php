@@ -5,7 +5,7 @@
  * @site x-item.com
  * @license GPL-3.0 License
  * @software PhpStorm
- * @version 2021.11.16
+ * @version 2021.11.23
  */
 
 get_header();
@@ -153,7 +153,7 @@ $post_ID = get_the_ID();
                                 </div>
                             </article>
                         <?php endif; ?>
-                        <?php require get_template_directory() . '/pages/page-toolbar.php'; ?>
+                        <?php require THEME_DIR . '/pages/page-toolbar.php'; ?>
                         <nav class="navigation post-navigation clearfix" role="navigation">
                             <?php
                             $prev_post = get_previous_post(TRUE);
@@ -170,7 +170,7 @@ $post_ID = get_the_ID();
                     <?php if (kratos_option('g_article_widgets', 'two_side') == 'two_side') { ?>
                         <div class="col-lg-4 sidebar d-none d-lg-block animate__animated">
                             <aside class="sidebar">
-                                <?php require get_template_directory() . '/pages/page-toc.php'; ?>
+                                <?php require THEME_DIR . '/pages/page-toc.php'; ?>
                                 <?php dynamic_sidebar('single_sidebar'); ?>
                             </aside>
                         </div>

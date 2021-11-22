@@ -12,7 +12,7 @@ if (isset($_SERVER['SCRIPT_FILENAME']) && 'comments.php' == basename($_SERVER['S
     die();
 }
 
-require get_template_directory() . '/pages/page-smilies.php';
+require THEME_DIR . '/pages/page-smilies.php';
 if (comments_open()) { ?>
     <div class="comments" id="comments">
         <h3 class="title"><?php if (is_single()) {
