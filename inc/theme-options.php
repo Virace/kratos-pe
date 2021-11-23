@@ -5,7 +5,7 @@
  * @site x-item.com
  * @license GPL-3.0 License
  * @software PhpStorm
- * @version 2021.11.23
+ * @version 2021.11.24
  */
 
 defined('ABSPATH') || exit;
@@ -559,6 +559,55 @@ CSF::createSection($prefix, array(
                 'g_donate' => false,
                 'g_donate_wechat' => get_template_directory_uri() . '/assets/img/200.png',
                 'g_donate_alipay' => get_template_directory_uri() . '/assets/img/200.png',
+            ),
+        ),
+        array(
+            'id' => 'g_widgets_fieldset',
+            'type' => 'fieldset',
+            'fields' => array(
+                array(
+                    'type' => 'subheading',
+                    'content' => __('小工具相关', 'kratos'),
+                ),
+                array(
+                    'id' => 'g_widgets_nickname',
+                    'type' => 'text',
+                    'title' => __('昵称', 'kratos'),
+                    'subtitle' => __('个人简介详细版小工具所显示的', 'kratos'),
+                ),
+                array(
+                    'id' => 'g_widgets_about',
+                    'type' => 'text',
+                    'title' => __('简介', 'kratos'),
+                    'subtitle' => __('同上，一句话', 'kratos'),
+                ),
+                array(
+                    'id' => 'g_widgets_location',
+                    'type' => 'text',
+                    'title' => __('地点', 'kratos'),
+                    'subtitle' => __('同上，地理位置', 'kratos'),
+                ),
+                array(
+                    'id' => 'g_widgets_gravatar',
+                    'type' => 'upload',
+                    'title' => __('头像', 'kratos'),
+                    'subtitle' => __('同上，显示的头像', 'kratos'),
+                    'library' => 'image',
+                    'preview' => true,
+                ),
+                array(
+                    'id' => 'g_widgets_create_time',
+                    'type' => 'date',
+                    'title' => __('创建时间', 'kratos'),
+                    'subtitle' => __('同上，网站创建的时间，默认为ID为1的用户注册时间', 'kratos'),
+                ),
+            ),
+            'default' => array(
+                'g_widgets_nickname' => get_userdata(1)->nickname,
+                'g_widgets_about' => '有趣的人，做有趣的事。',
+                'g_widgets_location' => 'Mar.(火星)',
+                'g_widgets_gravatar' => get_template_directory_uri() . '/assets/img/gravatar.png',
+                'g_widgets_create_time' => get_userdata(1)->user_registered,
             ),
         ),
     ),

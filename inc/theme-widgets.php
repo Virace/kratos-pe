@@ -5,7 +5,7 @@
  * @site x-item.com
  * @license GPL-3.0 License
  * @software PhpStorm
- * @version 2021.11.16
+ * @version 2021.11.24
  */
 
 //取最后一次活动时间. 徒增功耗
@@ -521,10 +521,11 @@ class widget_about_detailed extends WP_Widget
     {
         global $wpdb;
         extract($args);
-        $author_title = kratos_option('a_about', __('保持饥渴的专注，追求最佳的品质', 'kratos'));
-        $author = kratos_option('a_nickname', __('Kratos', 'kratos'));
-        $location = kratos_option('a_localtion', __('Mars', 'kratos'));
-        $avatar = kratos_option('a_gravatar', ASSET_PATH . '/assets/img/gravatar.png');
+        $admin = get_userdata(1);
+        $author_title = kratos_option('g_widgets_fieldset')['g_widgets_about'];
+        $author = kratos_option('g_widgets_fieldset')['g_widgets_nickname'];
+        $location = kratos_option('g_widgets_fieldset')['g_widgets_location'];
+        $avatar = kratos_option('g_widgets_fieldset')['g_widgets_gravatar'];
         echo $before_widget;
         if (!is_home()) $redirect = get_permalink(); else $redirect = home_url(); ?>
         <div class="author">
@@ -553,7 +554,7 @@ class widget_about_detailed extends WP_Widget
         <ul class="info">
             <li><i></i><a href="javascript:"><?php echo site_url(); ?></a></li>
             <li>
-                <i></i>网站已艰难存活 <?php echo floor((time() - strtotime(kratos_option('a_createtime'))) / 86400); ?>
+                <i></i>网站已艰难存活 <?php echo floor((time() - strtotime(kratos_option('g_widgets_fieldset')['g_widgets_create_time'])) / 86400); ?>
                 天
             </li>
             <li><i></i>作者活跃于 <?php last_login(); ?> 前</li>
