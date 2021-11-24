@@ -539,6 +539,7 @@
 }
 
 article.article-panel {
+    position: relative;
     margin: 0 0 23px;
     border-radius: 0;
     background-color: #fff;
@@ -547,6 +548,23 @@ article.article-panel {
 
 article.article-panel:last-of-type {
     margin: 0
+}
+
+
+article.article-panel .a-card {
+    position: absolute;
+    top: -16px;
+    right: -1px;
+}
+
+article.article-panel .a-card .i-card-top {
+    color: var(--theme-color-2, #0097ee);
+    font-size: 40px;
+}
+
+article.article-panel .a-card .i-card-hot {
+    color: #dc3545;
+    font-size: 40px;
 }
 
 article.article-panel .sticky-post {
