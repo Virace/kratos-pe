@@ -5,7 +5,7 @@
  * @site x-item.com
  * @license GPL-3.0 License
  * @software PhpStorm
- * @version 2021.11.23
+ * @version 2021.11.24
  */
 
 get_header();
@@ -177,7 +177,7 @@ $post_ID = get_the_ID();
                     <?php } ?>
                 </div>
             </div>
-            <?php if (kratos_option('g_donate', false)) { ?>
+            <?php if (kratos_option('g_donate_fieldset')['g_donate']) { ?>
                 <div id="modal-container" class="modal">
                     <div class="modal-dialog modal-dialog-centered donate-box">
                         <div class="modal-content">

@@ -5,7 +5,7 @@
  * @site x-item.com
  * @license GPL-3.0 License
  * @software PhpStorm
- * @version 2021.11.16
+ * @version 2021.11.24
  */
 ?>
 <aside class="toolbar clearfix">
@@ -16,7 +16,8 @@
     </div>
     <div class="share float-md-right text-center">
         <?php if (kratos_option('g_donate_fieldset')['g_donate']) { ?>
-            <a href="javascript:;" id="donate" class="btn btn-donate mr-3" role="button"><i
+            <a href="javascript:;" id="donate" class="btn btn-donate mr-3" role="button" data-toggle="modal"
+               data-target="#modal-container"><i
                         class="vicon i-donate"></i> <?php _e('打赏', 'kratos'); ?></a>
         <?php } ?>
         <a href="javascript:;" id="thumbs" data-action="love" data-id="<?php the_ID(); ?>" role="button"
