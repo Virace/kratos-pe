@@ -5,7 +5,7 @@
  * @site x-item.com
  * @license GPL-3.0 License
  * @software PhpStorm
- * @version 2021.11.24
+ * @version 2021.11.25
  */
 
 get_header();
@@ -191,9 +191,9 @@ $post_ID = get_the_ID();
                                     </div>
 
                                     <img class="pay-img" id="alipay_qr"
-                                         src="<?php echo kratos_option('g_donate_alipay', ASSET_PATH . '/assets/img/donate.png') ?>">
+                                         src="<?php echo kratos_option('g_donate_fieldset')['g_donate_alipay'] ?>">
                                     <img class="pay-img d-none" id="wechat_qr"
-                                         src="<?php echo kratos_option('g_donate_wechat', ASSET_PATH . '/assets/img/donate.png') ?>">
+                                         src="<?php echo kratos_option('g_donate_fieldset')['g_donate_wechat'] ?>">
                                 </div>
                             </div>
                             <div class="modal-footer">
