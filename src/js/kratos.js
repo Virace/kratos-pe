@@ -339,6 +339,7 @@
     if ($('#commentform').length >= 1 && typeof commentLoad == 'undefined') loadRes.LoadJS([kratos.directory + '/assets/js/comments.min.js?ver=2.0.0'], '').then(function () {
       commentLoad()
     })
+    else commentLoad()
   }
   window.pjax_reload = function () {
     wechatConfig()
