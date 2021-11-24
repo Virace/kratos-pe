@@ -336,10 +336,14 @@
 
   const commentConfig = function (e) {
     // 动态加载 ajax 评论js
-    if ($('#commentform').length >= 1 && typeof commentLoad == 'undefined') loadRes.LoadJS([kratos.directory + '/assets/js/comments.min.js?ver=2.0.0'], '').then(function () {
-      commentLoad()
-    })
-    else commentLoad()
+    if ($('#commentform').length >= 1) {
+      if (typeof commentLoad == 'undefined') {
+        loadRes.LoadJS([kratos.directory + '/assets/js/comments.min.js?ver=2.0.0'], '').then(function () {
+          commentLoad()
+        })
+      } else commentLoad()
+    }
+
   }
   window.pjax_reload = function () {
     wechatConfig()
