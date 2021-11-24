@@ -510,7 +510,7 @@ CSF::createSection($prefix, array(
                     'id' => 'g_article_comment',
                     'type' => 'text',
                     'title' => __('评论数', 'kratos'),
-                    'subtitle' => __('填写显示 HOT 标签需要的评论数', 'kratos'),
+                    'subtitle' => __('填写显示 HOT 标签需要的评论人数', 'kratos'),
                 ),
                 array(
                     'id' => 'g_article_love',
