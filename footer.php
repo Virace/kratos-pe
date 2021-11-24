@@ -5,7 +5,7 @@
  * @site x-item.com
  * @license GPL-3.0 License
  * @software PhpStorm
- * @version 2021.11.16
+ * @version 2021.11.25
  */
 ?>
 
@@ -56,7 +56,9 @@
                     echo '<p><a href="' . kratos_option('s_gov_link') . '" target="_blank" rel="nofollow" ><i class="police-ico"></i>' . kratos_option('s_gov') . '</a></p>';
                 }
                 if (kratos_option('seo_statistical')) {
+                    echo '<script>';
                     echo kratos_option('seo_statistical');
+                    echo '</script>';
                 }
                 ?>
             </div>

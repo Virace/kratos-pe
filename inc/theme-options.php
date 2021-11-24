@@ -5,7 +5,7 @@
  * @site x-item.com
  * @license GPL-3.0 License
  * @software PhpStorm
- * @version 2021.11.24
+ * @version 2021.11.25
  */
 
 defined('ABSPATH') || exit;
@@ -393,7 +393,7 @@ CSF::createSection($prefix, array(
         array(
             'id' => 'seo_statistical',
             'title' => __('统计代码', 'kratos'),
-            'subtitle' => __('<span style="color:red">输入代码时请注意辨别代码安全性</span>', 'kratos'),
+            'subtitle' => __('<span style="color:red">输入代码时请注意辨别代码安全性,无需增加script头尾</span>', 'kratos'),
             'type' => 'code_editor',
             'settings' => array(
                 'theme' => 'default',
