@@ -65,14 +65,6 @@ function widgets_init()
         'before_title' => '<div class="title">',
         'after_title' => '</div>',
     ));
-    register_sidebar(array(
-        'name' => __('页面侧边栏', 'kratos'),
-        'id' => 'page_sidebar',
-        'before_widget' => '<div class="widget %2$s">',
-        'after_widget' => '</div>',
-        'before_title' => '<div class="title">',
-        'after_title' => '</div>',
-    ));
 
     // 去掉默认小工具
     $wp_widget = array(
@@ -435,14 +427,15 @@ class widget_posts extends WP_Widget
         ?>
         <div class="nav nav-tabs d-none d-xl-flex" id="nav-tab" role="tablist">
             <a class="nav-item nav-link" id="nav-new-tab" data-toggle="tab" href="#nav-new" role="tab"
-               aria-controls="nav-new" aria-selected="false"><i class="vicon i-tabnew"></i><?php _e('最新', 'kratos'); ?>
+               aria-controls="nav-new" aria-selected="false"><i class="vicon i-tab-new"></i><?php _e('最新', 'kratos'); ?>
             </a>
             <a class="nav-item nav-link active" id="nav-hot-tab" data-toggle="tab" href="#nav-hot" role="tab"
-               aria-controls="nav-hot" aria-selected="true"><i class="vicon i-tabhot"></i><?php _e('热点', 'kratos'); ?>
+               aria-controls="nav-hot" aria-selected="true"><i
+                        class="vicon i-tab-fire-fill"></i><?php _e('热点', 'kratos'); ?>
             </a>
             <a class="nav-item nav-link" id="nav-random-tab" data-toggle="tab" href="#nav-random" role="tab"
                aria-controls="nav-random" aria-selected="false"><i
-                        class="vicon i-tabrandom"></i><?php _e('随机', 'kratos'); ?></a>
+                        class="vicon i-tab-random"></i><?php _e('随机', 'kratos'); ?></a>
         </div>
         <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade" id="nav-new" role="tabpanel" aria-labelledby="nav-new-tab">
