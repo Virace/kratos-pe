@@ -176,7 +176,7 @@ CSF::createSection($prefix, array(
             ),
             'default' => array(
                 'g_wechat' => false,
-                'g_wechat_img' => get_template_directory_uri() . '/assets/img/200.png',
+                'g_wechat_img' => get_template_directory_uri() . '/assets/img/donate.png',
             ),
         ),
     ),
@@ -557,8 +557,8 @@ CSF::createSection($prefix, array(
             ),
             'default' => array(
                 'g_donate' => false,
-                'g_donate_wechat' => get_template_directory_uri() . '/assets/img/200.png',
-                'g_donate_alipay' => get_template_directory_uri() . '/assets/img/200.png',
+                'g_donate_wechat' => get_template_directory_uri() . '/assets/img/donate.png',
+                'g_donate_alipay' => get_template_directory_uri() . '/assets/img/donate.png',
             ),
         ),
         array(
