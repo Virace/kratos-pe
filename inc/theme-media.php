@@ -1,12 +1,12 @@
 <?php
-// 增加上传类型
-add_filter('upload_mimes', function ($existing_mimes = array()) {
-    $existing_mimes['webp'] = 'image/webp';
-    $existing_mimes['svg'] = 'image/svg+xml';
-    return $existing_mimes;
-});
-
-
+/**
+ * This filter is to make attachments added by this plugin pass the test
+ * @author  * of wp_attachment_is_image. Otherwise issues with other plugins such (Modified by Virace)
+ * @site x-item.com
+ * @license GPL-3.0 License
+ * @software PhpStorm
+ * @version 2021.11.26
+ */
 /*
 Plugin Name: External Media without Import
 Description: Add external images to the media library without importing, i.e. uploading them to your WordPress site.
@@ -34,10 +34,10 @@ https://www.gnu.org/licenses/gpl-3.0-standalone.html.
 function init_emwi()
 {
 
-    wp_register_style('emwi-css', ASSET_PATH . '/inc/options-framework/css/external-media-without-import.css');
+    wp_register_style('emwi-css', ASSET_PATH . '/inc/assets/external-media-without-import/external-media-without-import.css');
     wp_enqueue_style('emwi-css');
 
-    wp_register_script('emwi-js', ASSET_PATH . '/inc/options-framework/js/external-media-without-import.min.js', array('jquery'));
+    wp_register_script('emwi-js', ASSET_PATH . '/inc/assets/external-media-without-import/external-media-without-import.js', array('jquery'));
     wp_enqueue_script('emwi-js');
 }
 
@@ -125,7 +125,7 @@ function print_media_new_panel($is_in_upload_ui)
              <?php if ($is_in_upload_ui || empty($_GET['error'])) : ?>style="display: none"<?php endif; ?>>
             <div>
                 <span id="emwi-error"><?php if (isset($_GET['error'])) echo esc_html($_GET['error']); ?></span>
-                <?php echo _('手填填写以下属性, 如果留空(或对于宽高设置为0), 将会自动解析.', 'kratos'); ?>
+                <?php echo __('手填填写以下属性, 如果留空(或对于宽高设置为0), 将会自动解析.', 'kratos'); ?>
             </div>
             <div id="emwi-properties">
                 <label><?php echo __('宽', 'kratos'); ?></label>
