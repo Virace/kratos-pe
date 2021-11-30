@@ -5,11 +5,11 @@
  * @site x-item.com
  * @license GPL-3.0 License
  * @software PhpStorm
- * @version 2021.11.16
+ * @version 2021.11.30
  */
 
 get_header(); ?>
-    <div class="k-main <?php echo kratos_option('top_select', 'banner'); ?>" style="background:#ffffff">
+    <main id="content" class="k-main <?php echo kratos_option('top_select', 'banner'); ?>" style="background:#ffffff">
         <div class="container">
             <div class="row">
                 <div class="col-12 page404">
@@ -30,5 +30,5 @@ get_header(); ?>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 <?php get_footer(); ?>
