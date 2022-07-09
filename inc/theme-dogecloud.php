@@ -1,9 +1,11 @@
 <?php
 /**
  * dogecloud 对象存储
- * @author Seaton Jiang <seaton@vtrois.com>
- * @license MIT License
- * @version 2020.03.17
+ * @author Seaton Jiang <hi@seatonjiang.com> (Modified by Virace)
+ * @site x-item.com
+ * @license GPL-3.0 License
+ * @software PhpStorm
+ * @version 2022.07.09
  */
 
 if (kratos_option('g_cos', false)) {

@@ -1,11 +1,11 @@
 <?php
 /**
  * This filter is to make attachments added by this plugin pass the test
- * @author  * of wp_attachment_is_image. Otherwise issues with other plugins such (Modified by Virace)
+ * @author  (Modified by Virace)
  * @site x-item.com
  * @license GPL-3.0 License
  * @software PhpStorm
- * @version 2021.11.26
+ * @version 2021.11.27
  */
 /*
 Plugin Name: External Media without Import

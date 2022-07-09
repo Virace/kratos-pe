@@ -1,18 +1,18 @@
 <?php
 /**
  * 侧栏小工具
- * @author Seaton Jiang <seaton@vtrois.com> (Modified by Virace)
+ * @author Seaton Jiang <hi@seatonjiang.com> (Modified by Virace)
  * @site x-item.com
  * @license GPL-3.0 License
  * @software PhpStorm
- * @version 2021.11.24
+ * @version 2022.07.09
  */
 
 //取最后一次活动时间. 徒增功耗
 function last_login()
 {
     global $wpdb;
-    $date1 = $wpdb->get_var("SELECT comment_date FROM $wpdb->comments WHERE user_id = 1 ORDER BY comment_date DESC");
+    $date1 = $wpdb->get_var("SELECT comment_date_gmt FROM $wpdb->comments WHERE user_id = 1 ORDER BY comment_date_gmt DESC");
     $date2 = $wpdb->get_var("SELECT post_modified FROM $wpdb->posts WHERE post_author = 1 ORDER BY post_modified DESC");
     $date1 = strtotime(empty($date1) ? 0 : $date1);
     $date2 = strtotime(empty($date2) ? 0 : $date2);
@@ -40,7 +40,7 @@ function timeago($ptime): string
         $d = $etime / $secs;
         if ($d >= 1) {
             $r = round($d);
-            return $r . $str . ' (' . date(__('m月d日', 'kratos'), $ptime) . ')';
+            return $r . $str . ' (' .  wp_date(__('m月d日', 'kratos'), $ptime) . ')';
         }
     };
 }
@@ -113,8 +113,8 @@ function most_comm_posts($days = 30, $nums = 6)
 {
     global $wpdb;
     date_default_timezone_set("PRC");
-    $today = date("Y-m-d H:i:s");
-    $daysago = date("Y-m-d H:i:s", strtotime($today) - ($days * 24 * 60 * 60));
+    $today =  wp_date("Y-m-d H:i:s");
+    $daysago =  wp_date("Y-m-d H:i:s", strtotime($today) - ($days * 24 * 60 * 60));
     $result = $wpdb->get_results($wpdb->prepare("SELECT comment_count, ID, post_title, post_date FROM $wpdb->posts WHERE post_date BETWEEN %s AND %s and post_type = 'post' AND post_status = 'publish' ORDER BY comment_count DESC LIMIT 0, %d", $daysago, $today, $nums));
     $output = '';
     if (!empty($result)) {
@@ -288,7 +288,7 @@ class widget_about extends WP_Widget
         extract($args);
         $introduce = !empty(get_the_author_meta('description', '1')) ? get_the_author_meta('description', '1') : __('这个人很懒，什么都没留下', 'kratos');
         $username = get_the_author_meta('display_name', '1');
-        $avatar = get_avatar_url('1');
+        $avatar = get_avatar_url('1', ['size' => '300']);
         $background = !empty($instance['background']) ? $instance['background'] : ASSET_PATH . '/assets/img/about-background.png';
 
         echo $before_widget;
@@ -299,6 +299,7 @@ class widget_about extends WP_Widget
             echo '<a href="' . wp_login_url() . '">';
         }
         echo '<img src="' . $avatar . '"></a>';
+        $introduce = str_replace("\n", '<br>', $introduce);
         echo '</div><div class="textwidget text-center"><p class="username">' . $username . '</p><p class="about">' . $introduce . '</p></div>';
         echo '<!-- .w-about -->';
         echo $after_widget;

@@ -1,6 +1,6 @@
 /*!
  * Kratos
- * Seaton Jiang <seaton@vtrois.com> (Modified by Virace)
+ * Seaton Jiang <hi@seatonjiang.com> (Modified by Virace)
  */
 
 (function () {
@@ -357,7 +357,8 @@
     photoLazy()
     commentConfig()
   }
-  $(function () {
+
+  window.initKratos = function () {
     acheaderConfig()
     navbarConfig()
     modalConfig()
@@ -372,7 +373,8 @@
     highlightConfig()
     photoLazy()
     commentConfig()
-  })
+  };
+  $(window.initKratos);
 })()
 
 const loadRes = {

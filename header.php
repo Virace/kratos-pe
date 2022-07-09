@@ -1,11 +1,11 @@
 <?php
 /**
  * 主题页眉
- * @author Seaton Jiang <seaton@vtrois.com> (Modified by Virace)
+ * @author Seaton Jiang <hi@seatonjiang.com> (Modified by Virace)
  * @site x-item.com
  * @license GPL-3.0 License
  * @software PhpStorm
- * @version 2021.11.16
+ * @version 2022.07.09
  */
 ?>
 <!DOCTYPE html>
@@ -20,10 +20,16 @@
     <meta name="description" content="<?php echo description(); ?>">
     <meta name="theme-color" content="<?php echo kratos_option('g_chrome', '#282a2c'); ?>">
     <meta itemprop="image" content="<?php echo share_thumbnail_url(); ?>"/>
-    <?php if (kratos_option('g_icon')) echo '<link rel="shortcut icon" href="' . kratos_option("g_icon") . '">' ?>
-    <?php wp_head();
+    <?php
+    if (kratos_option('g_icon')) {
+        echo '<link rel="shortcut icon" href="' . kratos_option("g_icon") . '">';
+    }
+    wp_head();
     wp_print_scripts('jquery');
     mourning();
+    if (kratos_option('seo_statistical')) {
+        echo kratos_option('seo_statistical');
+    }
     ?>
 </head>
 <?php flush(); ?>

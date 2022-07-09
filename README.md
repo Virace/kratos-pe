@@ -11,7 +11,7 @@
 
 # Kratos-PE
 
-基于 [kratos](https://github.com/vtrois/kratos) 二次开发, 适当精简并且加入一些新功能. 个人使用版本.
+基于 [kratos](https://github.com/seatonjiang/kratos) 二次开发, 适当精简并且加入一些新功能. 个人使用版本.
 
 - [介绍](#介绍)
 - [安装](#安装)

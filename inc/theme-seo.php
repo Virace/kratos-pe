@@ -5,7 +5,7 @@
  * @site x-item.com
  * @license GPL-3.0 License
  * @software PhpStorm
- * @version 2021.11.16
+ * @version 2021.11.30
  */
 
 // 标题配置
@@ -59,6 +59,8 @@ function keywords(): string
 function description(): string
 {
     global $post;
+    // 初始化一个空值， 防止404页面报错
+    $description = '';
     if (is_home()) {
         $description = kratos_option('seo_description');
     } elseif (is_single()) {
@@ -79,6 +81,7 @@ function description(): string
             $description = kratos_option('seo_description');
         }
     }
+
     return trim(esc_attr(strip_tags($description)));
 }
 

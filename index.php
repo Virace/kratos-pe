@@ -1,11 +1,11 @@
 <?php
 /**
  * 首页模板
- * @author Seaton Jiang <seaton@vtrois.com> (Modified by Virace)
+ * @author Seaton Jiang <hi@seatonjiang.com> (Modified by Virace)
  * @site x-item.com
  * @license GPL-3.0 License
  * @software PhpStorm
- * @version 2021.11.16
+ * @version 2022.07.09
  */
 
 get_header(); ?>

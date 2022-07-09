@@ -3,7 +3,7 @@
 
 /*--------------------------------------------------------------
 >>> Kratos 样式表
->>> Seaton Jiang <seaton@vtrois.com> and Virace <Virace@aliyun.com>
+>>> Seaton Jiang <hi@seatonjiang.com> and Virace <Virace@aliyun.com>
 ----------------------------------------------------------------
 	1.  全局
 	2.  导航
@@ -888,6 +888,7 @@ article.article-panel .nothing .sorry {
     user-select: none;
     font-weight: bold;
     text-shadow: 0 2px white, 0 3px #777;
+    word-break: break-word;
 }
 
 .article .header .meta {
@@ -1164,6 +1165,10 @@ article.article-panel .nothing .sorry {
 
 .article .content .wp-smiley {
     display: inline
+}
+
+.article .content .aligncenter figcaption{
+    text-align: center;
 }
 
 .article .content .aligncenter::after, .article .content .alignleft::after, .article .content .alignright::after {
@@ -2946,7 +2951,9 @@ article.article-panel .nothing .sorry {
     right: 55px;
     bottom: -55px;
     width: 150px;
-    height: 150px
+    height: 150px;
+    max-width: 150px;
+    max-height: 150px;
 }
 
 .k-footer .f-toolbox .search {

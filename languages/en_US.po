@@ -204,12 +204,12 @@ msgstr "Copyright notice"
 
 #: inc/options-framework/includes/class-options-interface.php:248
 msgid ""
-"主题源码使用 <a href=\"https://github.com/vtrois/kratos/blob/master/LICENSE"
+"主题源码使用 <a href=\"https://github.com/seatonjiang/kratos/blob/master/LICENSE"
 "\" target=\"_blank\">MIT 协议</a> 进行许可，说明文档使用 <a href=\"https://"
 "creativecommons.org/licenses/by-nc-nd/4.0/\" target=\"_blank\">CC BY-NC-ND "
 "4.0</a> 进行许可。"
 msgstr ""
-"Theme source code licensed by <a href=\"https://github.com/vtrois/kratos/"
+"Theme source code licensed by <a href=\"https://github.com/seatonjiang/kratos/"
 "blob/master/LICENSE\" target=\"_blank\">MIT protocol</a> ,Instruction "
 "documents are licensed using <a href=\"https://creativecommons.org/licenses/"
 "by-nc-nd/4.0/\" target=\"_blank\">CC by-nc-nd 4.0</a>."
@@ -1405,8 +1405,8 @@ msgid "Kratos-pe"
 msgstr "Kratos-pe"
 
 #. Theme URI of the plugin/theme
-msgid "https://github.com/vtrois/kratos-pe"
-msgstr "https://github.com/vtrois/kratos-pe"
+msgid "https://github.com/seatonjiang/kratos-pe"
+msgstr "https://github.com/seatonjiang/kratos-pe"
 
 #. Description of the plugin/theme
 msgid ""

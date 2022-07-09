@@ -1,11 +1,11 @@
 <?php
 /**
  * 主题选项
- * @author Seaton Jiang <seaton@vtrois.com> (Modified by Virace)
+ * @author Seaton Jiang <hi@seatonjiang.com> (Modified by Virace)
  * @site x-item.com
  * @license GPL-3.0 License
  * @software PhpStorm
- * @version 2021.11.25
+ * @version 2022.07.09
  */
 
 defined('ABSPATH') || exit;
@@ -22,30 +22,6 @@ if (!function_exists('kratos_option')) {
         return $default;
     }
 }
-
-function getdomain($url)
-{
-    $rs = parse_url($url);
-    if (!isset($rs['host'])) {
-        return null;
-    }
-
-    $main_url = $rs['host'];
-    if (!strcmp(long2ip(sprintf('%u', ip2long($main_url))), $main_url)) {
-        return $main_url;
-    } else {
-        $arr = explode('.', $main_url);
-        $count = count($arr);
-        $endArr = array('com', 'net', 'org');
-        if (in_array($arr[$count - 2], $endArr)) {
-            $domain = $arr[$count - 3] . '.' . $arr[$count - 2] . '.' . $arr[$count - 1];
-        } else {
-            $domain = $arr[$count - 2] . '.' . $arr[$count - 1];
-        }
-        return $domain;
-    }
-}
-
 
 function getrobots()
 {
@@ -72,7 +48,7 @@ CSF::createOptions($prefix, array(
     'admin_bar_menu_icon' => 'dashicons-admin-generic',
     'framework_title' => '主题设置<small style="margin-left:10px">Kratos-pe v' . THEME_VERSION . '</small>',
     'theme' => 'light',
-    'footer_credit' => '感谢使用 <a target="_blank" href="https://github.com/vtrois/kratos">Kratos</a> 主题开始创作，欢迎加入交流群：<a target="_blank" href="https://qm.qq.com/cgi-bin/qm/qr?k=jHy4nvMcnurowkL602BTDZzverAqfTpI&jump_from=webapi">734508</a>',
+    'footer_credit' => '感谢使用 <a target="_blank" href="https://github.com/seatonjiang/kratos">Kratos</a> 主题开始创作，欢迎加入交流群：<a target="_blank" href="https://qm.qq.com/cgi-bin/qm/qr?k=jHy4nvMcnurowkL602BTDZzverAqfTpI&jump_from=webapi">734508</a>',
 ));
 
 CSF::createSection($prefix, array(
@@ -143,11 +119,46 @@ CSF::createSection($prefix, array(
             'default' => '260',
         ),
         array(
-            'id' => 'g_gravatar',
-            'type' => 'text',
-            'title' => __('Gravatar 加速', 'kratos'),
-            'subtitle' => __('自定义 Gravatar 头像加速地址', 'kratos'),
-            'default' => 'sdn.geekzu.org',
+            'id' => 'g_replace_gravatar_url_fieldset',
+            'type' => 'fieldset',
+            'fields' => array(
+                array(
+                    'type' => 'subheading',
+                    'content' => __('Gravatar 加速服务', 'kratos'),
+                ),
+                array(
+                    'id' => 'g_replace_gravatar_url',
+                    'type' => 'switcher',
+                    'title' => __('功能开关', 'kratos'),
+                    'subtitle' => __('开启/关闭 Gravatar 加速服务功能', 'kratos'),
+                ),
+                array(
+                    'id' => 'g_select_gravatar_server',
+                    'type' => 'select',
+                    'title' => __('Gravatar 加速服务地址', 'kratos'),
+                    'subtitle' => __('请选择 Gravatar 加速服务地址', 'kratos'),
+                    'options' => array(
+                        'loli' => __('Loli 加速服务', 'kratos'),
+                        'geekzu' => __('极客族加速服务', 'kratos'),
+                        'other' => __('自定义加速服务', 'kratos'),
+                    ),
+                    'desc' => __('国内用户推荐「极客族加速服务」，海外用户推荐「Loli 加速服务」。', 'kratos'),
+                    'dependency' => array('g_replace_gravatar_url', '==', 'true'),
+                ),
+                array(
+                    'id' => 'g_custom_gravatar_server',
+                    'type' => 'text',
+                    'title' => __('自定义 Gravatar 加速服务地址', 'kratos'),
+                    'subtitle' => __('请输入 Gravatar 加速服务地址', 'kratos'),
+                    'desc' => __('直接输入网址即可，不需要协议头和最后的斜杠。', 'kratos'),
+                    'placeholder' => 'secure.gravatar.com',
+                    'dependency' => array('g_replace_gravatar_url|g_select_gravatar_server', '==|==', 'true|other'),
+                ),
+            ),
+            'default' => array(
+                'g_replace_gravatar_url' => 1,
+                'g_select_gravatar_server' => 'geekzu',
+            )
         ),
         array(
             'id' => 'g_wechat_fieldset',
@@ -461,6 +472,27 @@ CSF::createSection($prefix, array(
                 'two_side' => get_template_directory_uri() . '/assets/img/options/col-8.png',
             ),
             'default' => 'two_side',
+        ),
+        array(
+            'id' => 'g_post_link_fieldset',
+            'type' => 'fieldset',
+            'fields' => array(
+                array(
+                    'id' => 'g_jump',
+                    'type' => 'switcher',
+                    'title' => __('外链跳转', 'kratos'),
+                    'subtitle' => __('启用/禁用文章和评论区连接跳转提示', 'kratos'),
+                    'default' => true,
+                ),
+                array(
+                    'id' => 'g_param',
+                    'type' => 'text',
+                    'title' => __('跳转参数或路径', 'kratos'),
+                    'subtitle' => __('例如: x-item.cc/<span style="color: red">goto</span>/xx , x-item.cc/?<span style="color: red">goto</span>=xx , 红色部分. 切勿乱调整。<br> 该选项调整后需要到 <strong>设置 -> 固定连接</strong> 中点击保存用来刷新数据库。', 'kratos'),
+                    'default' => 'target'
+                ),
+
+            ),
         ),
         array(
             'id' => 'g_cc_fieldset',
@@ -887,7 +919,7 @@ CSF::createSection($prefix, array(
             'id' => 's_copyright',
             'type' => 'textarea',
             'title' => __('版权信息', 'kratos'),
-            'default' => 'COPYRIGHT © ' . date('Y') . ' ' . getdomain(home_url()) . '. ALL RIGHTS RESERVED.',
+            'default' => 'COPYRIGHT © ' .  wp_date('Y') . ' ' . get_bloginfo('name') . '. ALL RIGHTS RESERVED.',
         ),
     ),
 ));
@@ -946,7 +978,7 @@ CSF::createSection($prefix, array(
             'id' => 'single_ad_bottom_group',
             'type' => 'group',
             'title' => '文章底部广告',
-            'subtitle' => '点击添加广告，最多添加 3 个顶部广告',
+            'subtitle' => '点击添加广告，最多添加 3 个底部广告',
             'min' => 1,
             'max' => 3,
             'fields' => array(
@@ -1018,7 +1050,7 @@ CSF::createSection($prefix, array(
         ),
         array(
             'type' => 'content',
-            'content' => '<ul style="margin: 0 auto;"> <li>' . __('说明文档：', 'kratos') . '<a href="https://www.vtrois.com/" target="_blank">https://www.vtrois.com/</a></li> <li>' . __('讨论反馈：', 'kratos') . '<a href="https://github.com/vtrois/kratos/discussions" target="_blank">https://github.com/vtrois/kratos/discussions</a></li> <li>' . __('常见问题：', 'kratos') . '<a href="https://github.com/vtrois/kratos/wiki/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98" target="_blank">https://github.com/vtrois/kratos/wiki</a></li> <li>' . __('更新日志：', 'kratos') . '<a href="https://github.com/vtrois/kratos/releases" target="_blank">https://github.com/vtrois/kratos/releases</a></li> <li>' . __('捐赠记录：', 'kratos') . '<a href="https://docs.qq.com/sheet/DV0NwVnNoYWxGUmlD" target="_blank">https://docs.qq.com/sheet/DV0NwVnNoYWxGUmlD</a></li> </ul>',
+            'content' => '<ul style="margin: 0 auto;"> <li>' . __('说明文档：', 'kratos') . '<a href="https://www.vtrois.com/" target="_blank">https://www.vtrois.com/</a></li> <li>' . __('讨论反馈：', 'kratos') . '<a href="https://github.com/seatonjiang/kratos/discussions" target="_blank">https://github.com/seatonjiang/kratos/discussions</a></li> <li>' . __('常见问题：', 'kratos') . '<a href="https://github.com/seatonjiang/kratos/wiki/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98" target="_blank">https://github.com/seatonjiang/kratos/wiki</a></li> <li>' . __('更新日志：', 'kratos') . '<a href="https://github.com/seatonjiang/kratos/releases" target="_blank">https://github.com/seatonjiang/kratos/releases</a></li> <li>' . __('捐赠记录：', 'kratos') . '<a href="https://docs.qq.com/sheet/DV0NwVnNoYWxGUmlD" target="_blank">https://docs.qq.com/sheet/DV0NwVnNoYWxGUmlD</a></li> </ul>',
         ),
         array(
             'type' => 'subheading',
@@ -1026,7 +1058,7 @@ CSF::createSection($prefix, array(
         ),
         array(
             'type' => 'content',
-            'content' => __('主题源码使用 <a href="https://github.com/vtrois/kratos/blob/main/LICENSE" target="_blank">GPL-3.0 协议</a> 进行许可，说明文档使用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a> 进行许可。', 'kratos'),
+            'content' => __('主题源码使用 <a href="https://github.com/seatonjiang/kratos/blob/main/LICENSE" target="_blank">GPL-3.0 协议</a> 进行许可，说明文档使用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a> 进行许可。', 'kratos'),
         ),
         array(
             'type' => 'subheading',

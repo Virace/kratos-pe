@@ -1,11 +1,11 @@
 <?php
 /**
  * 主题页脚
- * @author Seaton Jiang <seaton@vtrois.com> (Modified by Virace)
+ * @author Seaton Jiang <hi@seatonjiang.com> (Modified by Virace)
  * @site x-item.com
  * @license GPL-3.0 License
  * @software PhpStorm
- * @version 2021.11.25
+ * @version 2022.07.09
  */
 ?>
 
@@ -47,7 +47,7 @@
                 </p>
                 <?php
                 $sitename = get_bloginfo('name');
-                echo '<p>' . kratos_option('s_copyright', 'COPYRIGHT © ' . date('Y') . ' ' . get_bloginfo('name') . '. ALL RIGHTS RESERVED.') . '</p>';
+                echo '<p>' . kratos_option('s_copyright', 'COPYRIGHT © ' . wp_date('Y') . ' ' . get_bloginfo('name') . '. ALL RIGHTS RESERVED.') . '</p>';
                 echo '<p>THEME <a href="https://github.com/Virace/kratos-pe" target="_blank" rel="nofollow">KRATOS-PE</a> MADE BY <a href="https://github.com/vtrois" target="_blank" rel="nofollow">VTROIS</a> (Modified by Virace)</p>';
                 if (kratos_option('s_icp')) {
                     echo '<p><a href="https://beian.miit.gov.cn/" target="_blank" rel="nofollow">' . kratos_option('s_icp') . '</a></p>';
@@ -55,11 +55,11 @@
                 if (kratos_option('s_gov')) {
                     echo '<p><a href="' . kratos_option('s_gov_link') . '" target="_blank" rel="nofollow" ><i class="police-ico"></i>' . kratos_option('s_gov') . '</a></p>';
                 }
-                if (kratos_option('seo_statistical')) {
-                    echo '<script>';
-                    echo kratos_option('seo_statistical');
-                    echo '</script>';
-                }
+//                if (kratos_option('seo_statistical')) {
+//                    echo '<script>';
+//                    echo kratos_option('seo_statistical');
+//                    echo '</script>';
+//                }
                 ?>
             </div>
         </div>
