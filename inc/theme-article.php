@@ -5,7 +5,7 @@
  * @site x-item.com
  * @license GPL-3.0 License
  * @software PhpStorm
- * @version 2022.07.09
+ * @version 2022.08.24
  */
 
 // 文章链接添加 target 和 rel
@@ -611,38 +611,38 @@ function add_revision_times($post_ID)
 }
 
 
-if (kratos_option('g_post_link_fieldset')['g_jump']) {
-    // 如果更改了前缀，需要到 设置 -> 固定连接 中点击保存用来刷新数据库
-    // 但更新后之前添加的前缀依旧可用。
-    $param = kratos_option('g_post_link_fieldset')['g_param'];
-
-    add_action('init', function () {
-        global $param;
-        $regex = '^' . $param . '/(.+?)';
-        $query = 'index.php?' . $param . '=$matches[1]';
-        add_rewrite_rule($regex, $query, 'top');
-    });
-
-    add_filter('query_vars', function ($query_vars) {
-        global $param;
-        $query_vars[] = $param;
-        return $query_vars;
-    });
-
-    add_action('template_include', function ($template) {
-        global $param;
-        if (get_query_var($param) == false || get_query_var($param) == '') {
-            return $template;
-        }
-
-        return TEMPLATEPATH . '/pages/page-goto.php';
-    });
-
-    add_action('template_redirect', function () {
-        global $param;
-        if (get_query_var($param) == true && get_query_var($param) != '') {
-            load_template(TEMPLATEPATH . '/pages/page-goto.php');
-            exit;
-        }
-    });
-}
+//if (kratos_option('g_post_link_fieldset')['g_jump']) {
+//    // 如果更改了前缀，需要到 设置 -> 固定连接 中点击保存用来刷新数据库
+//    // 但更新后之前添加的前缀依旧可用。
+//    $param = kratos_option('g_post_link_fieldset')['g_param'];
+//
+//    add_action('init', function () {
+//        global $param;
+//        $regex = '^' . $param . '/(.+?)';
+//        $query = 'index.php?' . $param . '=$matches[1]';
+//        add_rewrite_rule($regex, $query, 'top');
+//    });
+//
+//    add_filter('query_vars', function ($query_vars) {
+//        global $param;
+//        $query_vars[] = $param;
+//        return $query_vars;
+//    });
+//
+//    add_action('template_include', function ($template) {
+//        global $param;
+//        if (get_query_var($param) == false || get_query_var($param) == '') {
+//            return $template;
+//        }
+//
+//        return TEMPLATEPATH . '/pages/page-goto.php';
+//    });
+//
+//    add_action('template_redirect', function () {
+//        global $param;
+//        if (get_query_var($param) == true && get_query_var($param) != '') {
+//            load_template(TEMPLATEPATH . '/pages/page-goto.php');
+//            exit;
+//        }
+//    });
+//}
