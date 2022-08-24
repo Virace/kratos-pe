@@ -2329,6 +2329,7 @@ article.article-panel .nothing .sorry {
     overflow: hidden;
     padding-top: 10px;
     padding-bottom: 10px;
+    padding-left: 0;
     list-style: none
 }
 
