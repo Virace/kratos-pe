@@ -5,7 +5,7 @@
  * @site x-item.com
  * @license GPL-3.0 License
  * @software PhpStorm
- * @version 2022.07.09
+ * @version 2022.08.24
  */
 ?>
 <!DOCTYPE html>
@@ -28,7 +28,9 @@
     wp_print_scripts('jquery');
     mourning();
     if (kratos_option('seo_statistical')) {
+        echo '<script>';
         echo kratos_option('seo_statistical');
+        echo '</script>';
     }
     ?>
 </head>
