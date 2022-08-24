@@ -5,7 +5,7 @@
  * @site x-item.com
  * @license GPL-3.0 License
  * @software PhpStorm
- * @version 2022.07.09
+ * @version 2022.08.24
  */
 
 
@@ -99,19 +99,19 @@ add_filter('style_loader_src', function ($href) {
 remove_filter('the_content', array($GLOBALS['wp_embed'], 'autoembed'), 8);
 
 
-if (kratos_option('g_gravatar', false)) {
-    // 替换 Gravatar 头像源
-    function get_https_avatar($avatar)
-    {
-        $cdn = "gravatar.loli.net";
-        $avatar = str_replace(array("www.gravatar.com", "0.gravatar.com", "1.gravatar.com", "2.gravatar.com", "3.gravatar.com", "secure.gravatar.com", "cn.gravatar.com"), $cdn, $avatar);
-        $avatar = str_replace("http://", "https://", $avatar);
-        return $avatar;
-    }
-
-    add_filter('get_avatar', 'get_https_avatar');
-    add_filter('get_avatar_url', 'get_https_avatar');
-}
+//if (kratos_option('g_gravatar', false)) {
+//    // 替换 Gravatar 头像源
+//    function get_https_avatar($avatar)
+//    {
+//        $cdn = "gravatar.loli.net";
+//        $avatar = str_replace(array("www.gravatar.com", "0.gravatar.com", "1.gravatar.com", "2.gravatar.com", "3.gravatar.com", "secure.gravatar.com", "cn.gravatar.com"), $cdn, $avatar);
+//        $avatar = str_replace("http://", "https://", $avatar);
+//        return $avatar;
+//    }
+//
+//    add_filter('get_avatar', 'get_https_avatar');
+//    add_filter('get_avatar_url', 'get_https_avatar');
+//}
 
 if (kratos_option('g_replace_gravatar_url_fieldset')['g_replace_gravatar_url'] ?? true) {
     function replace_gravatar_url($avatar)
